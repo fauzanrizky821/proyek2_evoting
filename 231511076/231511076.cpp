@@ -73,10 +73,10 @@ void registrasi()
     }
 }
 
-void login()
+bool login(std::string &nim, std::string &nama, std::string &jurusan, std::string &prodi)
 {
     std::istringstream iss;
-    std::string data, nim, cekNim, password, cekPassword;
+    std::string data, inputNim, cekNim, password, cekPassword;
     bool cariNim = false;
 
     std::cout << "============================================================" << std::endl;
@@ -86,7 +86,7 @@ void login()
     std::cout << "============================================================" << std::endl;
 
     std::cout << "NIM     : ";
-    std::cin >> nim;
+    std::cin >> inputNim;
     std::cout << "Password: ";
     std::cin >> password;
 
@@ -103,22 +103,33 @@ void login()
 
             system("cls");
 
-            if (nim == cekNim) {
+            if (inputNim == cekNim) {
                 cariNim = true;
                 getline(iss, cekPassword, ',');
 
                 if (password == cekPassword) {
+                    nim = inputNim;
+                    getline(iss, nama, ',');
+                    getline(iss, jurusan, ',');
+                    getline(iss, prodi, ',');
+
                     std::cout << "=============================================================" << std::endl;
                     std::cout << "|                      LOGIN BERHASIL!                      |" << std::endl;
                     std::cout << "-------------------------------------------------------------" << std::endl;
                     std::cout << "|              Tekan enter untuk melanjutkan..              |" << std::endl;
                     std::cout << "=============================================================" << std::endl;
+
+                    return true;
                 } else {
                     std::cout << "============================================================" << std::endl;
                     std::cout << "|                      PASSWORD SALAH!                     |" << std::endl;
                     std::cout << "------------------------------------------------------------" << std::endl;
                     std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
                     std::cout << "============================================================" << std::endl;
+
+                    return false;
+
+                    getchar();
                 }
             }
         }
@@ -129,6 +140,10 @@ void login()
             std::cout << "------------------------------------------------------------" << std::endl;
             std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
             std::cout << "============================================================" << std::endl;
+
+            return false;
+
+            getchar();
         }
 
         readFile.close();
