@@ -8,3 +8,7 @@ struct Voter {
     std::string nim;
     bool hasVoted;  // Menunjukkan apakah pemilih telah melakukan voting atau belum
 };
+
+void dataPemilih(const Voter& voter);
+void melihatHasilVoting();
+void lihatDataPemilih();
