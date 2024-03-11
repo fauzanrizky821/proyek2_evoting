@@ -43,3 +43,14 @@ void enkripsi(std::string plaintext)
 
     std::cout << "Ciphertext: " << ciphertext << std::endl;
 }
+
+int main()
+{
+    std::string plaintext;
+    std::cout << "Masukkan teks yang ingin dienkripsi: ";
+    std::getline(std::cin, plaintext);
+    
+    enkripsi(plaintext);
+    
+    return 0;
+}
