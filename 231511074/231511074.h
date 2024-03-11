@@ -10,6 +10,7 @@ struct Voter {
     bool hasVoted;  // Menunjukkan apakah pemilih telah melakukan voting atau belum
 };
 
+//modul untuk melihat data pemilih
 void dataPemilih(const Voter& voter) {
     std::cout << "Data Pemilih:\n";
     std::cout <<"Nama : " << voter.name;
@@ -23,6 +24,7 @@ void dataPemilih(const Voter& voter) {
     }
 }
 
+//modul untuk melihat data hasil voting
 void melihatHasilVoting() {
     // Buka file untuk dibaca
     std::ifstream voteFile("hasil_vote.txt");
