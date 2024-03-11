@@ -1,8 +1,7 @@
 // Aulia Putri Ramadhani
 // Menjumlahkan Total Hasil Voting
 
-#include <iostream>
-#include <fstream>
+#include "231511070.h"
 
 void total_vote(int hasil_vote[])
 {
@@ -51,9 +50,4 @@ void tambah_vote()
         std::cout << "Nomor calon tidak valid." << std::endl;
     }
 
-}
-
-int main()
-{
-    tambah_vote();
 }
