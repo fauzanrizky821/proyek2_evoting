@@ -4,16 +4,16 @@
 #include <fstream> // Header file untuk ifstream
 using namespace std;
 
-int main() 
+void hitungJumlahVote(const string& nama_file) 
 {
-    int jumlah_vote =0;
-    std::ifstream infile("cobain.txt"); // Membuat objek ifstream
+    int jumlah_vote = 0;
+    std::ifstream infile(nama_file); // Membuat objek ifstream
 
     // Memeriksa apakah file berhasil dibuka
     if (!infile) 
     {
         std::cerr << "Cannot open file\n";
-        return 1;
+         // Mengembalikan nilai negatif sebagai indikasi kesalahan
     }
 
     // Membaca file baris per baris
@@ -23,9 +23,11 @@ int main()
         std::cout << line << std::endl; // Menampilkan setiap baris
         jumlah_vote++;
     }
-    cout<<endl<< "jumlah vote= " << jumlah_vote <<endl;
 
     infile.close(); // Menutup file setelah selesai membaca
 
-    return 0;
+    cout<< "\n" "jumlah vote= " << jumlah_vote;
+}
+int main(){
+    hitungJumlahVote("cobain.txt");
 }
