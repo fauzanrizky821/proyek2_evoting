@@ -4,6 +4,6 @@
 #include <iostream>
 #include <string>
 
-void enkripsi(std::string plaintext);
+std::string enkripsi(std::string plaintext);
 
 #endif

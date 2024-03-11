@@ -10,7 +10,7 @@ char karakter[] = {
 
 int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
 
-void enkripsi(std::string plaintext) 
+std::string enkripsi(std::string plaintext) 
 {
     std::string ciphertext = "";
 
@@ -41,7 +41,7 @@ void enkripsi(std::string plaintext)
         ciphertext = ciphertext + karakter[encY];
     }
 
-    std::cout << "Ciphertext: " << ciphertext << std::endl;
+    return ciphertext;
 }
 
 int main()
@@ -50,7 +50,7 @@ int main()
     std::cout << "Masukkan teks yang ingin dienkripsi: ";
     std::getline(std::cin, plaintext);
     
-    enkripsi(plaintext);
+    std::cout << "Ciphertext: " << enkripsi(plaintext);
     
     return 0;
 }
