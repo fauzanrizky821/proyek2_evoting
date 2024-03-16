@@ -1,5 +1,39 @@
 #include "231511077.h"
 
+void clearScreen() {
+    system("cls");
+}
+
+void VisiMisi(int calon) {
+    clearScreen();
+    if (calon == 1) {
+        std::cout << "===========================================================================" << std::endl;
+        std::cout << "|                             VISI DAN MISI                               |" << std::endl;
+        std::cout << "===========================================================================" << std::endl;
+        std::cout << "| Calon Ketua Hafiz Muhammad Al Ikhsan                                    |" << std::endl;
+        std::cout << "|                                                                         |" << std::endl;
+        std::cout << "| Visi:                Mewujudkan kemajuan dan kesejahteraan              |" << std::endl;
+        std::cout << "| Misi:             1. Mengembangkan potensi anggota tikus                |" << std::endl;
+        std::cout << "|                   2. Menjalin kerjasama yang baik dengan pihak alien    |" << std::endl;
+        std::cout << "|                   3. Makan siang gratis                                 |" << std::endl;
+        std::cout << "===========================================================================" << std::endl;
+    } else if (calon == 2) {
+        std::cout << "==============================================================================" << std::endl;
+        std::cout << "|                                VISI DAN MISI                               |" << std::endl;
+        std::cout << "==============================================================================" << std::endl;
+        std::cout << "| Calon Ketua Fauzan Rizky Ramadhan                                          |" << std::endl;
+        std::cout << "|                                                                            |" << std::endl;
+        std::cout << "| Visi:               Menjadi agen negara                                    |" << std::endl;
+        std::cout << "| Misi:            1. Mewujudkan kampus penuh donat                          |" << std::endl;
+        std::cout << "|                  2. Membangun hubungan yang kuat dengan masyarakat         |" << std::endl;
+        std::cout << "==============================================================================" << std::endl;
+    }
+
+    std::cout << "Tekan enter untuk kembali." << std::endl;
+    std::cin.ignore();
+    std::cin.get();
+}
+
 char karakter[] = {
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
