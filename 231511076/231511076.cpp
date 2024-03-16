@@ -24,7 +24,7 @@ void registrasi()
     std::cin >> akun.nim;
     clearScreen();
 
-    // cek jumlah karakter NIM
+    // * cek jumlah karakter NIM, jika tidak sama dengan 9 maka akan loop terus
     while (akun.nim.length() != 9)
     {
         std::cout << "jumlah NIM harus 9 karakter\n";
@@ -103,11 +103,11 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
 
             system("cls");
 
-            if (inputNim == cekNim) {
-                cariNim = true;
+            if (inputNim == cekNim) { // * mencari nim yang diinputkan dan nim yang ada di dalam file data-pengguna.txt
+                cariNim = true; // * jika ketemu nimnya, beri nilai true
                 getline(iss, cekPassword, ',');
 
-                if (password == cekPassword) {
+                if (password == cekPassword) { // * cek apakah password yang diinputkan sama dengan password dalam file
                     nim = inputNim;
                     getline(iss, nama, ',');
                     getline(iss, jurusan, ',');
@@ -131,10 +131,11 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
 
                     getchar();
                 }
+                
             }
         }
 
-        if (!cariNim) {
+        if (!cariNim) { // * jika nim tidak ditemukan
             std::cout << "============================================================" << std::endl;
             std::cout << "|                   NIM TIDAK DITEMUKAN!                   |" << std::endl;
             std::cout << "------------------------------------------------------------" << std::endl;

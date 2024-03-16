@@ -2,6 +2,7 @@
 #include <string>
 #include "231511076/231511076.h"
 
+
 int main ()
 {
     int opsi;
@@ -28,7 +29,7 @@ int main ()
         getchar();
         getchar();
         system("cls");
-        if (cekLogin == true)
+        if (cekLogin == true) // cek apakah login berhasil atau tidak, jika berhasil bernilai true
         {
             break;
         } else {
