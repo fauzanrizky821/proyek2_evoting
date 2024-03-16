@@ -2,12 +2,13 @@
 #include <string>
 #include "231511076/231511076.h"
 #include "231511077/231511077.h" 
+#include "pengguna.h"
 
 
 int main ()
 {
     int opsi;
-    Akun akun;
+    Pengguna pengguna;
     bool cekLogin;
 
     std::cout << "============================================================" << std::endl;
@@ -26,13 +27,13 @@ int main ()
     {
     case 1:
         system("cls");
-        cekLogin = login(akun.nim,akun.nama,akun.jurusan,akun.prodi,akun.status);
+        cekLogin = login(pengguna.nim,pengguna.nama,pengguna.jurusan,pengguna.prodi,pengguna.status);
         getchar();
         getchar();
         system("cls");
         if (cekLogin == true) // cek apakah login berhasil atau tidak, jika berhasil bernilai true
         {
-            menuUtama(akun);
+            menuUtama(pengguna);
         } else {
             main();
         }

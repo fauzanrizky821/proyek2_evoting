@@ -15,41 +15,41 @@ void clearScreen()
 
 void registrasi()
 {
-    Akun akun;
+    Pengguna pengguna;
 
     clearScreen();
 
     // * Menginput Data diri
     std::cout << "NIM: "; 
-    std::cin >> akun.nim;
+    std::cin >> pengguna.nim;
     clearScreen();
 
     // * cek jumlah karakter NIM, jika tidak sama dengan 9 maka akan loop terus
-    while (akun.nim.length() != 9)
+    while (pengguna.nim.length() != 9)
     {
         std::cout << "jumlah NIM harus 9 karakter\n";
         std::cout << "NIM: ";
-        std::cin >> akun.nim;
+        std::cin >> pengguna.nim;
         clearScreen();
     }
 
     std::cout << "Password: "; 
-    std::cin >> akun.password;
+    std::cin >> pengguna.password;
     clearScreen();
 
     std::cout << "Nama: "; 
     std::cin.sync();
-    std::getline(std::cin, akun.nama);
+    std::getline(std::cin, pengguna.nama);
     clearScreen();
 
     std::cout << "Jurusan: "; 
     std::cin.sync();
-    std::getline(std::cin, akun.jurusan);
+    std::getline(std::cin, pengguna.jurusan);
     clearScreen();
 
     std::cout << "Prodi: "; 
     std::cin.sync();
-    std::getline(std::cin, akun.prodi);
+    std::getline(std::cin, pengguna.prodi);
     clearScreen();
 
     std::ofstream inputFile;
@@ -58,7 +58,7 @@ void registrasi()
 
     if(inputFile.is_open()) { // * Cek apakah file terbuka atau tidak
         // * Menyimpan file
-        inputFile << akun.nim << "," << akun.password << "," << akun.nama  << "," << akun.jurusan << "," << akun.prodi << "," << akun.status << "," << std::endl;
+        inputFile << pengguna.nim << "," << pengguna.password << "," << pengguna.nama  << "," << pengguna.jurusan << "," << pengguna.prodi << "," << pengguna.status << "," << std::endl;
         inputFile.close();
 
         system("cls");
@@ -154,11 +154,11 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
     }
 }
 
-void menuUtama(Akun akun)
+void menuUtama(Pengguna pengguna)
 {
     int opsi;
 
-    std::cout << "==================== "<< "Selamat datang " << akun.nama <<" ====================\n" << std::endl;
+    std::cout << "==================== "<< "Selamat datang " << pengguna.nama <<" ====================\n" << std::endl;
     std::cout << "(1) Melakukan voting\n";
     std::cout << "(2) Lihat Visi & Misi\n";
     std::cout << "(3) Logout\n";
