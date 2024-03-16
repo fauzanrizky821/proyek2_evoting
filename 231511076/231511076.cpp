@@ -58,7 +58,7 @@ void registrasi()
 
     if(inputFile.is_open()) { // * Cek apakah file terbuka atau tidak
         // * Menyimpan file
-        inputFile << akun.nim << "," << akun.password << "," << akun.nama  << "," << akun.jurusan << "," << akun.prodi << "," << akun.status << std::endl;
+        inputFile << akun.nim << "," << akun.password << "," << akun.nama  << "," << akun.jurusan << "," << akun.prodi << "," << akun.status << "," << std::endl;
         inputFile.close();
 
         system("cls");
@@ -73,7 +73,7 @@ void registrasi()
     }
 }
 
-bool login(std::string &nim, std::string &nama, std::string &jurusan, std::string &prodi)
+bool login(std::string &nim, std::string &nama, std::string &jurusan, std::string &prodi, std::string &status)
 {
     std::istringstream iss;
     std::string data, inputNim, cekNim, password, cekPassword;
@@ -112,6 +112,7 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
                     getline(iss, nama, ',');
                     getline(iss, jurusan, ',');
                     getline(iss, prodi, ',');
+                    getline(iss, status, ',');
 
                     std::cout << "=============================================================" << std::endl;
                     std::cout << "|                      LOGIN BERHASIL!                      |" << std::endl;
@@ -150,5 +151,35 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
         readFile.close();
     } else {
         std::cout << "Gagal mengakses data pengguna";
+    }
+}
+
+void menuUtama(Akun akun)
+{
+    int opsi;
+
+    std::cout << "==================== "<< "Selamat datang " << akun.nama <<" ====================\n" << std::endl;
+    std::cout << "(1) Melakukan voting\n";
+    std::cout << "(2) Lihat Visi & Misi\n";
+    std::cout << "(3) Logout\n";
+    std::cout << "inputkan pilihan anda: ";
+    std::cin >> opsi;
+
+    switch (opsi)
+    {
+    case 1:
+        system("cls");
+        std::cout << "Halaman voting \n" ;
+        getchar();
+        getchar();
+    case 2:
+        
+    case 3:
+        system("cls");
+
+    default:
+        std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
+        getchar();
+        getchar();
     }
 }

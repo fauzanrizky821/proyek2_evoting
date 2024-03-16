@@ -1,12 +1,13 @@
 #include <iostream>
 #include <string>
 #include "231511076/231511076.h"
+#include "231511077/231511077.h" 
 
 
 int main ()
 {
     int opsi;
-    std::string nim,nama,jurusan,prodi;
+    Akun akun;
     bool cekLogin;
 
     std::cout << "============================================================" << std::endl;
@@ -25,13 +26,13 @@ int main ()
     {
     case 1:
         system("cls");
-        cekLogin = login(nim,nama,jurusan,prodi);
+        cekLogin = login(akun.nim,akun.nama,akun.jurusan,akun.prodi,akun.status);
         getchar();
         getchar();
         system("cls");
         if (cekLogin == true) // cek apakah login berhasil atau tidak, jika berhasil bernilai true
         {
-            break;
+            menuUtama(akun);
         } else {
             main();
         }
@@ -48,27 +49,4 @@ int main ()
         main();
     }
 
-    
-    std::cout << "==================== "<< "Selamat datang " << nama <<" ====================\n" << std::endl;
-    std::cout << "(1) Voting\n";
-    std::cout << "(2) Logout\n";
-    std::cout << "inputkan pilihan anda: ";
-    std::cin >> opsi;
-
-    switch (opsi)
-    {
-    case 1:
-        system("cls");
-        std::cout << "Halaman voting \n" ;
-        getchar();
-        getchar();
-    case 2:
-        system("cls");
-        main();
-    default:
-        std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
-        getchar();
-        getchar();
-        main();
-    }
 }

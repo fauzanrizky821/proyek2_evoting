@@ -17,6 +17,9 @@ struct Akun{
 };
 
 void registrasi();
-bool login(std::string &nim, std::string &nama, std::string &jurusan, std::string &prodi);
+
+bool login(std::string &nim, std::string &nama, std::string &jurusan, std::string &prodi, std::string &status);
+
+void menuUtama(Akun akun);
 
 #endif
