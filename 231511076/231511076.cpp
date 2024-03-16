@@ -183,3 +183,46 @@ void menuUtama(Pengguna pengguna)
         getchar();
     }
 }
+
+void swap(int &a, int &b)
+{
+    int temp;
+
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+void inversMatriks(int matriks[2][2], int modulus)
+{
+    int hasilMod, temp, det, hasil, bil;
+
+
+    det = (matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]);
+
+    bil = 1;
+    while (hasil != 1)
+    {
+        bil++;
+        hasil = (det*bil) % modulus;
+    }
+
+    hasilMod = bil;
+
+    swap(matriks[0][0], matriks[1][1]); // swap a dan d
+    matriks[0][1] = matriks[0][1] * -1; // mengubah b menjadi -b
+    matriks[1][0] = matriks[1][0] * -1; // menugbah c menjadi -c
+
+    for(int i=0;i < 2;i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            if (matriks[i][j] >= 0) // cek apakah positif
+            {
+                matriks[i][j] = (matriks[i][j] * hasilMod) % modulus;
+            } else {
+                matriks[i][j] = (((matriks[i][j] * hasilMod) % modulus) + modulus) % modulus;
+            }
+        }
+    }
+}

@@ -15,4 +15,7 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
 
 void menuUtama(Pengguna pengguna);
 
+void swap(int &a, int &b);
+
+void inversMatriks(int matriks[2][2], int modulus);
 #endif
