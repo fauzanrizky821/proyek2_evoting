@@ -27,6 +27,8 @@ void VisiMisi(int calon) {
         std::cout << "| Misi:            1. Mewujudkan kampus penuh donat                          |" << std::endl;
         std::cout << "|                  2. Membangun hubungan yang kuat dengan masyarakat         |" << std::endl;
         std::cout << "==============================================================================" << std::endl;
+    } else if (calon == 3) {
+        
     }
 
     std::cout << "Tekan enter untuk kembali." << std::endl;
@@ -76,15 +78,4 @@ std::string enkripsi(std::string plaintext)
     }
 
     return ciphertext;
-}
-
-int main()
-{
-    std::string plaintext;
-    std::cout << "Masukkan teks yang ingin dienkripsi: ";
-    std::getline(std::cin, plaintext);
-    
-    std::cout << "Ciphertext: " << enkripsi(plaintext);
-    
-    return 0;
 }
