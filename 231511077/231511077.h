@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-void clearScreen();
+void HapusLayar();
 
 void VisiMisi(int calon);
 

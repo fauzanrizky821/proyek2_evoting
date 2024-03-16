@@ -1,6 +1,6 @@
 #include "231511077.h"
 
-void clearScreen() {
+void HapusLayar() {
     system("cls");
 }
 
@@ -28,7 +28,15 @@ void VisiMisi(int calon) {
         std::cout << "|                  2. Membangun hubungan yang kuat dengan masyarakat         |" << std::endl;
         std::cout << "==============================================================================" << std::endl;
     } else if (calon == 3) {
-        
+        std::cout << "==============================================================================" << std::endl;
+        std::cout << "|                                VISI DAN MISI                               |" << std::endl;
+        std::cout << "==============================================================================" << std::endl;
+        std::cout << "| Calon Ketua Fauzan Rizky Ramadhan                                          |" << std::endl;
+        std::cout << "|                                                                            |" << std::endl;
+        std::cout << "| Visi:               Menjadi agen negara                                    |" << std::endl;
+        std::cout << "| Misi:            1. Mewujudkan kampus penuh donat                          |" << std::endl;
+        std::cout << "|                  2. Membangun hubungan yang kuat dengan masyarakat         |" << std::endl;
+        std::cout << "==============================================================================" << std::endl;
     }
 
     std::cout << "Tekan enter untuk kembali." << std::endl;
