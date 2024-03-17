@@ -97,7 +97,7 @@ void VisiMisi(int calon) {
     std::cin.get();
 }
 
-std::string enkripsi(std::string plaintext, int kunciMatriks[2][2]) 
+std::string enkripsi(std::string plaintext) 
 {
     char karakter[] = {
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -107,6 +107,7 @@ std::string enkripsi(std::string plaintext, int kunciMatriks[2][2])
     '"', '\'', '\\', '/', '?', ':', '~', '|', ' '
     };
 
+    int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
     int modulus = sizeof(karakter);
 
     std::string ciphertext = "";
@@ -146,7 +147,7 @@ std::string enkripsi(std::string plaintext, int kunciMatriks[2][2])
     return ciphertext;
 }
 
-std::string dekripsi(std::string ciphertext, int kunciMatriks[2][2]) 
+std::string dekripsi(std::string ciphertext) 
 {
     char karakter[] = {
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -156,8 +157,10 @@ std::string dekripsi(std::string ciphertext, int kunciMatriks[2][2])
     '"', '\'', '\\', '/', '?', ':', '~', '|', ' '
     };
 
-    std::string plaintext = "";
+    int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
     int modulus = sizeof(karakter);
+
+    std::string plaintext = "";
 
     inversMatriks(kunciMatriks, modulus);
 
@@ -195,31 +198,4 @@ std::string dekripsi(std::string ciphertext, int kunciMatriks[2][2])
     }
 
     return plaintext;
-}
-
-int main () {
-    int pilihan;
-
-    Pengguna pengguna;
-    pengguna.nama = "Hafiz";
-
-    std::cout << "Lihat Visi Misi\n" ;
-    std::cin >> pilihan;
-
-    menuVisiMisi(pengguna);
-
-    // int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
-
-    // std::string plaintext;
-    // std::string ciphertext;
-    // std::cout << "Masukkan teks yang ingin dienkripsi: ";
-    // std::getline(std::cin, plaintext);
-
-    // std::cout << "Ciphertext: " << enkripsi(plaintext, kunciMatriks);
-
-    // std::cout << "\nMasukkan teks yang ingin didekripsi: ";
-    // std::getline(std::cin, ciphertext);
-    
-    // std::cout << "Plaintext: " << dekripsi(ciphertext, kunciMatriks);
-
 }

@@ -12,8 +12,8 @@ void menuVisiMisi(Pengguna pengguna);
 
 void VisiMisi(int calon);
 
-std::string enkripsi(std::string plaintext, int kunciMatriks[2][2]);
+std::string enkripsi(std::string plaintext);
 
-std::string enkripsi(std::string plaintext, int kunciMatriks[2][2]);
+std::string dekripsi(std::string plaintext);
 
 #endif
