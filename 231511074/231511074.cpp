@@ -2,10 +2,10 @@
 
 void dataPemilih(const Voter& voter) {
     std::cout <<"NIM : " << voter.nim;
-    std::cout <<"\tNama : " << voter.name;
+    std::cout <<"\tNama : " << voter.nama;
 
     // pengecekan status voting
-    if (voter.hasVoted){
+    if (voter.status){
         std::cout << "\tStatus : Telah Melakukan Voting" <<std::endl;
     } else {
         std::cout << "\tStatus : Belum Melakukan Voting" <<std::endl;
@@ -14,7 +14,7 @@ void dataPemilih(const Voter& voter) {
 
 void melihatHasilVoting() {
     // Buka file untuk dibaca
-    std::ifstream voteFile("hasil_vote.txt");
+    std::ifstream voteFile("total-vote.txt");
 
     // Periksa apakah file berhasil dibuka
     if (!voteFile.is_open()) {
@@ -36,7 +36,7 @@ void melihatHasilVoting() {
 }
 
 void lihatDataPemilih() {
-    std::ifstream filePemilih("data_pemilih.txt");
+    std::ifstream filePemilih("data-pengguna.txt");
 
     if (!filePemilih.is_open()){
         std::cerr<< "Gagal membuka file\n";
@@ -48,43 +48,10 @@ void lihatDataPemilih() {
     while (std::getline(filePemilih, line)){
         std::istringstream iss(line);
         Voter voter;
-        iss >> voter.nim >> voter.name >> voter.hasVoted;
+        iss >> voter.nim >> voter.nama >> voter.status;
 
         dataPemilih(voter);
     }
 
     filePemilih.close();
-}
-
-int main() {
-    int choice;
-    do {
-        // Tampilkan menu
-        std::cout << "\nMenu Pengelola:\n";
-        std::cout << "1. Lihat Hasil Voting\n";
-        std::cout << "2. Lihat Data Pemilih\n";
-        std::cout << "3. Logout\n";
-        std::cout << "Pilih: ";
-        std::cin >> choice;
-
-        switch (choice) {
-            case 1:
-                melihatHasilVoting();
-                break;
-
-            case 2:
-                lihatDataPemilih();
-                break;
-
-            case 3:
-                std::cout << "Logout berhasil.\n";
-                break;
-
-            default:
-                std::cout << "Pilihan tidak valid. Silakan coba lagi.\n";
-        }
-
-    } while (choice != 3);
-
-    return 0;
 }
