@@ -1,3 +1,6 @@
+#ifndef LIBRARY_231511074_H
+#define LIBRARY_231511074_H
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -15,3 +18,5 @@ struct Voter {
 void dataPemilih(const Voter& voter);
 void melihatHasilVoting();
 void lihatDataPemilih();
+
+#endif
