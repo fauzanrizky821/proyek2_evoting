@@ -1,1 +1,3 @@
-id_pengelola,password,nama
+1,jajang,password123
+2,dadang,hello123
+3,nining,netnot123
