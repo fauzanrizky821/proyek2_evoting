@@ -1,6 +1,4 @@
 #include "231511076.h"
-#include "../pengguna.h"
-#include "../231511077/231511077.h"
 
 void clearScreen()
 {
@@ -18,12 +16,14 @@ void clearScreen()
 void registrasi()
 {
     Pengguna pengguna;
-    std::string dataPengguna;
+    std::istringstream iss;
+    std::string data, dataPengguna, cekNim;
+    bool cariNim;
 
     clearScreen();
 
     // * Menginput Data diri
-    std::cout << "NIM: "; 
+    std::cout << "NIM: ";
     std::cin >> pengguna.nim;
     clearScreen();
 
@@ -36,48 +36,85 @@ void registrasi()
         clearScreen();
     }
 
-    std::cout << "Password: "; 
-    std::cin >> pengguna.password;
-    clearScreen();
+    std::ifstream readFile;
+    readFile.open("data/data-pengguna.txt");
 
-    std::cout << "Nama: "; 
-    std::cin.sync();
-    std::getline(std::cin, pengguna.nama);
-    clearScreen();
+    if (readFile.is_open())
+    { // * Cek apakah file terbuka atau tidak
+        while (getline(readFile, data) && !cariNim)
+        {
+            iss.clear();
+            data = dekripsi(data); // * dekripsi data pengguna
+            iss.str(data);
+            getline(iss, cekNim, ',');
 
-    std::cout << "Jurusan: "; 
-    std::cin.sync();
-    std::getline(std::cin, pengguna.jurusan);
-    clearScreen();
+            if (pengguna.nim == cekNim)
+            {                   // * mencari nim yang diinputkan dan nim yang ada di dalam file data-pengguna.txt
+                cariNim = true; // * jika ketemu nimnya, beri nilai true
+                system("cls");
+                std::cout << "============================================================" << std::endl;
+                std::cout << "|                     NIM SUDAH DIPAKAI                    |" << std::endl;
+                std::cout << "------------------------------------------------------------" << std::endl;
+                std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
+                std::cout << "============================================================" << std::endl;
 
-    std::cout << "Prodi: "; 
-    std::cin.sync();
-    std::getline(std::cin, pengguna.prodi);
-    clearScreen();
+                getchar();
+            }
+        }
 
-    std::ofstream inputFile;
-    // * Membuka file
-    inputFile.open("data/data-pengguna.txt", std::ios::app);
+        if (!cariNim)
+        { // * jika nim belum dipakai
+            std::cout << "Password: ";
+            std::cin >> pengguna.password;
+            clearScreen();
 
-    if(inputFile.is_open()) { // * Cek apakah file terbuka atau tidak
-        // * Menyimpan file
-        dataPengguna = pengguna.nim + "," + pengguna.password + "," + pengguna.nama  + "," + pengguna.jurusan + "," + pengguna.prodi + "," + pengguna.status + ",";
-        inputFile << enkripsi(dataPengguna) << std::endl; // * Mengenkripsi data pengguna lalu menyimpannya ke data-pengguna.txt
-        inputFile.close();
+            std::cout << "Nama: ";
+            std::cin.sync();
+            std::getline(std::cin, pengguna.nama);
+            clearScreen();
 
-        system("cls");
-        
-        std::cout << "=============================================================" << std::endl;
-        std::cout << "|                   REGISTRASI BERHASIL!                    |" << std::endl;
-        std::cout << "-------------------------------------------------------------" << std::endl;
-        std::cout << "|              Tekan enter untuk melanjutkan..              |" << std::endl;
-        std::cout << "=============================================================" << std::endl;
-    } else {
+            std::cout << "Jurusan: ";
+            std::cin.sync();
+            std::getline(std::cin, pengguna.jurusan);
+            clearScreen();
+
+            std::cout << "Prodi: ";
+            std::cin.sync();
+            std::getline(std::cin, pengguna.prodi);
+            clearScreen();
+
+            std::ofstream inputFile;
+            // * Membuka file
+            inputFile.open("data/data-pengguna.txt", std::ios::app);
+
+            if (inputFile.is_open())
+            { // * Cek apakah file terbuka atau tidak
+                // * Menyimpan file
+                dataPengguna = pengguna.nim + "," + pengguna.password + "," + pengguna.nama + "," + pengguna.jurusan + "," + pengguna.prodi + "," + pengguna.status + ",";
+                inputFile << enkripsi(dataPengguna) << std::endl; // * Mengenkripsi data pengguna lalu menyimpannya ke data-pengguna.txt
+                inputFile.close();
+
+                system("cls");
+
+                std::cout << "=============================================================" << std::endl;
+                std::cout << "|                   REGISTRASI BERHASIL!                    |" << std::endl;
+                std::cout << "-------------------------------------------------------------" << std::endl;
+                std::cout << "|              Tekan enter untuk melanjutkan..              |" << std::endl;
+                std::cout << "=============================================================" << std::endl;
+            }
+            else
+            {
+                std::cout << "Gagal mengakses data pengguna";
+            }
+        }
+    }
+    else
+    {
         std::cout << "Gagal mengakses data pengguna";
     }
 }
 
-bool login(std::string &nim, std::string &nama, std::string &jurusan, std::string &prodi, std::string &status)
+bool login(Pengguna &pengguna)
 {
     std::istringstream iss;
     std::string data, inputNim, cekNim, password, cekPassword;
@@ -98,9 +135,11 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
 
     readFile.open("data/data-pengguna.txt");
 
-    if (readFile.is_open()) { // * Cek apakah file terbuka atau tidak
+    if (readFile.is_open())
+    { // * Cek apakah file terbuka atau tidak
 
-        while (getline(readFile, data) && !cariNim) {
+        while (getline(readFile, data) && !cariNim)
+        {
             iss.clear();
             data = dekripsi(data); // * dekripsi data pengguna
             iss.str(data);
@@ -108,16 +147,19 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
 
             system("cls");
 
-            if (inputNim == cekNim) { // * mencari nim yang diinputkan dan nim yang ada di dalam file data-pengguna.txt
+            if (inputNim == cekNim)
+            {                   // * mencari nim yang diinputkan dan nim yang ada di dalam file data-pengguna.txt
                 cariNim = true; // * jika ketemu nimnya, beri nilai true
                 getline(iss, cekPassword, ',');
 
-                if (password == cekPassword) { // * cek apakah password yang diinputkan sama dengan password dalam file
-                    nim = inputNim;
-                    getline(iss, nama, ',');
-                    getline(iss, jurusan, ',');
-                    getline(iss, prodi, ',');
-                    getline(iss, status, ',');
+                if (password == cekPassword)
+                { // * cek apakah password yang diinputkan sama dengan password dalam file
+                    pengguna.nim = inputNim;
+                    pengguna.password = password;
+                    getline(iss, pengguna.nama, ',');
+                    getline(iss, pengguna.jurusan, ',');
+                    getline(iss, pengguna.prodi, ',');
+                    getline(iss, pengguna.status, ',');
 
                     std::cout << "=============================================================" << std::endl;
                     std::cout << "|                      LOGIN BERHASIL!                      |" << std::endl;
@@ -126,7 +168,9 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
                     std::cout << "=============================================================" << std::endl;
 
                     return true;
-                } else {
+                }
+                else
+                {
                     std::cout << "============================================================" << std::endl;
                     std::cout << "|                      PASSWORD SALAH!                     |" << std::endl;
                     std::cout << "------------------------------------------------------------" << std::endl;
@@ -137,11 +181,11 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
 
                     getchar();
                 }
-                
             }
         }
 
-        if (!cariNim) { // * jika nim tidak ditemukan
+        if (!cariNim)
+        { // * jika nim tidak ditemukan
             std::cout << "============================================================" << std::endl;
             std::cout << "|                   NIM TIDAK DITEMUKAN!                   |" << std::endl;
             std::cout << "------------------------------------------------------------" << std::endl;
@@ -154,7 +198,9 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
         }
 
         readFile.close();
-    } else {
+    }
+    else
+    {
         std::cout << "Gagal mengakses data pengguna";
 
         return false;
@@ -185,14 +231,16 @@ void menuLoginRegister()
     {
     case 1:
         system("cls");
-        cekLogin = login(pengguna.nim,pengguna.nama,pengguna.jurusan,pengguna.prodi,pengguna.status);
+        cekLogin = login(pengguna);
         getchar();
         getchar();
         system("cls");
         if (cekLogin == true) // cek apakah login berhasil atau tidak, jika berhasil bernilai true
         {
             menuUtama(pengguna);
-        } else {
+        }
+        else
+        {
             menuLoginRegister();
         }
         break;
@@ -204,7 +252,7 @@ void menuLoginRegister()
         break;
 
     default:
-        std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
+        std::cout << "Ketikkan salah satu pilihan diatas! \n";
         getchar();
         getchar();
         system("cls");
@@ -217,7 +265,9 @@ void menuUtama(Pengguna pengguna)
 {
     int opsi;
 
-    std::cout << "==================== "<< "Selamat datang " << pengguna.nama <<" ====================\n" << std::endl;
+    std::cout << "==================== "
+              << "Selamat datang " << pengguna.nama << " ====================\n"
+              << std::endl;
     std::cout << "(1) Melakukan voting\n";
     std::cout << "(2) Lihat Visi & Misi\n";
     std::cout << "(3) Logout\n";
@@ -227,11 +277,26 @@ void menuUtama(Pengguna pengguna)
     switch (opsi)
     {
     case 1:
-        system("cls");
-        std::cout << "Halaman voting \n" ;
-        getchar();
-        getchar();
-        menuLoginRegister();
+        if (pengguna.status == "1")
+        {
+            system("cls");
+            std::cout << "============================================================" << std::endl;
+            std::cout << "|                Anda sudah melakukan vote!                |" << std::endl;
+            std::cout << "------------------------------------------------------------" << std::endl;
+            std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
+            std::cout << "============================================================" << std::endl;
+            getchar();
+            getchar();
+            system("cls");
+            menuUtama(pengguna);
+        }
+        else
+        {
+            system("cls");
+            menuVote(pengguna);
+            system("cls");
+            menuUtama(pengguna);
+        }
         break;
     case 2:
         system("cls");
@@ -243,7 +308,7 @@ void menuUtama(Pengguna pengguna)
         break;
 
     default:
-        std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
+        std::cout << "Ketikkan salah satu pilihan diatas! \n";
         getchar();
         getchar();
         system("cls");
@@ -265,14 +330,13 @@ void inversMatriks(int matriks[2][2], int modulus)
 {
     int hasilMod, temp, det, hasil, bil;
 
-
     det = (matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]);
 
     bil = 1;
     while (hasil != 1)
     {
         bil++;
-        hasil = (det*bil) % modulus;
+        hasil = (det * bil) % modulus;
     }
 
     hasilMod = bil;
@@ -281,14 +345,16 @@ void inversMatriks(int matriks[2][2], int modulus)
     matriks[0][1] = matriks[0][1] * -1; // mengubah b menjadi -b
     matriks[1][0] = matriks[1][0] * -1; // menugbah c menjadi -c
 
-    for(int i=0;i < 2;i++)
+    for (int i = 0; i < 2; i++)
     {
         for (int j = 0; j < 2; j++)
         {
             if (matriks[i][j] >= 0) // cek apakah positif
             {
                 matriks[i][j] = (matriks[i][j] * hasilMod) % modulus;
-            } else {
+            }
+            else
+            {
                 matriks[i][j] = (((matriks[i][j] * hasilMod) % modulus) + modulus) % modulus;
             }
         }

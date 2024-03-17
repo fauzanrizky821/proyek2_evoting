@@ -8,10 +8,15 @@
 #include <vector>
 
 #include "../pengguna.h"
+#include "../pengguna.h"
+#include "../231511077/231511077.h"
+#include "../231511070/231511070.h"
+
+void clearScreen();
 
 void registrasi();
 
-bool login(std::string &nim, std::string &nama, std::string &jurusan, std::string &prodi, std::string &status);
+bool login(Pengguna &pengguna);
 
 void menuUtama(Pengguna pengguna);
 
@@ -20,4 +25,5 @@ void menuLoginRegister();
 void swap(int &a, int &b);
 
 void inversMatriks(int matriks[2][2], int modulus);
+
 #endif
