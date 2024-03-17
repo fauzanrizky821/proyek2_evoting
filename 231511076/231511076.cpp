@@ -1,4 +1,5 @@
 #include "231511076.h"
+#include "../231511077/231511077.h"
 
 void clearScreen()
 {
@@ -16,6 +17,7 @@ void clearScreen()
 void registrasi()
 {
     Pengguna pengguna;
+    std::string dataPengguna;
 
     clearScreen();
 
@@ -58,7 +60,8 @@ void registrasi()
 
     if(inputFile.is_open()) { // * Cek apakah file terbuka atau tidak
         // * Menyimpan file
-        inputFile << pengguna.nim << "," << pengguna.password << "," << pengguna.nama  << "," << pengguna.jurusan << "," << pengguna.prodi << "," << pengguna.status << "," << std::endl;
+        dataPengguna = pengguna.nim + "," + pengguna.password + "," + pengguna.nama  + "," + pengguna.jurusan + "," + pengguna.prodi + "," + pengguna.status + ",";
+        inputFile << enkripsi(dataPengguna) << std::endl; // * Mengenkripsi data pengguna lalu menyimpannya ke data-pengguna.txt
         inputFile.close();
 
         system("cls");
@@ -98,6 +101,7 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
 
         while (getline(readFile, data) && !cariNim) {
             iss.clear();
+            data = dekripsi(data); // * dekripsi data pengguna
             iss.str(data);
             getline(iss, cekNim, ',');
 
@@ -151,6 +155,59 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
         readFile.close();
     } else {
         std::cout << "Gagal mengakses data pengguna";
+
+        return false;
+    }
+
+    return false;
+}
+
+void menuLoginRegister()
+{
+    int opsi;
+    Pengguna pengguna;
+    bool cekLogin;
+
+    std::cout << "============================================================" << std::endl;
+    std::cout << "|                      APLIKASI E-VOTING                   |" << std::endl;
+    std::cout << "============================================================" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                       SELAMAT DATANG                     |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "============================================================" << std::endl;
+    std::cout << "(1) Login\n";
+    std::cout << "(2) Registrasi\n";
+    std::cout << "inputkan pilihan anda: ";
+    std::cin >> opsi;
+
+    switch (opsi)
+    {
+    case 1:
+        system("cls");
+        cekLogin = login(pengguna.nim,pengguna.nama,pengguna.jurusan,pengguna.prodi,pengguna.status);
+        getchar();
+        getchar();
+        system("cls");
+        if (cekLogin == true) // cek apakah login berhasil atau tidak, jika berhasil bernilai true
+        {
+            menuUtama(pengguna);
+        } else {
+            menuLoginRegister();
+        }
+        break;
+    case 2:
+        registrasi();
+        getchar();
+        system("cls");
+        menuLoginRegister();
+        break;
+
+    default:
+        std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
+        getchar();
+        getchar();
+        menuLoginRegister();
+        break;
     }
 }
 
@@ -172,15 +229,23 @@ void menuUtama(Pengguna pengguna)
         std::cout << "Halaman voting \n" ;
         getchar();
         getchar();
+        menuLoginRegister();
+        break;
     case 2:
-        
+        system("cls");
+        menuVisiMisi(pengguna);
+        break;
     case 3:
         system("cls");
+        menuLoginRegister();
+        break;
 
     default:
         std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
         getchar();
         getchar();
+        menuUtama(pengguna);
+        break;
     }
 }
 

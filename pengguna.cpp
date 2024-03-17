@@ -7,47 +7,5 @@
 
 int main ()
 {
-    int opsi;
-    Pengguna pengguna;
-    bool cekLogin;
-
-    std::cout << "============================================================" << std::endl;
-    std::cout << "|                      APLIKASI E-VOTING                   |" << std::endl;
-    std::cout << "============================================================" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                       SELAMAT DATANG                     |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "============================================================" << std::endl;
-    std::cout << "(1) Login\n";
-    std::cout << "(2) Registrasi\n";
-    std::cout << "inputkan pilihan anda: ";
-    std::cin >> opsi;
-
-    switch (opsi)
-    {
-    case 1:
-        system("cls");
-        cekLogin = login(pengguna.nim,pengguna.nama,pengguna.jurusan,pengguna.prodi,pengguna.status);
-        getchar();
-        getchar();
-        system("cls");
-        if (cekLogin == true) // cek apakah login berhasil atau tidak, jika berhasil bernilai true
-        {
-            menuUtama(pengguna);
-        } else {
-            main();
-        }
-    case 2:
-        registrasi();
-        getchar();
-        system("cls");
-        main();
-
-    default:
-        std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
-        getchar();
-        getchar();
-        main();
-    }
-
+    menuLoginRegister();
 }
