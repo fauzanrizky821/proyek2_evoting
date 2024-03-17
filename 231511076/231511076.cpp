@@ -1,4 +1,5 @@
 #include "231511076.h"
+#include "../pengguna.h"
 #include "../231511077/231511077.h"
 
 void clearScreen()
@@ -56,7 +57,7 @@ void registrasi()
 
     std::ofstream inputFile;
     // * Membuka file
-    inputFile.open("data-pengguna.txt", std::ios::app);
+    inputFile.open("data/data-pengguna.txt", std::ios::app);
 
     if(inputFile.is_open()) { // * Cek apakah file terbuka atau tidak
         // * Menyimpan file
@@ -95,7 +96,7 @@ bool login(std::string &nim, std::string &nama, std::string &jurusan, std::strin
 
     std::ifstream readFile;
 
-    readFile.open("data-pengguna.txt");
+    readFile.open("data/data-pengguna.txt");
 
     if (readFile.is_open()) { // * Cek apakah file terbuka atau tidak
 
@@ -206,6 +207,7 @@ void menuLoginRegister()
         std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
         getchar();
         getchar();
+        system("cls");
         menuLoginRegister();
         break;
     }
@@ -244,6 +246,7 @@ void menuUtama(Pengguna pengguna)
         std::cout << "Ketikkan salah satu pilihan diatas! \n" ;
         getchar();
         getchar();
+        system("cls");
         menuUtama(pengguna);
         break;
     }

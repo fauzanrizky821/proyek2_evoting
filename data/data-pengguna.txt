@@ -1,1 +1,4 @@
+nim,password,nama,jurusan,prodi,status,
 231511076,123,Fauzan Rizky Ramadhan,JTK,Informatika,0,
+231511077,123,Hafiz Muhammad,JTK,Informatika,0,
+231511065,123,Abyan Dzaki,JTK,Informatika,0,
