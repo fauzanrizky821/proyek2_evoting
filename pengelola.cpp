@@ -23,14 +23,17 @@ int main ()
 
         switch (choice) {
             case 1:
+                system("cls");
                 melihatHasilVoting();
                 break;
 
             case 2:
+                system("cls");
                 lihatDataPemilih();
                 break;
 
             case 3:
+                system("cls");
                 std::cout << "Logout berhasil.\n";
                 break;
             default:
