@@ -1,16 +1,20 @@
 #include <iostream>
 #include <string>
 #include "231511074/231511074.h"
+#include "231511065/231511065.h"
+
 int main ()
 {
-   std::cout <<  "|-------------------------------------------------------|" << std::endl;
-    std::cout << "|               Selamat Datang                          |" << std::endl;
-    std::cout << "|-------------------------------------------------------|" << std::endl;
-    std::cout << "|               Silahkan Login                          |" << std::endl;
-    std::cout << "|-------------------------------------------------------|" << std::endl;
+    std::cout << "|---------------------------------------------------------|" << std::endl;
+    std::cout << "|                      Selamat Datang                     |" << std::endl;
+    std::cout << "|---------------------------------------------------------|" << std::endl;
+    std::cout << "|                      Silahkan Login                     |" << std::endl;
+    std::cout << "|---------------------------------------------------------|" << std::endl << std::endl;
 
-    
+    menu_login_pengelola();
     system("cls");
+    std::cout <<"Login Berhasil !" << std::endl;
+    
     int choice;
     do {
         // Tampilkan menu
