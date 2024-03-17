@@ -1,2 +1,1 @@
-nim,password,nama,jurusan,prodi,status
 231511076,123,Fauzan Rizky Ramadhan,JTK,Informatika,0,
