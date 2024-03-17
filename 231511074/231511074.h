@@ -4,9 +4,12 @@
 #include <sstream>
 
 struct Voter {
-    std::string name;
     std::string nim;
-    bool hasVoted;  // Menunjukkan apakah pemilih telah melakukan voting atau belum
+    std::string password;
+    std::string nama;
+    std::string jurusan;
+    std::string Prodi;
+    bool status;  // Menunjukkan apakah pemilih telah melakukan voting atau belum
 };
 
 void dataPemilih(const Voter& voter);
