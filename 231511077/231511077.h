@@ -6,8 +6,6 @@
 #include <iostream>
 #include <string>
 
-void HapusLayar();
-
 void menuVisiMisi(Pengguna pengguna);
 
 void VisiMisi(int calon);

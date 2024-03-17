@@ -1,9 +1,5 @@
 #include "231511077.h"
 
-void HapusLayar() {
-    system("cls");
-}
-
 void menuVisiMisi(Pengguna pengguna) {
     int menu;
 
@@ -19,32 +15,34 @@ void menuVisiMisi(Pengguna pengguna) {
     switch (menu) {
         case 1:
             VisiMisi(menu);
-            HapusLayar();
+            system("cls");
             menuVisiMisi(pengguna);
         break;
         case 2:
             VisiMisi(menu);
-            HapusLayar();
+            system("cls");
             menuVisiMisi(pengguna);
         break;
         case 3:
             VisiMisi(menu);
-            HapusLayar();
+            system("cls");
             menuVisiMisi(pengguna);
         break;
         case 4:
+            system("cls");
             menuUtama(pengguna);
         break;
         default:
-            std::cout << "=================================================================" << std::endl;
-            std::cout << "|   Tolong pilih opsi sesuai dengan yang ditampilkan di atas!   |" << std::endl;
-            std::cout << "=================================================================" << std::endl << std::endl;
+            system("cls");
+            std::cout << "=========================================================" << std::endl;
+            std::cout << "|   Tolong pilih opsi sesuai dengan yang ditampilkan!   |" << std::endl;
+            std::cout << "=========================================================" << std::endl << std::endl;
             menuVisiMisi(pengguna);
     }
 }
 
 void VisiMisi(int calon) {
-    HapusLayar();
+    system("cls");
     if (calon == 1) {
         std::cout << "==================================================================================================================" << std::endl;
         std::cout << "|                          CALON PASANGAN HAFIZ MUHAMMAD AL IKHSAN & ELSA MONIKA SINAGA                          |" << std::endl;
