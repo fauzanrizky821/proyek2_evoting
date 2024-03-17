@@ -15,14 +15,17 @@ void melihatHasilVoting() {
         std::cerr << "Gagal membuka file hasil_vote.txt\n";
     }
 
-    std::cout << "Hasil voting: \n";
+    std::cout << "|=======================================================|" << std::endl;
+    std::cout << "|                 HASIL VOTE PEMILIHAN                  |" << std::endl;
+    std::cout << "|=======================================================|" << std::endl;
 
     std::string line;
-
+    int count = 0;
     while (std::getline(voteFile, line)) {
-        std::cout << line << std::endl;
+        count ++;
+        std::cout << "\t\t   Calon No-" << count << " = " << line << std::endl;
     }
-
+    std::cout << "|=======================================================|" << std::endl;
     voteFile.close();
 }
 
