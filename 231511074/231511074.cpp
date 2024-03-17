@@ -56,6 +56,6 @@ void lihatDataPemilih() {
             }else{
                 std::cerr << "gagal membaca data" << std::endl;
             }
+    }
     filePemilih.close();
-}
 }
