@@ -142,10 +142,12 @@ void menu_login_pengelola()
 {
     Pengelola* head = nullptr;
 
-    std::ifstream readFile("../data/data-pengelola.txt");
-    if (readFile.is_open()) {
+    std::ifstream readFile("data/data-pengelola.txt");
+    if (readFile.is_open()) 
+    {
         std::string line;
-        while (getline(readFile, line)) {
+        while (getline(readFile, line)) 
+        {
             std::istringstream iss(line);
             std::string id, nama, password;
             getline(iss, id, ',');
@@ -157,7 +159,9 @@ void menu_login_pengelola()
             head = newPengelola;
         }
         readFile.close();
-    } else {
+    } 
+    else 
+    {
         std::cerr << "Gagal membuka file data-pengelola.txt" << std::endl;
         
     }
