@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
-#include "231511074/231511074.h"
 #include "231511065/231511065.h"
+#include "231511074/231511074.h"
+#include "231511076/231511076.h"
+#include "231511077/231511077.h"
 
 int main ()
 {
