@@ -1,4 +1,5 @@
 #include "231511065.h"
+#include "../231511074/231511074.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -162,10 +163,17 @@ void menu_login_pengelola()
     }
 
     std::string id, nama;
-    login(head, id, nama);
-
-    // Melakukan operasi sesuai dengan login
-    // ...
+    if (login(head, id, nama)) // Periksa hasil login sebelum memanggil menu
+    {
+        std::cin.ignore();
+        std::cin.get();
+        system("cls");
+        menu_pengelola(head, id, nama); // Panggil menu_pengelola jika login berhasil
+    }
+    else
+    {
+        std::cerr << "Login gagal. Tidak dapat memanggil menu pengelola." << std::endl;
+    }
 
     // Membersihkan memori
     deleteList(head);

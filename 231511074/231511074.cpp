@@ -1,5 +1,6 @@
 #include "231511074.h"
 #include "../231511077/231511077.h"
+#include "../231511065/231511065.h"
 
 void dataPemilih(const Voter& voter) {
     std::cout <<"NIM : " << voter.nim;
@@ -66,4 +67,43 @@ void lihatDataPemilih() {
             }
     }
     filePemilih.close();
+}
+
+void menu_pengelola(Pengelola* head, const std::string& id, const std::string& nama){
+
+    int choice;
+    do {
+        // Tampilkan menu
+        std::cout << "\nMenu Pengelola:\n";
+        std::cout << "1. Lihat Hasil Voting\n";
+        std::cout << "2. Lihat Data Pemilih\n";
+        std::cout << "3. Logout\n";
+        std::cout << "Pilih: ";
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                system("cls");
+                melihatHasilVoting();
+                break;
+
+            case 2:
+                system("cls");
+                lihatDataPemilih();
+                break;
+
+            case 3:
+                std::cout << "Logout berhasil.\n";
+                std::cout << "Klik enter untuk kembali";
+                std::cin.ignore();
+                std::cin.get();
+                system("cls");
+                menu_login_pengelola();
+                break;
+            default:
+                std::cout << "Pilihan tidak valid. Silakan coba lagi.\n";
+        }
+
+    } while (choice != 3);
+
 }
