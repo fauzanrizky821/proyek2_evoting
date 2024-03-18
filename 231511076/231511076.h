@@ -21,6 +21,6 @@ void menuUtama(Pengguna pengguna);
 
 void swap(int &a, int &b);
 
-int inversMatriks(int matriks[2][2], int modulus);
+void inversMatriks(int matriks[2][2], int modulus);
 
 #endif

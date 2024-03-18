@@ -271,7 +271,7 @@ void swap(int &a, int &b)
     b = temp;
 }
 
-int inversMatriks(int matriks[2][2], int modulus)
+void inversMatriks(int matriks[2][2], int modulus)
 {
     int hasilMod, temp, det, hasil, bil;
 
@@ -304,6 +304,4 @@ int inversMatriks(int matriks[2][2], int modulus)
             }
         }
     }
-
-    return matriks[2][2];
 }
