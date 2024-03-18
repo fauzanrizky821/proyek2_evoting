@@ -209,65 +209,11 @@ bool login(Pengguna &pengguna)
     return false;
 }
 
-void menuLoginRegister()
-{
-    int opsi;
-    Pengguna pengguna;
-    bool cekLogin;
-
-    std::cout << "============================================================" << std::endl;
-    std::cout << "|                      APLIKASI E-VOTING                   |" << std::endl;
-    std::cout << "============================================================" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                       SELAMAT DATANG                     |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "============================================================" << std::endl;
-    std::cout << "(1) Login\n";
-    std::cout << "(2) Registrasi\n";
-    std::cout << "inputkan pilihan anda: ";
-    std::cin >> opsi;
-
-    switch (opsi)
-    {
-    case 1:
-        system("cls");
-        cekLogin = login(pengguna);
-        getchar();
-        getchar();
-        system("cls");
-        if (cekLogin == true) // cek apakah login berhasil atau tidak, jika berhasil bernilai true
-        {
-            menuUtama(pengguna);
-        }
-        else
-        {
-            menuLoginRegister();
-        }
-        break;
-    case 2:
-        registrasi();
-        getchar();
-        system("cls");
-        menuLoginRegister();
-        break;
-
-    default:
-        std::cout << "Ketikkan salah satu pilihan diatas! \n";
-        getchar();
-        getchar();
-        system("cls");
-        menuLoginRegister();
-        break;
-    }
-}
-
 void menuUtama(Pengguna pengguna)
 {
     int opsi;
 
-    std::cout << "==================== "
-              << "Selamat datang " << pengguna.nama << " ====================\n"
-              << std::endl;
+    std::cout << "==================== " << "Selamat datang " << pengguna.nama << " ====================\n" << std::endl;
     std::cout << "(1) Melakukan voting\n";
     std::cout << "(2) Lihat Visi & Misi\n";
     std::cout << "(3) Logout\n";
@@ -304,7 +250,6 @@ void menuUtama(Pengguna pengguna)
         break;
     case 3:
         system("cls");
-        menuLoginRegister();
         break;
 
     default:
@@ -326,30 +271,30 @@ void swap(int &a, int &b)
     b = temp;
 }
 
-void inversMatriks(int matriks[2][2], int modulus)
+int inversMatriks(int matriks[2][2], int modulus)
 {
     int hasilMod, temp, det, hasil, bil;
 
-    det = (matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]);
+    det = (matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]); // * cari determinan
 
     bil = 1;
-    while (hasil != 1)
+    while (hasil != 1) // * cari 1/det mod jumlah karakter(94)
     {
         bil++;
         hasil = (det * bil) % modulus;
     }
 
-    hasilMod = bil;
+    hasilMod = bil; // * hasilMod dimasukan nilai dari bil
 
-    swap(matriks[0][0], matriks[1][1]); // swap a dan d
-    matriks[0][1] = matriks[0][1] * -1; // mengubah b menjadi -b
-    matriks[1][0] = matriks[1][0] * -1; // menugbah c menjadi -c
+    swap(matriks[0][0], matriks[1][1]); // * swap a dan d
+    matriks[0][1] = matriks[0][1] * -1; // * mengubah b menjadi -b
+    matriks[1][0] = matriks[1][0] * -1; // * menugbah c menjadi -c
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 2; i++) // * matriks kunci dikalikan  dengan hasiMod
     {
         for (int j = 0; j < 2; j++)
         {
-            if (matriks[i][j] >= 0) // cek apakah positif
+            if (matriks[i][j] >= 0) // * cek apakah positif
             {
                 matriks[i][j] = (matriks[i][j] * hasilMod) % modulus;
             }
@@ -359,4 +304,6 @@ void inversMatriks(int matriks[2][2], int modulus)
             }
         }
     }
+
+    return matriks[2][2];
 }
