@@ -131,12 +131,7 @@ void deleteList(Pengelola* head) {
     }
 }
 
-// int main()
-// {
-//     hitungJumlahVote("../data/total-vote.txt");
 
-//     return 0;
-// }
 
 void menu_login_pengelola() 
 {
