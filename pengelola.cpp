@@ -7,14 +7,36 @@
 
 int main ()
 {
+    int pilihan;
+    do{
+    system("cls");
     std::cout << "|---------------------------------------------------------|" << std::endl;
     std::cout << "|                      Selamat Datang                     |" << std::endl;
     std::cout << "|---------------------------------------------------------|" << std::endl;
     std::cout << "|                   Di Aplikasi E-Voting                  |" << std::endl;
     std::cout << "|---------------------------------------------------------|" << std::endl << std::endl;
 
-    menu_login_pengelola();
+    std::cout << "\n[1]Login" << std::endl;
+    std::cout << "[2]Keluar" << std::endl;
+    std::cout << "Masukkan Pilihan = ";
+    std::cin >> pilihan;
+
+    switch (pilihan)
+    {
+    case 1 :
+        system("cls");
+        menu_login_pengelola();
+        break;
     
+    case 2 :
+        break;
+
+    default:
+        std::cout << "Input angka sesuai pilihan !" << std::endl;
+        break;
+    }
+
+    }while (pilihan!=2);
 
     return 0;
 }
