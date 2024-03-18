@@ -85,15 +85,23 @@ void menu_pengelola(Pengelola* head, const std::string& id, const std::string& n
             case 1:
                 system("cls");
                 melihatHasilVoting();
+                std::cout << "Klik enter untuk kembali";
+                std::cin.ignore();
+                std::cin.get();
+                system("cls");
                 break;
 
             case 2:
                 system("cls");
                 lihatDataPemilih();
+                std::cout << "Klik enter untuk kembali";
+                std::cin.ignore();
+                std::cin.get();
+                system("cls");
                 break;
 
             case 3:
-                std::cout << "Logout berhasil.\n";
+                std::cout << "Logout berhasil.\n\n";
                 std::cout << "Klik enter untuk kembali";
                 std::cin.ignore();
                 std::cin.get();
