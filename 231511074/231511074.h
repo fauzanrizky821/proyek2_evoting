@@ -12,7 +12,7 @@ struct Voter {
     std::string nama;
     std::string jurusan;
     std::string Prodi;
-    bool status;  // Menunjukkan apakah pemilih telah melakukan voting atau belum
+    bool status;  
 };
 
 void dataPemilih(const Voter& voter);

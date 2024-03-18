@@ -1,4 +1,5 @@
 #include "231511074.h"
+#include "../231511077/231511077.h"
 
 void dataPemilih(const Voter& voter) {
     std::cout <<"NIM : " << voter.nim;
@@ -42,14 +43,18 @@ void lihatDataPemilih() {
     while (std::getline(filePemilih, line)){
         std::istringstream iss(line);
         Voter voter;
-    
-        if (std::getline(iss, voter.nim, ',')&&
-            std::getline(iss, voter.password, ',')&&
-            std::getline(iss, voter.nama, ',')&&
-            std::getline(iss,voter.jurusan, ',')&&
-            std::getline(iss, voter.Prodi, ',')){
+
+        std::string decryptedLine = line;
+        decryptedLine = dekripsi(decryptedLine);
+        std::istringstream decryptedStream(decryptedLine);
+
+        if (std::getline(decryptedStream, voter.nim, ',')&&
+            std::getline(decryptedStream, voter.password, ',')&&
+            std::getline(decryptedStream, voter.nama, ',')&&
+            std::getline(decryptedStream,voter.jurusan, ',')&&
+            std::getline(decryptedStream, voter.Prodi, ',')){
             std::string statusStr;
-            if(std::getline(iss, statusStr,',')){
+            if(std::getline(decryptedStream, statusStr,',')){
                 voter.status=(statusStr=="1");
             }else{
                 std::cerr << "gagal membaca status" << std::endl;
