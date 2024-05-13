@@ -3,14 +3,14 @@
 void menuVisiMisi(Pengguna pengguna) {
     int menu;
 
-    std::cout << "==================== "<< "Selamat datang " << pengguna.nama <<" ====================\n" << std::endl;
-    std::cout << "Menu Melihat Visi dan Misi Calon" << std::endl;
-    std::cout << "\n1. Lihat Visi dan Misi Calon ke-1" << std::endl;
-    std::cout << "2. Lihat Visi dan Misi Calon ke-2" << std::endl;
-    std::cout << "3. Lihat Visi dan Misi Calon ke-3" << std::endl;
-    std::cout << "4. Kembali ke tampilan utama." << std::endl;
-    std::cout << "Pilihan: ";
-    std::cin >> menu;
+    cout << "==================== "<< "Selamat datang " << pengguna.nama <<" ====================\n" << endl;
+    cout << "Menu Melihat Visi dan Misi Calon" << endl;
+    cout << "\n1. Lihat Visi dan Misi Calon ke-1" << endl;
+    cout << "2. Lihat Visi dan Misi Calon ke-2" << endl;
+    cout << "3. Lihat Visi dan Misi Calon ke-3" << endl;
+    cout << "4. Kembali ke tampilan utama." << endl;
+    cout << "Pilihan: ";
+    cin >> menu;
 
     switch (menu) {
         case 1:
@@ -34,9 +34,9 @@ void menuVisiMisi(Pengguna pengguna) {
         break;
         default:
             system("cls");
-            std::cout << "=========================================================" << std::endl;
-            std::cout << "|   Tolong pilih opsi sesuai dengan yang ditampilkan!   |" << std::endl;
-            std::cout << "=========================================================" << std::endl << std::endl;
+            cout << "=========================================================" << endl;
+            cout << "|   Tolong pilih opsi sesuai dengan yang ditampilkan!   |" << endl;
+            cout << "=========================================================" << endl << endl;
             menuVisiMisi(pengguna);
     }
 }
@@ -44,58 +44,58 @@ void menuVisiMisi(Pengguna pengguna) {
 void VisiMisi(int calon) {
     system("cls");
     if (calon == 1) {
-        std::cout << "==================================================================================================================" << std::endl;
-        std::cout << "|                          CALON PASANGAN HAFIZ MUHAMMAD AL IKHSAN & ELSA MONIKA SINAGA                          |" << std::endl;
-        std::cout << "------------------------------------------------------------------------------------------------------------------" << std::endl;
-        std::cout << "|                                              VISI DAN MISI                                                     |" << std::endl;
-        std::cout << "==================================================================================================================" << std::endl;
-        std::cout << "|                                                                                                                |" << std::endl;
-        std::cout << "| Visi:             Membangun kampus yang berdaya saing tinggi, berbudaya, serta mendorong                       |" << std::endl;
-        std::cout << "|                   keterlibatan aktif mahasiswa dalam pembangunan kampus yang berkelanjutan.                    |" << std::endl;
-        std::cout << "|                                                                                                                |" << std::endl;
-        std::cout << "| Misi:             1. Menjalin komunikasi dan kerjasama dari dalam lingkungan internal dan eksternal Kampus.    |" << std::endl;
-        std::cout << "|                   2. Menyelenggarakan program kerja yang solutif bagi mahasiswa.                               |" << std::endl;
-        std::cout << "|                   3. Program makan siang gratis.                                                               |" << std::endl;
-        std::cout << "==================================================================================================================" << std::endl;
-        std::cout << "|                                        Tekan enter untuk kembali..                                             |" << std::endl;
-        std::cout << "==================================================================================================================" << std::endl;
+        cout << "==================================================================================================================" << endl;
+        cout << "|                          CALON PASANGAN HAFIZ MUHAMMAD AL IKHSAN & ELSA MONIKA SINAGA                          |" << endl;
+        cout << "------------------------------------------------------------------------------------------------------------------" << endl;
+        cout << "|                                              VISI DAN MISI                                                     |" << endl;
+        cout << "==================================================================================================================" << endl;
+        cout << "|                                                                                                                |" << endl;
+        cout << "| Visi:             Membangun kampus yang berdaya saing tinggi, berbudaya, serta mendorong                       |" << endl;
+        cout << "|                   keterlibatan aktif mahasiswa dalam pembangunan kampus yang berkelanjutan.                    |" << endl;
+        cout << "|                                                                                                                |" << endl;
+        cout << "| Misi:             1. Menjalin komunikasi dan kerjasama dari dalam lingkungan internal dan eksternal Kampus.    |" << endl;
+        cout << "|                   2. Menyelenggarakan program kerja yang solutif bagi mahasiswa.                               |" << endl;
+        cout << "|                   3. Program makan siang gratis.                                                               |" << endl;
+        cout << "==================================================================================================================" << endl;
+        cout << "|                                        Tekan enter untuk kembali..                                             |" << endl;
+        cout << "==================================================================================================================" << endl;
     } else if (calon == 2) {
-        std::cout << "===============================================================================================================" << std::endl;
-        std::cout << "|                        CALON PASANGAN FAUZAN RIZKY RAMADHAN & AULIA PUTRI RAHMADHANI                        |" << std::endl;
-        std::cout << "---------------------------------------------------------------------------------------------------------------" << std::endl;
-        std::cout << "|                                             VISI DAN MISI                                                   |" << std::endl;
-        std::cout << "===============================================================================================================" << std::endl;
-        std::cout << "|                                                                                                             |" << std::endl;
-        std::cout << "| Visi:            BEM Cerah (Cerdas,Religius, Aktif dan Harmonis)                                            |" << std::endl;
-        std::cout << "|                                                                                                             |" << std::endl;
-        std::cout << "| Misi:            1. Terlaksananya pelatihan pelatihan yang meningkatkan kualitas Sumber Daya Mahasiswa.     |" << std::endl;
-        std::cout << "|                  2. Membangun hubungan yang kuat dengan masyarakat.                                         |" << std::endl;
-        std::cout << "|                  3. Program berbagi donat gratis untuk seluruh mahasiswa.                                   |" << std::endl;
-        std::cout << "===============================================================================================================" << std::endl;
-        std::cout << "|                                       Tekan enter untuk kembali..                                           |" << std::endl;
-        std::cout << "===============================================================================================================" << std::endl;
+        cout << "===============================================================================================================" << endl;
+        cout << "|                        CALON PASANGAN FAUZAN RIZKY RAMADHAN & AULIA PUTRI RAHMADHANI                        |" << endl;
+        cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+        cout << "|                                             VISI DAN MISI                                                   |" << endl;
+        cout << "===============================================================================================================" << endl;
+        cout << "|                                                                                                             |" << endl;
+        cout << "| Visi:            BEM Cerah (Cerdas,Religius, Aktif dan Harmonis)                                            |" << endl;
+        cout << "|                                                                                                             |" << endl;
+        cout << "| Misi:            1. Terlaksananya pelatihan pelatihan yang meningkatkan kualitas Sumber Daya Mahasiswa.     |" << endl;
+        cout << "|                  2. Membangun hubungan yang kuat dengan masyarakat.                                         |" << endl;
+        cout << "|                  3. Program berbagi donat gratis untuk seluruh mahasiswa.                                   |" << endl;
+        cout << "===============================================================================================================" << endl;
+        cout << "|                                       Tekan enter untuk kembali..                                           |" << endl;
+        cout << "===============================================================================================================" << endl;
     } else if (calon == 3) {
-        std::cout << "=================================================================================" << std::endl;
-        std::cout << "|             CALON PASANGAN ABYAN DZAKY PRATAMA & HAIKAL HARIYANTO             |" << std::endl;
-        std::cout << "---------------------------------------------------------------------------------" << std::endl;
-        std::cout << "|                               VISI DAN MISI                                   |" << std::endl;
-        std::cout << "=================================================================================" << std::endl;
-        std::cout << "|                                                                               |" << std::endl;
-        std::cout << "| Visi:            BEM POLBAN sebagai wadah meningkatkan produktifitas dan      |" << std::endl;
-        std::cout << "|                  kreatifitas mahasiswa yang optimal dalam cakupan Internal    |" << std::endl;
-        std::cout << "|                  dan eksternal kampus                                         |" << std::endl;
-        std::cout << "|                                                                               |" << std::endl;
-        std::cout << "| Misi:            1. Meningkatnya produktifitas dan kreatifitas mahasiswa.     |" << std::endl;
-        std::cout << "|                  2. Terwujudnya BEM yang Harmonis dan aspiratif.              |" << std::endl;
-        std::cout << "=================================================================================" << std::endl;
-        std::cout << "|                         Tekan enter untuk kembali..                           |" << std::endl;
-        std::cout << "=================================================================================" << std::endl;
+        cout << "=================================================================================" << endl;
+        cout << "|             CALON PASANGAN ABYAN DZAKY PRATAMA & HAIKAL HARIYANTO             |" << endl;
+        cout << "---------------------------------------------------------------------------------" << endl;
+        cout << "|                               VISI DAN MISI                                   |" << endl;
+        cout << "=================================================================================" << endl;
+        cout << "|                                                                               |" << endl;
+        cout << "| Visi:            BEM POLBAN sebagai wadah meningkatkan produktifitas dan      |" << endl;
+        cout << "|                  kreatifitas mahasiswa yang optimal dalam cakupan Internal    |" << endl;
+        cout << "|                  dan eksternal kampus                                         |" << endl;
+        cout << "|                                                                               |" << endl;
+        cout << "| Misi:            1. Meningkatnya produktifitas dan kreatifitas mahasiswa.     |" << endl;
+        cout << "|                  2. Terwujudnya BEM yang Harmonis dan aspiratif.              |" << endl;
+        cout << "=================================================================================" << endl;
+        cout << "|                         Tekan enter untuk kembali..                           |" << endl;
+        cout << "=================================================================================" << endl;
     }
-    std::cin.ignore();
-    std::cin.get();
+    cin.ignore();
+    cin.get();
 }
 
-std::string enkripsi(std::string plaintext) 
+string enkripsi(string plaintext) 
 {
     char karakter[] = {
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -108,7 +108,7 @@ std::string enkripsi(std::string plaintext)
     int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
     int modulus = sizeof(karakter);
 
-    std::string ciphertext = "";
+    string ciphertext = "";
 
     if (plaintext.size() % 2 == 1)
     {
@@ -145,7 +145,7 @@ std::string enkripsi(std::string plaintext)
     return ciphertext;
 }
 
-std::string dekripsi(std::string ciphertext) 
+string dekripsi(string ciphertext) 
 {
     char karakter[] = {
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -158,7 +158,7 @@ std::string dekripsi(std::string ciphertext)
     int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
     int modulus = sizeof(karakter);
 
-    std::string plaintext = "";
+    string plaintext = "";
 
     inversMatriks(kunciMatriks, modulus);
 
@@ -190,7 +190,11 @@ std::string dekripsi(std::string ciphertext)
         plaintext = plaintext + karakter[encY];
     }
 
-    if(plaintext.back() == ' ')
+    if(plaintext.size() % 2 == 0 && plaintext.back() == ' ')
+    {
+        return plaintext;
+    }
+    else if (plaintext.size() % 2 == 1 && plaintext.back() == ' ')
     {
         plaintext.pop_back();
     }
