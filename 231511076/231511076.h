@@ -11,9 +11,11 @@
 #include "../231511077/231511077.h"
 #include "../231511070/231511070.h"
 
+using namespace std;
+
 void clearScreen();
 
-void registrasi();
+bool registrasi();
 
 bool login(Pengguna &pengguna);
 
