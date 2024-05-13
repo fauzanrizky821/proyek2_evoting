@@ -166,12 +166,10 @@ void insertMatrix(Node*& head, Matrix matrix) {
     tempCol->bottom = newNode;
 }
 
-Matrix inputMatrix() {
+Matrix inputMatrix(int rows, int cols) {
     Matrix matrix;
-    cout << "Masukkan jumlah baris matriks: ";
-    cin >> matrix.rows;
-    cout << "Masukkan jumlah kolom matriks: ";
-    cin >> matrix.cols;
+    matrix.rows = rows;
+    matrix.cols = cols;
 
     // Alokasikan memori untuk matriks
     matrix.data = new int*[matrix.rows];
