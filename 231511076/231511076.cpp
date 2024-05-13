@@ -3,40 +3,39 @@
 void clearScreen()
 {
     system("cls");
-
-    std::cout << "============================================================" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                         REGISTRASI                       |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "============================================================" << std::endl;
-    std::cout << "|                  Masukkan data diri anda                 |" << std::endl;
-    std::cout << "============================================================" << std::endl;
+    cout << "============================================================" << endl;
+    cout << "|                                                          |" << endl;
+    cout << "|                         REGISTRASI                       |" << endl;
+    cout << "|                                                          |" << endl;
+    cout << "============================================================" << endl;
+    cout << "|                  Masukkan data diri anda                 |" << endl;
+    cout << "============================================================" << endl;
 }
 
-void registrasi()
+bool registrasi()
 {
     Pengguna pengguna;
-    std::istringstream iss;
-    std::string data, dataPengguna, cekNim;
+    istringstream iss;
+    string data, dataPengguna, cekNim;
     bool cariNim;
 
     clearScreen();
 
     // * Menginput Data diri
-    std::cout << "NIM: ";
-    std::cin >> pengguna.nim;
+    cout << "NIM: ";
+    cin >> pengguna.nim;
     clearScreen();
 
     // * cek jumlah karakter NIM, jika tidak sama dengan 9 maka akan loop terus
     while (pengguna.nim.length() != 9)
     {
-        std::cout << "jumlah NIM harus 9 karakter\n";
-        std::cout << "NIM: ";
-        std::cin >> pengguna.nim;
+        cout << "jumlah NIM harus 9 karakter\n";
+        cout << "NIM: ";
+        cin >> pengguna.nim;
         clearScreen();
     }
 
-    std::ifstream readFile;
+    ifstream readFile;
     readFile.open("data/data-pengguna.txt");
 
     if (readFile.is_open())
@@ -52,11 +51,11 @@ void registrasi()
             {                   // * mencari nim yang diinputkan dan nim yang ada di dalam file data-pengguna.txt
                 cariNim = true; // * jika ketemu nimnya, beri nilai true
                 system("cls");
-                std::cout << "============================================================" << std::endl;
-                std::cout << "|                     NIM SUDAH DIPAKAI                    |" << std::endl;
-                std::cout << "------------------------------------------------------------" << std::endl;
-                std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
-                std::cout << "============================================================" << std::endl;
+                cout << "============================================================" << endl;
+                cout << "|                     NIM SUDAH DIPAKAI                    |" << endl;
+                cout << "------------------------------------------------------------" << endl;
+                cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
+                cout << "============================================================" << endl;
 
                 getchar();
             }
@@ -64,85 +63,90 @@ void registrasi()
 
         if (!cariNim)
         { // * jika nim belum dipakai
-            std::cout << "Password: ";
-            std::cin >> pengguna.password;
+            cout << "Password: ";
+            cin >> pengguna.password;
             clearScreen();
 
-            std::cout << "Nama: ";
-            std::cin.sync();
-            std::getline(std::cin, pengguna.nama);
+            cout << "Nama: ";
+            cin.sync();
+            getline(cin, pengguna.nama);
             clearScreen();
 
-            std::cout << "Jurusan: ";
-            std::cin.sync();
-            std::getline(std::cin, pengguna.jurusan);
+            cout << "Jurusan: ";
+            cin.sync();
+            getline(cin, pengguna.jurusan);
             clearScreen();
 
-            std::cout << "Prodi: ";
-            std::cin.sync();
-            std::getline(std::cin, pengguna.prodi);
+            cout << "Prodi: ";
+            cin.sync();
+            getline(cin, pengguna.prodi);
             clearScreen();
 
-            std::ofstream inputFile;
+            ofstream inputFile;
             // * Membuka file
-            inputFile.open("data/data-pengguna.txt", std::ios::app);
+            inputFile.open("data/data-pengguna.txt", ios::app);
 
             if (inputFile.is_open())
             { // * Cek apakah file terbuka atau tidak
                 // * Menyimpan file
                 dataPengguna = pengguna.nim + "," + pengguna.password + "," + pengguna.nama + "," + pengguna.jurusan + "," + pengguna.prodi + "," + pengguna.status + ",";
-                inputFile << enkripsi(dataPengguna) << std::endl; // * Mengenkripsi data pengguna lalu menyimpannya ke data-pengguna.txt
+                inputFile << enkripsi(dataPengguna) << endl; // * Mengenkripsi data pengguna lalu menyimpannya ke data-pengguna.txt
                 inputFile.close();
 
                 system("cls");
 
-                std::cout << "=============================================================" << std::endl;
-                std::cout << "|                   REGISTRASI BERHASIL!                    |" << std::endl;
-                std::cout << "-------------------------------------------------------------" << std::endl;
-                std::cout << "|              Tekan enter untuk melanjutkan..              |" << std::endl;
-                std::cout << "=============================================================" << std::endl;
+                cout << "=============================================================" << endl;
+                cout << "|                   REGISTRASI BERHASIL!                    |" << endl;
+                cout << "-------------------------------------------------------------" << endl;
+                cout << "|              Tekan enter untuk melanjutkan..              |" << endl;
+                cout << "=============================================================" << endl;
+
+                return true;
             }
             else
             {
-                std::cout << "Gagal mengakses data pengguna";
+                cout << "Gagal mengakses data pengguna";
+                return false;
             }
         }
+        readFile.close();
     }
     else
     {
-        std::cout << "Gagal mengakses data pengguna";
+        cout << "Gagal mengakses data pengguna";
+        return false;
     }
 }
 
 bool login(Pengguna &pengguna)
 {
-    std::istringstream iss;
-    std::string data, inputNim, cekNim, password, cekPassword;
+    istringstream iss;
+    string data, inputNim, cekNim, password, cekPassword;
     bool cariNim = false;
 
-    std::cout << "============================================================" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                           LOGIN                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "============================================================" << std::endl;
+    cout << "============================================================" << endl;
+    cout << "|                                                          |" << endl;
+    cout << "|                           LOGIN                          |" << endl;
+    cout << "|                                                          |" << endl;
+    cout << "============================================================" << endl;
 
-    std::cout << "NIM     : ";
-    std::cin >> inputNim;
-    std::cout << "Password: ";
-    std::cin >> password;
+    cout << "NIM     : ";
+    cin >> inputNim;
+    cout << "Password: ";
+    cin >> password;
 
-    std::ifstream readFile;
+    ifstream readFile;
 
     readFile.open("data/data-pengguna.txt");
 
     if (readFile.is_open())
     { // * Cek apakah file terbuka atau tidak
 
-        while (getline(readFile, data) && !cariNim)
+        while (getline(readFile, data) && !cariNim) // * (istream, string, delimination/pembatasan)
         {
             iss.clear();
             data = dekripsi(data); // * dekripsi data pengguna
-            iss.str(data);
+            iss.str(data);         // * mendapatkan atau menyetel konten objek perangkat string yang mendasarinya
             getline(iss, cekNim, ',');
 
             system("cls");
@@ -161,21 +165,21 @@ bool login(Pengguna &pengguna)
                     getline(iss, pengguna.prodi, ',');
                     getline(iss, pengguna.status, ',');
 
-                    std::cout << "=============================================================" << std::endl;
-                    std::cout << "|                      LOGIN BERHASIL!                      |" << std::endl;
-                    std::cout << "-------------------------------------------------------------" << std::endl;
-                    std::cout << "|              Tekan enter untuk melanjutkan..              |" << std::endl;
-                    std::cout << "=============================================================" << std::endl;
+                    cout << "=============================================================" << endl;
+                    cout << "|                      LOGIN BERHASIL!                      |" << endl;
+                    cout << "-------------------------------------------------------------" << endl;
+                    cout << "|              Tekan enter untuk melanjutkan..              |" << endl;
+                    cout << "=============================================================" << endl;
 
                     return true;
                 }
                 else
                 {
-                    std::cout << "============================================================" << std::endl;
-                    std::cout << "|                      PASSWORD SALAH!                     |" << std::endl;
-                    std::cout << "------------------------------------------------------------" << std::endl;
-                    std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
-                    std::cout << "============================================================" << std::endl;
+                    cout << "============================================================" << endl;
+                    cout << "|                      PASSWORD SALAH!                     |" << endl;
+                    cout << "------------------------------------------------------------" << endl;
+                    cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
+                    cout << "============================================================" << endl;
 
                     return false;
 
@@ -186,11 +190,11 @@ bool login(Pengguna &pengguna)
 
         if (!cariNim)
         { // * jika nim tidak ditemukan
-            std::cout << "============================================================" << std::endl;
-            std::cout << "|                   NIM TIDAK DITEMUKAN!                   |" << std::endl;
-            std::cout << "------------------------------------------------------------" << std::endl;
-            std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
-            std::cout << "============================================================" << std::endl;
+            cout << "============================================================" << endl;
+            cout << "|                   NIM TIDAK DITEMUKAN!                   |" << endl;
+            cout << "------------------------------------------------------------" << endl;
+            cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
+            cout << "============================================================" << endl;
 
             return false;
 
@@ -201,7 +205,7 @@ bool login(Pengguna &pengguna)
     }
     else
     {
-        std::cout << "Gagal mengakses data pengguna";
+        cout << "Gagal mengakses data pengguna";
 
         return false;
     }
@@ -213,12 +217,14 @@ void menuUtama(Pengguna pengguna)
 {
     int opsi;
 
-    std::cout << "==================== " << "Selamat datang " << pengguna.nama << " ====================\n" << std::endl;
-    std::cout << "(1) Melakukan voting\n";
-    std::cout << "(2) Lihat Visi & Misi\n";
-    std::cout << "(3) Logout\n";
-    std::cout << "inputkan pilihan anda: ";
-    std::cin >> opsi;
+    cout << "==================== "
+         << "Selamat datang " << pengguna.nama << " ====================\n"
+         << endl;
+    cout << "(1) Melakukan voting\n";
+    cout << "(2) Lihat Visi & Misi\n";
+    cout << "(3) Logout\n";
+    cout << "inputkan pilihan anda: ";
+    cin >> opsi;
 
     switch (opsi)
     {
@@ -226,11 +232,11 @@ void menuUtama(Pengguna pengguna)
         if (pengguna.status == "1")
         {
             system("cls");
-            std::cout << "============================================================" << std::endl;
-            std::cout << "|                Anda sudah melakukan vote!                |" << std::endl;
-            std::cout << "------------------------------------------------------------" << std::endl;
-            std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
-            std::cout << "============================================================" << std::endl;
+            cout << "============================================================" << endl;
+            cout << "|                Anda sudah melakukan vote!                |" << endl;
+            cout << "------------------------------------------------------------" << endl;
+            cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
+            cout << "============================================================" << endl;
             getchar();
             getchar();
             system("cls");
@@ -253,7 +259,7 @@ void menuUtama(Pengguna pengguna)
         break;
 
     default:
-        std::cout << "Ketikkan salah satu pilihan diatas! \n";
+        cout << "Ketikkan salah satu pilihan diatas! \n";
         getchar();
         getchar();
         system("cls");

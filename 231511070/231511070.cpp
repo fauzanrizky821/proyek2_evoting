@@ -3,27 +3,27 @@
 #include "231511070.h"
 
 void total_vote(const int hasil_vote[]) {
-    std::ofstream file("data/total-vote.txt");
-    file << hasil_vote[0] << std::endl;
-    file << hasil_vote[1] << std::endl;
-    file << hasil_vote[2] << std::endl;
+    ofstream file("data/total-vote.txt");
+    file << hasil_vote[0] << endl;
+    file << hasil_vote[1] << endl;
+    file << hasil_vote[2] << endl;
     file.close();
 }
 
-void update_status(const std::string& nim) {
-    std::ifstream infile("data/data-pengguna.txt");
-    std::vector<Pengguna> data_pengguna;
+void update_status(const string& nim) {
+    ifstream infile("data/data-pengguna.txt");
+    vector<Pengguna> data_pengguna;
 
-    std::string line;
-    while (std::getline(infile, line)) {
+    string line;
+    while (getline(infile, line)) {
         Pengguna pengguna;
-        std::istringstream iss(dekripsi(line));
-        std::getline(iss, pengguna.nim, ',');
-        std::getline(iss, pengguna.password, ',');
-        std::getline(iss, pengguna.nama, ',');
-        std::getline(iss, pengguna.jurusan, ',');
-        std::getline(iss, pengguna.prodi, ',');
-        std::getline(iss, pengguna.status, ',');
+        istringstream iss(dekripsi(line));
+        getline(iss, pengguna.nim, ',');
+        getline(iss, pengguna.password, ',');
+        getline(iss, pengguna.nama, ',');
+        getline(iss, pengguna.jurusan, ',');
+        getline(iss, pengguna.prodi, ',');
+        getline(iss, pengguna.status, ',');
 
         if (pengguna.nim == nim) 
         {
@@ -35,21 +35,21 @@ void update_status(const std::string& nim) {
 
     infile.close();
 
-    std::ofstream outfile("data/temp-data-pengguna.txt");
-    for (std::vector<Pengguna>::iterator it = data_pengguna.begin(); it != data_pengguna.end(); ++it) {
+    ofstream outfile("data/temp-data-pengguna.txt");
+    for (vector<Pengguna>::iterator it = data_pengguna.begin(); it != data_pengguna.end(); ++it) {
         Pengguna pengguna = *it;
-        std::string dataPengguna;
+        string dataPengguna;
         dataPengguna = pengguna.nim + ',' + pengguna.password + ',' + pengguna.nama + ',' + pengguna.jurusan + ',' + pengguna.prodi + ',' + pengguna.status + ",";
-        outfile << enkripsi(dataPengguna) << std::endl; 
+        outfile << enkripsi(dataPengguna) << endl; 
     }
     outfile.close();
 
-    std::remove("data/data-pengguna.txt");
-    std::rename("data/temp-data-pengguna.txt", "data/data-pengguna.txt");
+    remove("data/data-pengguna.txt");
+    rename("data/temp-data-pengguna.txt", "data/data-pengguna.txt");
 }
 
 void  menuVote(Pengguna &pengguna) {
-    std::ifstream file("data/total-vote.txt");
+    ifstream file("data/total-vote.txt");
     int hasil_vote[3] = {0};
 
     int i = 0;
@@ -62,18 +62,18 @@ void  menuVote(Pengguna &pengguna) {
 
     int nomor_calon;
 
-    std::cout << "Calon pasangan ketua BEM dan wakil ketua BEM 2024:" << std::endl;
-    std::cout << "=======================================================" << std::endl;
-    std::cout << "| No | Calon Pasangan                                 |" << std::endl;
-    std::cout << "=======================================================" << std::endl;
-    std::cout << "| 1  | Hafiz Muhammad Al Ikhsan & Elsa Monika Sinaga  |" << std::endl;
-    std::cout << "|----|------------------------------------------------|" << std::endl;
-    std::cout << "| 2  | Fauzan Rizky Ramadhan & Aulia Putri Ramadhani  |" << std::endl;
-    std::cout << "|----|------------------------------------------------|" << std::endl;
-    std::cout << "| 3  | Abyan Dzaky Pratama & Haikal Hariyanto         |" << std::endl;
-    std::cout << "=======================================================" << std::endl;
-    std::cout << "Masukkan nomor calon yang ingin Anda pilih (1, 2, atau 3): " ;
-    std::cin >> nomor_calon;
+    cout << "Calon pasangan ketua BEM dan wakil ketua BEM 2024:" << endl;
+    cout << "=======================================================" << endl;
+    cout << "| No | Calon Pasangan                                 |" << endl;
+    cout << "=======================================================" << endl;
+    cout << "| 1  | Hafiz Muhammad Al Ikhsan & Elsa Monika Sinaga  |" << endl;
+    cout << "|----|------------------------------------------------|" << endl;
+    cout << "| 2  | Fauzan Rizky Ramadhan & Aulia Putri Ramadhani  |" << endl;
+    cout << "|----|------------------------------------------------|" << endl;
+    cout << "| 3  | Abyan Dzaky Pratama & Haikal Hariyanto         |" << endl;
+    cout << "=======================================================" << endl;
+    cout << "Masukkan nomor calon yang ingin Anda pilih (1, 2, atau 3): " ;
+    cin >> nomor_calon;
 
     if (nomor_calon >= 1 && nomor_calon <= 3) {
         hasil_vote[nomor_calon - 1] += 1;
@@ -84,11 +84,11 @@ void  menuVote(Pengguna &pengguna) {
 
         pengguna.status = "1";
 
-        std::cout << "Vote berhasil ditambahkan." << std::endl;
+        cout << "Vote berhasil ditambahkan." << endl;
         getchar();
         getchar();
     } else {
-        std::cout << "Nomor calon tidak valid." << std::endl;
+        cout << "Nomor calon tidak valid." << endl;
         getchar();
         getchar();
         menuVote(pengguna);

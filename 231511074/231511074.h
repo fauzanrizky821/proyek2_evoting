@@ -8,12 +8,14 @@
 #include <string>
 #include <sstream>
 
+using namespace std;
+
 struct Voter {
-    std::string nim;
-    std::string password;
-    std::string nama;
-    std::string jurusan;
-    std::string Prodi;
+    string nim;
+    string password;
+    string nama;
+    string jurusan;
+    string Prodi;
     bool status;  
 };
 

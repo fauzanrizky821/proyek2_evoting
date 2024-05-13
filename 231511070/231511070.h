@@ -10,6 +10,8 @@
 #include "../pengguna.h"
 #include "../231511077/231511077.h"
 
+using namespace std;
+
 void total_vote(const int hasil_vote[]);
 void update_status(const std::string& nim);
 void  menuVote(Pengguna &pengguna);
