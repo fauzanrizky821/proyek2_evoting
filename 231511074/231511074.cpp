@@ -1,117 +1,195 @@
 #include "231511074.h"
+#include <iostream>
+using namespace std;
 
 void dataPemilih(const Voter& voter) {
-    std::cout <<"NIM : " << voter.nim;
-    std::cout <<"\tNama : " << voter.nama;
-    std::cout <<"\tJurusan : " << voter.jurusan;
-    std::cout <<"\tProdi : " << voter.Prodi;
-    std::cout << "\tStatus: " << (voter.status ? "Telah Melakukan Voting" : "Belum Melakukan Voting") << std::endl;
+    cout <<"NIM : " << voter.nim;
+    cout <<"\tNama : " << voter.nama;
+    cout <<"\tJurusan : " << voter.jurusan;
+    cout <<"\tProdi : " << voter.Prodi;
+    cout << "\tStatus: " << (voter.status ? "Telah Melakukan Voting" : "Belum Melakukan Voting") << endl;
 }
 
-void melihatHasilVoting() {
+string melihatHasilVoting() {
     std::ifstream voteFile("data/total-vote.txt");
+    std::string hasilVoting;
 
     if (!voteFile.is_open()) {
         std::cerr << "Gagal membuka file hasil_vote.txt\n";
+        return hasilVoting;
     }
 
-    std::cout << "|=======================================================|" << std::endl;
-    std::cout << "|                 HASIL VOTE PEMILIHAN                  |" << std::endl;
-    std::cout << "|=======================================================|" << std::endl;
+    hasilVoting += "|=======================================================|\n";
+    hasilVoting += "|                 HASIL VOTE PEMILIHAN                  |\n";
+    hasilVoting += "|=======================================================|\n";
 
     std::string line;
     int count = 0;
     while (std::getline(voteFile, line)) {
-        count ++;
-        std::cout << "\t\t   Calon No-" << count << " = " << line << std::endl;
+        count++;
+        hasilVoting += "\t\t   Calon No-" + std::to_string(count) + " = " + line + "\n";
     }
-    std::cout << "|=======================================================|" << std::endl;
+
+    hasilVoting += "|=======================================================|\n";
     voteFile.close();
+
+    return hasilVoting;
 }
 
 void lihatDataPemilih() {
-    std::ifstream filePemilih("data/data-pengguna.txt");
+    ifstream filePemilih("data/data-pengguna.txt");
 
     if (!filePemilih.is_open()){
-        std::cerr<< "Gagal membuka file\n";
+        cerr<< "Gagal membuka file\n";
         return;
     }
 
-    std::string line;
-    std::getline(filePemilih, line);
-    while (std::getline(filePemilih, line)){
-        std::istringstream iss(line);
+    string line;
+    getline(filePemilih, line);
+    while (getline(filePemilih, line)){
+        istringstream iss(line);
         Voter voter;
 
-        std::string decryptedLine = line;
+        string decryptedLine = line;
         decryptedLine = dekripsi(decryptedLine);
-        std::istringstream decryptedStream(decryptedLine);
+        istringstream decryptedStream(decryptedLine);
 
-        if (std::getline(decryptedStream, voter.nim, ',')&&
-            std::getline(decryptedStream, voter.password, ',')&&
-            std::getline(decryptedStream, voter.nama, ',')&&
-            std::getline(decryptedStream,voter.jurusan, ',')&&
-            std::getline(decryptedStream, voter.Prodi, ',')){
-            std::string statusStr;
-            if(std::getline(decryptedStream, statusStr,',')){
+        if (getline(decryptedStream, voter.nim, ',')&&
+            getline(decryptedStream, voter.password, ',')&&
+            getline(decryptedStream, voter.nama, ',')&&
+            getline(decryptedStream,voter.jurusan, ',')&&
+            getline(decryptedStream, voter.Prodi, ',')){
+            string statusStr;
+            if(getline(decryptedStream, statusStr,',')){
                 voter.status=(statusStr=="1");
             }else{
-                std::cerr << "gagal membaca status" << std::endl;
+                cerr << "gagal membaca status" << endl;
                 continue;
             }
             dataPemilih(voter);
             }else{
-                std::cerr << "gagal membaca data" << std::endl;
+                cerr << "gagal membaca data" << endl;
             }
     }
     filePemilih.close();
 }
 
-void menu_pengelola(Pengelola* head, const std::string& id, const std::string& nama){
+void menu_pengelola(Pengelola* head, const string& id, const string& nama){
 
     int choice;
     do {
         // Tampilkan menu
-        std::cout << "\nMenu Pengelola:\n";
-        std::cout << "+----+---------------------+\n";
-        std::cout << "| 1  | Lihat Hasil Voting  |\n";
-        std::cout << "| 2  | Lihat Data Pemilih  |\n";
-        std::cout << "| 3  | Logout               |\n";
-        std::cout << "+----+---------------------+\n";
-        std::cout << "Pilih: ";
-        std::cin >> choice;
+        cout << "\nMenu Pengelola:\n";
+        cout << "+----+---------------------+\n";
+        cout << "| 1  | Lihat Hasil Voting  |\n";
+        cout << "| 2  | Lihat Data Pemilih  |\n";
+        cout << "| 3  | Inser kunci matriks  |\n";
+        cout << "| 4  | Logout               |\n";
+        cout << "+----+---------------------+\n";
+        cout << "Pilih: ";
+        cin >> choice;
 
+        string hasilVoting;
         switch (choice) {
             case 1:
                 system("cls");
-                melihatHasilVoting();
-                std::cout << "Klik enter untuk kembali";
-                std::cin.ignore();
-                std::cin.get();
+                hasilVoting = melihatHasilVoting();
+                cout << hasilVoting;
+                cout << "Klik enter untuk kembali";
+                cin.ignore();
+                cin.get();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
                 lihatDataPemilih();
-                std::cout << "Klik enter untuk kembali";
-                std::cin.ignore();
-                std::cin.get();
+                cout << "Klik enter untuk kembali";
+                cin.ignore();
+                cin.get();
                 system("cls");
                 break;
 
             case 3:
-                std::cout << "Logout berhasil.\n\n";
-                std::cout << "Klik enter untuk kembali";
-                std::cin.ignore();
-                std::cin.get();
+                cout << "Logout berhasil.\n\n";
+                cout << "Klik enter untuk kembali";
+                cin.ignore();
+                cin.get();
                 system("cls");
                 menu_login_pengelola();
                 break;
             default:
-                std::cout << "Pilihan tidak valid. Silakan coba lagi.\n";
+                cout << "Pilihan tidak valid. Silakan coba lagi.\n";
         }
 
     } while (choice != 3);
 
+}
+
+// Fungsi untuk menyisipkan matriks ke dalam linked list
+void insertMatrix(Node*& head, Matrix matrix) {
+    // Buat node baru
+    Node* newNode = new Node;
+    newNode->matrix = matrix;
+    newNode->next = nullptr;
+    newNode->bottom = nullptr;
+
+    // Jika linked list kosong, matriks baru akan menjadi head
+    if (head == nullptr) {
+        head = newNode;
+        return;
+    }
+
+    // Temukan node terakhir dari linked list pada baris terakhir
+    Node* temp = head;
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+
+    // Sisipkan node baru di baris terakhir
+    temp->next = newNode;
+
+    // Temukan node terakhir dari linked list pada kolom terakhir
+    Node* tempCol = head;
+    while (tempCol->bottom != nullptr) {
+        tempCol = tempCol->bottom;
+    }
+
+    // Sisipkan node baru di kolom terakhir
+    tempCol->bottom = newNode;
+}
+
+Matrix inputMatrix() {
+    Matrix matrix;
+    cout << "Masukkan jumlah baris matriks: ";
+    cin >> matrix.rows;
+    cout << "Masukkan jumlah kolom matriks: ";
+    cin >> matrix.cols;
+
+    // Alokasikan memori untuk matriks
+    matrix.data = new int*[matrix.rows];
+    for (int i = 0; i < matrix.rows; ++i) {
+        matrix.data[i] = new int[matrix.cols];
+        cout << "Masukkan elemen untuk baris " << i + 1 << ": ";
+        for (int j = 0; j < matrix.cols; ++j) {
+            cin >> matrix.data[i][j];
+        }
+    }
+
+    return matrix;
+}
+
+void freeLinkedList(Node* head) {
+    Node* temp;
+    while (head != nullptr) {
+        temp = head;
+        head = head->next;
+        // Bebaskan memori untuk matriks dalam node
+        for (int i = 0; i < temp->matrix.rows; ++i) {
+            delete[] temp->matrix.data[i];
+        }
+        delete[] temp->matrix.data;
+        // Bebaskan memori untuk node
+        delete temp;
+    }
 }

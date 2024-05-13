@@ -4,22 +4,23 @@
 #include "231511074/231511074.h"
 #include "231511076/231511076.h"
 #include "231511077/231511077.h"
+using namespace std;
 
 int main ()
 {
     int pilihan;
     do{
     system("cls");
-    std::cout << "|---------------------------------------------------------|" << std::endl;
-    std::cout << "|                      Selamat Datang                     |" << std::endl;
-    std::cout << "|---------------------------------------------------------|" << std::endl;
-    std::cout << "|                   Di Aplikasi E-Voting                  |" << std::endl;
-    std::cout << "|---------------------------------------------------------|" << std::endl << std::endl;
+    cout << "|---------------------------------------------------------|" << endl;
+    cout << "|                      Selamat Datang                     |" << endl;
+    cout << "|---------------------------------------------------------|" << endl;
+    cout << "|                   Di Aplikasi E-Voting                  |" << endl;
+    cout << "|---------------------------------------------------------|" << endl << endl;
 
-    std::cout << "\n[1]Login" << std::endl;
-    std::cout << "[2]Keluar" << std::endl;
-    std::cout << "Masukkan Pilihan = ";
-    std::cin >> pilihan;
+    cout << "\n[1]Login" << endl;
+    cout << "[2]Keluar" << endl;
+    cout << "Masukkan Pilihan = ";
+    cin >> pilihan;
 
     switch (pilihan)
     {
@@ -32,7 +33,7 @@ int main ()
         break;
 
     default:
-        std::cout << "Input angka sesuai pilihan !" << std::endl;
+        cout << "Input angka sesuai pilihan !" << endl;
         break;
     }
 
