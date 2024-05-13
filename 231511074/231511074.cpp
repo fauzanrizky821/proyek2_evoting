@@ -23,7 +23,7 @@ string melihatHasilVoting() {
     hasilVoting += "|                 HASIL VOTE PEMILIHAN                  |\n";
     hasilVoting += "|=======================================================|\n";
 
-    std::string line;
+    string line;
     int count = 0;
     while (std::getline(voteFile, line)) {
         count++;
@@ -83,8 +83,7 @@ void menu_pengelola(Pengelola* head, const string& id, const string& nama){
         cout << "+----+---------------------+\n";
         cout << "| 1  | Lihat Hasil Voting  |\n";
         cout << "| 2  | Lihat Data Pemilih  |\n";
-        cout << "| 3  | Inser kunci matriks  |\n";
-        cout << "| 4  | Logout               |\n";
+        cout << "| 3  | Logout               |\n";
         cout << "+----+---------------------+\n";
         cout << "Pilih: ";
         cin >> choice;

@@ -10,6 +10,8 @@
 #include <iostream>
 using namespace std;
 
+using namespace std;
+
 struct Voter {
     string nim;
     string password;

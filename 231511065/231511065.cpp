@@ -4,9 +4,9 @@
 #include <fstream>
 #include <sstream>
 
-void hitungJumlahVote(const std::string& nama_file) 
+void hitungJumlahVote(const string& nama_file) 
 {
-    std::map<int, int> jumlah_suara; // Gunakan map untuk menyimpan jumlah suara setiap pasangan calon
+    map<int, int> jumlah_suara; // Gunakan map untuk menyimpan jumlah suara setiap pasangan calon
 
     PasanganCalon pasangan_calon[3]; 
 
@@ -18,18 +18,18 @@ void hitungJumlahVote(const std::string& nama_file)
     pasangan_calon[1].nomor = 2;
     pasangan_calon[2].nomor = 3;
 
-    std::ifstream infile(nama_file);
+    ifstream infile(nama_file);
     if (!infile) 
     {
-        std::cerr << "Cannot open file\n";
+        cerr << "Cannot open file\n";
         return;
     }
 
-    std::string line;
+    string line;
     int nomor_pasangan = 1; // Nomor pasangan calon untuk mengakses array pasangan_calon
-    while (std::getline(infile, line)) 
+    while (getline(infile, line)) 
     {
-        std::stringstream ss(line);
+        stringstream ss(line);
         int suara;
 
         // Menggunakan stringstream untuk membaca suara
@@ -50,33 +50,33 @@ void hitungJumlahVote(const std::string& nama_file)
 
     infile.close();
     int i=1;
-    std::cout << "=============================================================" << std::endl;
-    std::cout << "|                   HASIL TOTAL VOTE                        |" << std::endl;
-    std::cout << "-------------------------------------------------------------" << std::endl;
+    cout << "=============================================================" << endl;
+    cout << "|                   HASIL TOTAL VOTE                        |" << endl;
+    cout << "-------------------------------------------------------------" << endl;
     // Menampilkan total suara untuk setiap pasangan calon
     for (const auto& pasangan : pasangan_calon) 
     {
-        std::cout << "                    Pasangan Calon " << i << ": "<< pasangan.nama << std::endl;
-        std::cout << "                    Total Suara: " << jumlah_suara[pasangan.nomor]<< std::endl;
-        std::cout << "                                                             " << std::endl;
+        cout << "                    Pasangan Calon " << i << ": "<< pasangan.nama << endl;
+        cout << "                    Total Suara: " << jumlah_suara[pasangan.nomor]<< endl;
+        cout << "                                                             " << endl;
         i++;
     }
-    std::cout << "=============================================================" << std::endl;
+    cout << "=============================================================" << endl;
 }
-bool login(Pengelola* head, std::string& id, std::string& nama) {
-    std::string inputID, password, cekID, cekPassword, data;
+bool login(Pengelola* head, string& id, string& nama) {
+    string inputID, password, cekID, cekPassword, data;
     bool cariID = false;
 
-    std::cout << "============================================================" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                           LOGIN                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "============================================================" << std::endl;
+    cout << "============================================================" << endl;
+    cout << "|                                                          |" << endl;
+    cout << "|                           LOGIN                          |" << endl;
+    cout << "|                                                          |" << endl;
+    cout << "============================================================" << endl;
 
-    std::cout << "ID pengelola: ";
-    std::cin >> inputID;
-    std::cout << "Password    : ";
-    std::cin >> password;
+    cout << "ID pengelola: ";
+    cin >> inputID;
+    cout << "Password    : ";
+    cin >> password;
 
     Pengelola* current = head;
     while (current != nullptr && !cariID) {
@@ -86,22 +86,22 @@ bool login(Pengelola* head, std::string& id, std::string& nama) {
                 id = inputID;
                 nama = current->nama;
 
-                std::cout << "=============================================================" << std::endl;
-                std::cout << "|                      LOGIN BERHASIL!                      |" << std::endl;
-                std::cout << "-------------------------------------------------------------" << std::endl;
-                std::cout << "|              Tekan enter untuk melanjutkan..              |" << std::endl;
-                std::cout << "=============================================================" << std::endl;
+                cout << "=============================================================" << endl;
+                cout << "|                      LOGIN BERHASIL!                      |" << endl;
+                cout << "-------------------------------------------------------------" << endl;
+                cout << "|              Tekan enter untuk melanjutkan..              |" << endl;
+                cout << "=============================================================" << endl;
 
                 return true;
             } else {
-                std::cout << "============================================================" << std::endl;
-                std::cout << "|                      PASSWORD SALAH!                     |" << std::endl;
-                std::cout << "------------------------------------------------------------" << std::endl;
-                std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
-                std::cout << "============================================================" << std::endl;
+                cout << "============================================================" << endl;
+                cout << "|                      PASSWORD SALAH!                     |" << endl;
+                cout << "------------------------------------------------------------" << endl;
+                cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
+                cout << "============================================================" << endl;
 
-                std::cin.ignore(); // Bersihkan buffer input
-                std::cin.get();    // Tunggu pengguna menekan Enter
+                cin.ignore(); // Bersihkan buffer input
+                cin.get();    // Tunggu pengguna menekan Enter
                 return false;
             }
         }
@@ -109,14 +109,14 @@ bool login(Pengelola* head, std::string& id, std::string& nama) {
     }
 
     if (!cariID) {
-        std::cout << "============================================================" << std::endl;
-        std::cout << "|              ID PENGGUNA TIDAK DITEMUKAN!                |" << std::endl;
-        std::cout << "------------------------------------------------------------" << std::endl;
-        std::cout << "|             Tekan enter untuk melanjutkan..              |" << std::endl;
-        std::cout << "============================================================" << std::endl;
+        cout << "============================================================" << endl;
+        cout << "|              ID PENGGUNA TIDAK DITEMUKAN!                |" << endl;
+        cout << "------------------------------------------------------------" << endl;
+        cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
+        cout << "============================================================" << endl;
 
-        std::cin.ignore(); // Bersihkan buffer input
-        std::cin.get();    // Tunggu pengguna menekan Enter
+        cin.ignore(); // Bersihkan buffer input
+        cin.get();    // Tunggu pengguna menekan Enter
         return false;
     }
 
@@ -138,14 +138,14 @@ void menu_login_pengelola()
 {
     Pengelola* head = nullptr;
 
-    std::ifstream readFile("data/data-pengelola.txt");
+    ifstream readFile("data/data-pengelola.txt");
     if (readFile.is_open()) 
     {
-        std::string line;
+        string line;
         while (getline(readFile, line)) 
         {
-            std::istringstream iss(line);
-            std::string id, nama, password;
+            istringstream iss(line);
+            string id, nama, password;
             getline(iss, id, ',');
             getline(iss, nama, ',');
             getline(iss, password, ',');
@@ -158,21 +158,21 @@ void menu_login_pengelola()
     } 
     else 
     {
-        std::cerr << "Gagal membuka file data-pengelola.txt" << std::endl;
+        cerr << "Gagal membuka file data-pengelola.txt" << endl;
         
     }
 
-    std::string id, nama;
+    string id, nama;
     if (login(head, id, nama)) // Periksa hasil login sebelum memanggil menu
     {
-        std::cin.ignore();
-        std::cin.get();
+        cin.ignore();
+        cin.get();
         system("cls");
         menu_pengelola(head, id, nama); // Panggil menu_pengelola jika login berhasil
     }
     else
     {
-        std::cerr << "Login gagal. Tidak dapat memanggil menu pengelola." << std::endl;
+        cerr << "Login gagal. Tidak dapat memanggil menu pengelola." << endl;
     }
 
     // Membersihkan memori
