@@ -29,4 +29,5 @@ void menu_pengelola(Pengelola* head, const string& id, const string& nama);
 void insertMatrix(Node*& head, Matrix matrix);
 void freeLinkedList(Node* head);
 Matrix inputMatrix();
+void printMatrix(const Matrix& matrix);
 #endif

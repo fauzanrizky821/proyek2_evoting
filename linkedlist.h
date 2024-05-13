@@ -4,15 +4,6 @@
 #include <string>
 
 using namespace std;
-
-struct Pengguna{
-    string nim;
-    string password;
-    string nama;
-    string jurusan;
-    string prodi;
-    string status = "0";
-};
               
 typedef struct table *addrTable; 
 struct table           
@@ -41,5 +32,11 @@ struct Node {
     Matrix matrix;
     Node* next;
     Node* bottom;
+};
+
+struct MatrixNode {
+    int data;
+    MatrixNode* right;
+    MatrixNode* bottom;
 };
 #endif
