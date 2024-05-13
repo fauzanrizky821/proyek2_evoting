@@ -34,4 +34,10 @@ struct Node {
     Node* next;
     Node* bottom;
 };
+
+struct MatrixNode {
+    int data;
+    MatrixNode* right;
+    MatrixNode* bottom;
+};
 #endif

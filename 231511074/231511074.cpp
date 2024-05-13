@@ -81,23 +81,31 @@ void menu_pengelola(Pengelola* head, const string& id, const string& nama){
         // Tampilkan menu
         cout << "\nMenu Pengelola:\n";
         cout << "+----+---------------------+\n";
-        cout << "| 1  | Lihat Hasil Voting  |\n";
+        cout << "| 1  | input matriks  |\n";
         cout << "| 2  | Lihat Data Pemilih  |\n";
         cout << "| 3  | Logout               |\n";
         cout << "+----+---------------------+\n";
         cout << "Pilih: ";
         cin >> choice;
 
+        
         string hasilVoting;
         switch (choice) {
+            // case 1:
+            //     system("cls");
+            //     hasilVoting = melihatHasilVoting();
+            //     cout << hasilVoting;
+            //     cout << "Klik enter untuk kembali";
+            //     cin.ignore();
+            //     cin.get();
+            //     system("cls");
+            //     break;
+            Matrix matrix;
             case 1:
                 system("cls");
-                hasilVoting = melihatHasilVoting();
-                cout << hasilVoting;
-                cout << "Klik enter untuk kembali";
-                cin.ignore();
-                cin.get();
-                system("cls");
+                matrix = inputMatrix();
+                cout << "Matriks yang dimasukkan:" << endl;
+                printMatrix(matrix);
                 break;
 
             case 2:
@@ -158,25 +166,23 @@ void insertMatrix(Node*& head, Matrix matrix) {
     tempCol->bottom = newNode;
 }
 
-Matrix inputMatrix() {
+Matrix inputMatrix(int rows, int cols) {
     Matrix matrix;
-    cout << "Masukkan jumlah baris matriks: ";
-    cin >> matrix.rows;
-    cout << "Masukkan jumlah kolom matriks: ";
-    cin >> matrix.cols;
+    matrix.rows = rows;
+    matrix.cols = cols;
 
     // Alokasikan memori untuk matriks
     matrix.data = new int*[matrix.rows];
     for (int i = 0; i < matrix.rows; ++i) {
         matrix.data[i] = new int[matrix.cols];
-        cout << "Masukkan elemen untuk baris " << i + 1 << ": ";
         for (int j = 0; j < matrix.cols; ++j) {
+            cout << "Masukkan elemen untuk baris " << i + 1 << " kolom " << j + 1 << ": ";
             cin >> matrix.data[i][j];
         }
     }
-
     return matrix;
 }
+
 
 void freeLinkedList(Node* head) {
     Node* temp;
@@ -190,5 +196,15 @@ void freeLinkedList(Node* head) {
         delete[] temp->matrix.data;
         // Bebaskan memori untuk node
         delete temp;
+    }
+}
+
+void printMatrix(const Matrix& matrix) {
+    cout << "Matriks:\n";
+    for (int i = 0; i < matrix.rows; ++i) {
+        for (int j = 0; j < matrix.cols; ++j) {
+            cout << matrix.data[i][j] << " ";
+        }
+        cout << endl;
     }
 }
