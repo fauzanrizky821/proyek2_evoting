@@ -29,4 +29,17 @@ struct matriks
     addrMatriks buttom;  
 };
 
+// Struktur untuk merepresentasikan matriks 2 dimensi
+struct Matrix {
+    int rows;
+    int cols;
+    int **data;
+};
+
+// Struktur untuk merepresentasikan node dalam linked list
+struct Node {
+    Matrix matrix;
+    Node* next;
+    Node* bottom;
+};
 #endif

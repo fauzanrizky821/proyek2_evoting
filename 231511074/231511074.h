@@ -1,6 +1,7 @@
 #ifndef LIBRARY_231511074_H
 #define LIBRARY_231511074_H
 
+#include "../linkedlist.h"
 #include "../231511077/231511077.h"
 #include "../231511065/231511065.h"
 #include <iostream>
@@ -19,20 +20,6 @@ struct Voter {
     string jurusan;
     string Prodi;
     bool status;  
-};
-
-// Struktur untuk merepresentasikan matriks 2 dimensi
-struct Matrix {
-    int rows;
-    int cols;
-    int **data;
-};
-
-// Struktur untuk merepresentasikan node dalam linked list
-struct Node {
-    Matrix matrix;
-    Node* next;
-    Node* bottom;
 };
 
 void dataPemilih(const Voter& voter);
