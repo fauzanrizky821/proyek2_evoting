@@ -29,4 +29,23 @@ void menu_login_pengelola();
 bool login(Pengelola* head, string& id, string& nama);
 void deleteList(Pengelola* head);
 
+
+struct Matrix {
+    int rows;
+    int cols;
+    int** data;
+};
+
+struct Node {
+    Matrix matrix;
+    Node* next;
+    Node* bottom;
+};
+
+// Fungsi untuk menghapus semua matriks dari linked list dan membebaskan memori
+void deleteMatriks(Node*& head, Node*& akhir);
+
+
+// Fungsi untuk mencari elemen matriks berdasarkan baris dan kolom
+int searchMatriks(const Matrix& matrix, int row, int column);
 #endif // ELECTION_COUNT_H
