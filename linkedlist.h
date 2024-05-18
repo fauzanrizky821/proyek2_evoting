@@ -16,7 +16,7 @@ struct table
 typedef struct matriks *addrMatriks; 
 struct matriks           
 {
-    char info; 
+    int info; 
     addrMatriks right;
     addrMatriks bottom;  
 };
