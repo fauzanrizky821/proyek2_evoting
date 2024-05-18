@@ -10,7 +10,7 @@ void total_vote(const int hasil_vote[]) {
     file.close();
 }
 
-void update_status(const string& nim) {
+void update_status(const string &nim) {
     ifstream infile("data/data-pengguna.txt");
     vector<Pengguna> data_pengguna;
 
@@ -25,8 +25,7 @@ void update_status(const string& nim) {
         getline(iss, pengguna.prodi, ',');
         getline(iss, pengguna.status, ',');
 
-        if (pengguna.nim == nim) 
-        {
+        if (pengguna.nim == nim) {
             pengguna.status = "1";
         }
 
@@ -40,7 +39,7 @@ void update_status(const string& nim) {
         Pengguna pengguna = *it;
         string dataPengguna;
         dataPengguna = pengguna.nim + ',' + pengguna.password + ',' + pengguna.nama + ',' + pengguna.jurusan + ',' + pengguna.prodi + ',' + pengguna.status + ",";
-        outfile << enkripsi(dataPengguna) << endl; 
+        outfile << enkripsi(dataPengguna) << endl;
     }
     outfile.close();
 
@@ -48,7 +47,7 @@ void update_status(const string& nim) {
     rename("data/temp-data-pengguna.txt", "data/data-pengguna.txt");
 }
 
-void  menuVote(Pengguna &pengguna) {
+void menuVote(Pengguna &pengguna) {
     ifstream file("data/total-vote.txt");
     int hasil_vote[3] = {0};
 
@@ -72,7 +71,7 @@ void  menuVote(Pengguna &pengguna) {
     cout << "|----|------------------------------------------------|" << endl;
     cout << "| 3  | Abyan Dzaky Pratama & Haikal Hariyanto         |" << endl;
     cout << "=======================================================" << endl;
-    cout << "Masukkan nomor calon yang ingin Anda pilih (1, 2, atau 3): " ;
+    cout << "Masukkan nomor calon yang ingin Anda pilih (1, 2, atau 3): ";
     cin >> nomor_calon;
 
     if (nomor_calon >= 1 && nomor_calon <= 3) {
@@ -92,5 +91,70 @@ void  menuVote(Pengguna &pengguna) {
         getchar();
         getchar();
         menuVote(pengguna);
+    }
+}
+
+void insertChar(char nilai, addrTable &awal, addrTable &akhir) {
+    addrTable p;
+
+    p = (addrTable)malloc(sizeof(table));
+    if (p == NULL) {
+        printf("Memori penuh\n");
+    } else {
+        p->info = nilai;
+        p->next = NULL;
+    }
+
+    if (awal == NULL && akhir == NULL) {
+        awal = p;
+    } else {
+        akhir->next = p;
+    }
+
+    akhir = p;
+}
+
+char deleteChar(addrTable &awal, addrTable &akhir) {
+    addrTable p, q;
+    int nilai;
+    p = akhir;
+    q = awal;
+
+    if (awal == NULL && akhir == NULL) {
+        printf("Linked list kosong\n");
+
+        return 0;
+    } else if (awal == akhir) {
+        awal = NULL;
+        akhir = NULL;
+    } else {
+        while (next(q) != akhir) {
+            q = next(q);
+        }
+        akhir = q;
+        q->next = NULL;
+    }
+
+    nilai = p->info;
+    p->next = NULL;
+    free(p);
+
+    return nilai;
+}
+
+void tampilkanList(addrTable awal, addrTable akhir)
+{
+    addrTable p;
+    p = awal;
+    int i;
+
+    printf("\nLinked List: \n");
+
+    i = 1;
+    while (p != NULL)
+    {
+        printf("(%d) %d \n",i ,p->info);
+        p = next(p);
+        i++;
     }
 }
