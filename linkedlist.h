@@ -18,7 +18,7 @@ struct matriks
 {
     char info; 
     addrMatriks right;
-    addrMatriks buttom;  
+    addrMatriks bottom;  
 };
 
 // Struktur untuk merepresentasikan matriks 2 dimensi
