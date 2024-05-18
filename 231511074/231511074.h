@@ -26,8 +26,8 @@ void dataPemilih(const Voter& voter);
 string melihatHasilVoting();
 void lihatDataPemilih();
 void menu_pengelola(Pengelola* head, const string& id, const string& nama);
-void insertMatrix(Node*& head, Matrix matrix);
-void freeLinkedList(Node* head);
-Matrix inputMatrix();
-void printMatrix(const Matrix& matrix);
+addrMatriks insertMatriks(int nilai);
+addrMatriks insertKunciMatriks(int Key1, int Key2, int Key3, int Key4);
+void freeMatrix(addrMatriks head);
+void printMatrix(addrMatriks head);
 #endif
