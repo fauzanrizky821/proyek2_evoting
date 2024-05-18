@@ -214,19 +214,15 @@ void deleteMatriks(Node*& head, Node*& akhir)
 addrMatriks searchMatriks(addrMatriks first, int row, int col)
 {
     addrMatriks point = first;
-    cout << point->info << endl;
     for (int i = 1; i < row; i++)
     {
-        point = point->right;
-        cout << point->info << endl;
+        point = point->bottom;
     }
 
     for (int i = 1; i < col; i++)
     {
-        point = point->bottom;
-        cout << point->info << endl;
+        point = point->right;
     }
-
     return point;
 }
 
