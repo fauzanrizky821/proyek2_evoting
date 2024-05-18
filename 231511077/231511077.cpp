@@ -225,3 +225,20 @@ addrMatriks MatriksKunci(int nilai)
     }
     return newNode;
 }
+
+addrMatriks LLKunciMatriks(int Key1, int Key2, int Key3, int Key4)
+{
+
+    addrMatriks key1 = MatriksKunci(Key1);
+    addrMatriks key2 = MatriksKunci(Key2);
+    addrMatriks key3 = MatriksKunci(Key3);
+    addrMatriks key4 = MatriksKunci(Key4);
+
+    key1->right = key2;
+    key3->right = key4;
+
+    key1->bottom = key3;
+    key2->bottom = key4;
+
+    return key1;
+}
