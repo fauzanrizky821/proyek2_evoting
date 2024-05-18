@@ -8,18 +8,8 @@ using namespace std;
 #include <iostream>
 #include <string>
 
-void menuVisiMisi(Pengguna pengguna);
-
-void VisiMisi(int calon);
-
 string enkripsi(string plaintext);
 
 string dekripsi(string plaintext);
-
-addrMatriks MatriksKunci(int nilai);
-
-addrMatriks LLKunciMatriks(int Key1, int Key2, int Key3, int Key4);
-
-bool hapusMatriks(addrMatriks &awal);
 
 #endif
