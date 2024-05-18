@@ -246,6 +246,12 @@ addrMatriks LLKunciMatriks(int Key1, int Key2, int Key3, int Key4)
 bool hapusMatriks(addrMatriks &awal)
 {
     addrMatriks tempRow, tempCol;
+
+    if (awal == NULL)
+    {
+        return false;
+    }
+    
     while (awal != NULL)
     {
         tempRow = awal;
