@@ -213,60 +213,58 @@ bool login(Pengguna &pengguna)
     return false;
 }
 
-void menuUtama(Pengguna pengguna)
-{
-    int opsi;
+// void menuUtama(Pengguna pengguna)
+// {
+//     int opsi;
 
-    cout << "==================== "
-         << "Selamat datang " << pengguna.nama << " ====================\n"
-         << endl;
-    cout << "(1) Melakukan voting\n";
-    cout << "(2) Lihat Visi & Misi\n";
-    cout << "(3) Logout\n";
-    cout << "inputkan pilihan anda: ";
-    cin >> opsi;
+//     cout << "==================== " << "Selamat datang " << pengguna.nama << " ====================\n" << endl;
+//     cout << "(1) Melakukan voting\n";
+//     cout << "(2) Lihat Visi & Misi\n";
+//     cout << "(3) Logout\n";
+//     cout << "inputkan pilihan anda: ";
+//     cin >> opsi;
 
-    switch (opsi)
-    {
-    case 1:
-        if (pengguna.status == "1")
-        {
-            system("cls");
-            cout << "============================================================" << endl;
-            cout << "|                Anda sudah melakukan vote!                |" << endl;
-            cout << "------------------------------------------------------------" << endl;
-            cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
-            cout << "============================================================" << endl;
-            getchar();
-            getchar();
-            system("cls");
-            menuUtama(pengguna);
-        }
-        else
-        {
-            system("cls");
-            menuVote(pengguna);
-            system("cls");
-            menuUtama(pengguna);
-        }
-        break;
-    case 2:
-        system("cls");
-        menuVisiMisi(pengguna);
-        break;
-    case 3:
-        system("cls");
-        break;
+//     switch (opsi)
+//     {
+//     case 1:
+//         if (pengguna.status == "1")
+//         {
+//             system("cls");
+//             cout << "============================================================" << endl;
+//             cout << "|                Anda sudah melakukan vote!                |" << endl;
+//             cout << "------------------------------------------------------------" << endl;
+//             cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
+//             cout << "============================================================" << endl;
+//             getchar();
+//             getchar();
+//             system("cls");
+//             menuUtama(pengguna);
+//         }
+//         else
+//         {
+//             system("cls");
+//             menuVote(pengguna);
+//             system("cls");
+//             menuUtama(pengguna);
+//         }
+//         break;
+//     case 2:
+//         system("cls");
+//         menuVisiMisi(pengguna);
+//         break;
+//     case 3:
+//         system("cls");
+//         break;
 
-    default:
-        cout << "Ketikkan salah satu pilihan diatas! \n";
-        getchar();
-        getchar();
-        system("cls");
-        menuUtama(pengguna);
-        break;
-    }
-}
+//     default:
+//         cout << "Ketikkan salah satu pilihan diatas! \n";
+//         getchar();
+//         getchar();
+//         system("cls");
+//         menuUtama(pengguna);
+//         break;
+//     }
+// }
 
 void swap(int &a, int &b)
 {
@@ -277,7 +275,7 @@ void swap(int &a, int &b)
     b = temp;
 }
 
-void inversMatriks(int matriks[2][2], int modulus)
+addrMatriks inversMatriks(int matriks[2][2], int modulus)
 {
     int hasilMod, temp, det, hasil, bil;
 
@@ -294,9 +292,9 @@ void inversMatriks(int matriks[2][2], int modulus)
 
     swap(matriks[0][0], matriks[1][1]); // * swap a dan d
     matriks[0][1] = matriks[0][1] * -1; // * mengubah b menjadi -b
-    matriks[1][0] = matriks[1][0] * -1; // * menugbah c menjadi -c
+    matriks[1][0] = matriks[1][0] * -1; // * mengubah c menjadi -c
 
-    for (int i = 0; i < 2; i++) // * matriks kunci dikalikan  dengan hasiMod
+    for (int i = 0; i < 2; i++) // * matriks kunci dikalikan  dengan hasil Mod
     {
         for (int j = 0; j < 2; j++)
         {

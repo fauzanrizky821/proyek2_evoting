@@ -6,8 +6,10 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <stdlib.h>
 
 #include "../pengguna.h"
+#include "../linkedlist.h"
 #include "../231511077/231511077.h"
 #include "../231511070/231511070.h"
 
@@ -23,6 +25,6 @@ void menuUtama(Pengguna pengguna);
 
 void swap(int &a, int &b);
 
-void inversMatriks(int matriks[2][2], int modulus);
+addrMatriks inversMatriks(int matriks[2][2], int modulus);
 
 #endif
