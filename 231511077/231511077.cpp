@@ -164,7 +164,7 @@ void tampilkanMatriks(addrMatriks awal)
     }
 }
 
-int KonversiKeAngka(addrTable karakterList, char plaintext)
+int konversiKeAngka(addrTable karakterList, char plaintext)
 {
     addrTable current = karakterList;
     int bil = 0;
@@ -202,6 +202,9 @@ string enkripsi(string plaintext)
     }
     file.close();
 
+    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
+    addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
+
     addrTable current = karakterList;
     int modulus = 0;
     while (current != NULL)
@@ -223,11 +226,11 @@ string enkripsi(string plaintext)
         char y = plaintext[i + 1];
 
         current = karakterList;
-        int indexX = KonversiKeAngka(karakterList, x);
-        int indexY = KonversiKeAngka(karakterList, y);
+        int indexX = konversiKeAngka(karakterList, x);
+        int indexY = konversiKeAngka(karakterList, y);
 
-        int encX = (2 * indexX + 1 * indexY) % modulus;
-        int encY = (3 * indexX + 4 * indexY) % modulus;
+        int encX = (searchMatriks(matriksKunci, 1, 1)->info * indexX + searchMatriks(matriksKunci, 1, 2)->info * indexY) %modulus;
+        int encY = (searchMatriks(matriksKunci, 2, 1)->info * indexX + searchMatriks(matriksKunci, 2, 2)->info * indexY) %modulus;
 
         current = karakterList;
         for (int j = 0; j < encX; ++j)
@@ -271,6 +274,9 @@ string dekripsi(string ciphertext)
     }
     file.close();
 
+    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
+    addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
+
     addrTable current = karakterList;
     int modulus = 0;
     while (current != NULL)
@@ -278,6 +284,8 @@ string dekripsi(string ciphertext)
         current = current->next;
         modulus++;
     }
+
+    addrMatriks invMatriks = inversMatriksKunci(matriksKunci, modulus);
 
     string plaintext = "";
 
@@ -287,21 +295,21 @@ string dekripsi(string ciphertext)
         char y = ciphertext[i + 1];
 
         current = karakterList;
-        int indexX = KonversiKeAngka(karakterList, x);
-        int indexY = KonversiKeAngka(karakterList, y);
+        int indexX = konversiKeAngka(karakterList, x);
+        int indexY = konversiKeAngka(karakterList, y);
 
-        int encX = (2 * indexX + 1 * indexY) % modulus;
-        int encY = (3 * indexX + 4 * indexY) % modulus;
+        int decX = (searchMatriks(invMatriks, 1, 1)->info * indexX + searchMatriks(invMatriks, 1, 2)->info * indexY) % modulus;
+        int decY = (searchMatriks(invMatriks, 2, 1)->info * indexX + searchMatriks(invMatriks, 2, 2)->info * indexY) % modulus;
 
         current = karakterList;
-        for (int j = 0; j < encX; ++j)
+        for (int j = 0; j < decX; ++j)
         {
             current = current->next;
         }
         char decryptedX = current->info;
 
         current = karakterList;
-        for (int j = 0; j < encY; ++j)
+        for (int j = 0; j < decY; ++j)
         {
             current = current->next;
         }
