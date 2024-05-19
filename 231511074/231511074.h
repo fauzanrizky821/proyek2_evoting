@@ -23,7 +23,7 @@ struct Voter {
 };
 
 void dataPemilih(const Voter& voter);
-string melihatHasilVoting();
+string melihatHasilVoting(addrMatriks invMatriks, addrTable karakterList, int modulus);
 void lihatDataPemilih(addrMatriks invMatriks, addrTable karakterList, int modulus);
 addrMatriks insertMatriks(int nilai);
 addrMatriks insertKunciMatriks(int Key1, int Key2, int Key3, int Key4);

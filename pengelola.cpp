@@ -64,7 +64,7 @@ int main()
                     {
                     case 1:
                         system("cls");
-                        hasilVoting = melihatHasilVoting();
+                        hasilVoting = melihatHasilVoting(invMatriks, baca, modulus);
                         cout << hasilVoting;
                         cout << "Klik enter untuk kembali";
                         cin.ignore();

@@ -10,7 +10,7 @@ void dataPemilih(const Voter& voter) {
     cout << "\tStatus: " << (voter.status ? "Telah Melakukan Voting" : "Belum Melakukan Voting") << endl;
 }
 
-string melihatHasilVoting() {
+string melihatHasilVoting(addrMatriks invMatriks, addrTable karakterList, int modulus) {
     std::ifstream voteFile("data/total-vote.txt");
     std::string hasilVoting;
 
@@ -27,7 +27,7 @@ string melihatHasilVoting() {
     int count = 0;
     while (std::getline(voteFile, line)) {
         count++;
-        hasilVoting += "\t\t   Calon No-" + std::to_string(count) + " = " + line + "\n";
+        hasilVoting += "\t\t   Calon No-" + std::to_string(count) + " = " + dekripsi(line, invMatriks, karakterList, modulus) + "\n";
     }
 
     hasilVoting += "|=======================================================|\n";
