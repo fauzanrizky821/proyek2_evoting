@@ -24,4 +24,6 @@ void tampilkanMatriks(addrMatriks awal);
 
 int konversiKeAngka(addrTable karakterList, char plaintext);
 
+char konversiKeKarakter(addrTable karakterList, int hasil);
+
 #endif
