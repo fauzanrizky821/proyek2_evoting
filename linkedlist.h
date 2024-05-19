@@ -2,7 +2,6 @@
 #define LINKEDLIST_H
 
 #include <string>
-#include <stdlib.h>
 
 using namespace std;
               
@@ -16,28 +15,8 @@ struct table
 typedef struct matriks *addrMatriks; 
 struct matriks           
 {
-    char info; 
+    int info; 
     addrMatriks right;
-    addrMatriks buttom;  
-};
-
-// Struktur untuk merepresentasikan matriks 2 dimensi
-struct Matrix {
-    int rows;
-    int cols;
-    int **data;
-};
-
-// Struktur untuk merepresentasikan node dalam linked list
-struct Node {
-    Matrix matrix;
-    Node* next;
-    Node* bottom;
-};
-
-struct MatrixNode {
-    int data;
-    MatrixNode* right;
-    MatrixNode* bottom;
+    addrMatriks bottom;  
 };
 #endif

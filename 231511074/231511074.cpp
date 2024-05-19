@@ -100,13 +100,27 @@ void menu_pengelola(Pengelola* head, const string& id, const string& nama){
             //     cin.get();
             //     system("cls");
             //     break;
-            Matrix matrix;
-            case 1:
-                system("cls");
-                matrix = inputMatrix();
-                cout << "Matriks yang dimasukkan:" << endl;
-                printMatrix(matrix);
+            case 1: {
+                // Panggil fungsi untuk input matriks disini
+                int Key1, Key2, Key3, Key4;
+                cout << "Masukkan kunci 1: ";
+                cin >> Key1;
+                cout << "Masukkan kunci 2: ";
+                cin >> Key2;
+                cout << "Masukkan kunci 3: ";
+                cin >> Key3;
+                cout << "Masukkan kunci 4: ";
+                cin >> Key4;
+
+                addrMatriks matrixHead = insertKunciMatriks(Key1, Key2, Key3, Key4);
+
+                cout << "\n2x2 Matrix in the linked list:\n";
+                printMatrix(matrixHead);
+
+                // Free the matrix after printing
+                freeMatrix(matrixHead);
                 break;
+            }
 
             case 2:
                 system("cls");
@@ -133,78 +147,64 @@ void menu_pengelola(Pengelola* head, const string& id, const string& nama){
 
 }
 
-// Fungsi untuk menyisipkan matriks ke dalam linked list
-void insertMatrix(Node*& head, Matrix matrix) {
-    // Buat node baru
-    Node* newNode = new Node;
-    newNode->matrix = matrix;
-    newNode->next = nullptr;
-    newNode->bottom = nullptr;
-
-    // Jika linked list kosong, matriks baru akan menjadi head
-    if (head == nullptr) {
-        head = newNode;
-        return;
+addrMatriks insertMatriks(int nilai)
+{
+    addrMatriks newNode; 
+    newNode = (addrMatriks)malloc(sizeof(matriks));
+    if (newNode != NULL)
+    {
+        newNode->info = nilai;
+        newNode->right = NULL;
+        newNode->bottom = NULL;
     }
-
-    // Temukan node terakhir dari linked list pada baris terakhir
-    Node* temp = head;
-    while (temp->next != nullptr) {
-        temp = temp->next;
+    else
+    {
+        cout << "Alokasi memori gagal" << endl;
     }
-
-    // Sisipkan node baru di baris terakhir
-    temp->next = newNode;
-
-    // Temukan node terakhir dari linked list pada kolom terakhir
-    Node* tempCol = head;
-    while (tempCol->bottom != nullptr) {
-        tempCol = tempCol->bottom;
-    }
-
-    // Sisipkan node baru di kolom terakhir
-    tempCol->bottom = newNode;
+    return newNode;
 }
 
-Matrix inputMatrix(int rows, int cols) {
-    Matrix matrix;
-    matrix.rows = rows;
-    matrix.cols = cols;
+addrMatriks insertKunciMatriks(int Key1, int Key2, int Key3, int Key4)
+{
 
-    // Alokasikan memori untuk matriks
-    matrix.data = new int*[matrix.rows];
-    for (int i = 0; i < matrix.rows; ++i) {
-        matrix.data[i] = new int[matrix.cols];
-        for (int j = 0; j < matrix.cols; ++j) {
-            cout << "Masukkan elemen untuk baris " << i + 1 << " kolom " << j + 1 << ": ";
-            cin >> matrix.data[i][j];
-        }
-    }
-    return matrix;
+    addrMatriks key1 = insertMatriks(Key1);
+    addrMatriks key2 = insertMatriks(Key2);
+    addrMatriks key3 = insertMatriks(Key3);
+    addrMatriks key4 = insertMatriks(Key4);
+
+    key1->right = key2;
+    key3->right = key4;
+
+    key1->bottom = key3;
+    key2->bottom = key4;
+
+    return key1;
 }
 
-
-void freeLinkedList(Node* head) {
-    Node* temp;
-    while (head != nullptr) {
-        temp = head;
-        head = head->next;
-        // Bebaskan memori untuk matriks dalam node
-        for (int i = 0; i < temp->matrix.rows; ++i) {
-            delete[] temp->matrix.data[i];
-        }
-        delete[] temp->matrix.data;
-        // Bebaskan memori untuk node
-        delete temp;
-    }
-}
-
-void printMatrix(const Matrix& matrix) {
-    cout << "Matriks:\n";
-    for (int i = 0; i < matrix.rows; ++i) {
-        for (int j = 0; j < matrix.cols; ++j) {
-            cout << matrix.data[i][j] << " ";
+void printMatrix(addrMatriks head) {
+    addrMatriks row = head;
+    while (row != NULL) {
+        addrMatriks col = row;
+        while (col != NULL) {
+            cout << col->info << " ";
+            col = col->right;
         }
         cout << endl;
+        row = row->bottom;
+    }
+}
+
+void freeMatrix(addrMatriks head) {
+    addrMatriks row = head;
+    while (row != NULL) {
+        addrMatriks col = row;
+        while (col != NULL) {
+            addrMatriks temp = col;
+            col = col->right;
+            free(temp);
+        }
+        addrMatriks tempRow = row;
+        row = row->bottom;
+        free(tempRow);
     }
 }

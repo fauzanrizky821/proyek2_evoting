@@ -17,7 +17,7 @@ bool registrasi()
     Pengguna pengguna;
     istringstream iss;
     string data, dataPengguna, cekNim;
-    bool cariNim;
+    bool cariNim, cekRegis;
 
     clearScreen();
 
@@ -101,12 +101,12 @@ bool registrasi()
                 cout << "|              Tekan enter untuk melanjutkan..              |" << endl;
                 cout << "=============================================================" << endl;
 
-                return true;
+                cekRegis = true;
             }
             else
             {
                 cout << "Gagal mengakses data pengguna";
-                return false;
+                cekRegis = false;
             }
         }
         readFile.close();
@@ -114,8 +114,10 @@ bool registrasi()
     else
     {
         cout << "Gagal mengakses data pengguna";
-        return false;
+        cekRegis =  false;
     }
+
+    return cekRegis;
 }
 
 bool login(Pengguna &pengguna)
@@ -213,60 +215,58 @@ bool login(Pengguna &pengguna)
     return false;
 }
 
-void menuUtama(Pengguna pengguna)
-{
-    int opsi;
+// void menuUtama(Pengguna pengguna)
+// {
+//     int opsi;
 
-    cout << "==================== "
-         << "Selamat datang " << pengguna.nama << " ====================\n"
-         << endl;
-    cout << "(1) Melakukan voting\n";
-    cout << "(2) Lihat Visi & Misi\n";
-    cout << "(3) Logout\n";
-    cout << "inputkan pilihan anda: ";
-    cin >> opsi;
+//     cout << "==================== " << "Selamat datang " << pengguna.nama << " ====================\n" << endl;
+//     cout << "(1) Melakukan voting\n";
+//     cout << "(2) Lihat Visi & Misi\n";
+//     cout << "(3) Logout\n";
+//     cout << "inputkan pilihan anda: ";
+//     cin >> opsi;
 
-    switch (opsi)
-    {
-    case 1:
-        if (pengguna.status == "1")
-        {
-            system("cls");
-            cout << "============================================================" << endl;
-            cout << "|                Anda sudah melakukan vote!                |" << endl;
-            cout << "------------------------------------------------------------" << endl;
-            cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
-            cout << "============================================================" << endl;
-            getchar();
-            getchar();
-            system("cls");
-            menuUtama(pengguna);
-        }
-        else
-        {
-            system("cls");
-            menuVote(pengguna);
-            system("cls");
-            menuUtama(pengguna);
-        }
-        break;
-    case 2:
-        system("cls");
-        menuVisiMisi(pengguna);
-        break;
-    case 3:
-        system("cls");
-        break;
+//     switch (opsi)
+//     {
+//     case 1:
+//         if (pengguna.status == "1")
+//         {
+//             system("cls");
+//             cout << "============================================================" << endl;
+//             cout << "|                Anda sudah melakukan vote!                |" << endl;
+//             cout << "------------------------------------------------------------" << endl;
+//             cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
+//             cout << "============================================================" << endl;
+//             getchar();
+//             getchar();
+//             system("cls");
+//             menuUtama(pengguna);
+//         }
+//         else
+//         {
+//             system("cls");
+//             menuVote(pengguna);
+//             system("cls");
+//             menuUtama(pengguna);
+//         }
+//         break;
+//     case 2:
+//         system("cls");
+//         menuVisiMisi(pengguna);
+//         break;
+//     case 3:
+//         system("cls");
+//         break;
 
-    default:
-        cout << "Ketikkan salah satu pilihan diatas! \n";
-        getchar();
-        getchar();
-        system("cls");
-        menuUtama(pengguna);
-        break;
-    }
-}
+//     default:
+//         cout << "Ketikkan salah satu pilihan diatas! \n";
+//         getchar();
+//         getchar();
+//         system("cls");
+//         menuUtama(pengguna);
+//         break;
+//     }
+// }
 
 void swap(int &a, int &b)
 {
@@ -294,9 +294,9 @@ void inversMatriks(int matriks[2][2], int modulus)
 
     swap(matriks[0][0], matriks[1][1]); // * swap a dan d
     matriks[0][1] = matriks[0][1] * -1; // * mengubah b menjadi -b
-    matriks[1][0] = matriks[1][0] * -1; // * menugbah c menjadi -c
+    matriks[1][0] = matriks[1][0] * -1; // * mengubah c menjadi -c
 
-    for (int i = 0; i < 2; i++) // * matriks kunci dikalikan  dengan hasiMod
+    for (int i = 0; i < 2; i++) // * matriks kunci dikalikan  dengan hasil Mod
     {
         for (int j = 0; j < 2; j++)
         {
@@ -310,4 +310,46 @@ void inversMatriks(int matriks[2][2], int modulus)
             }
         }
     }
+}
+
+addrMatriks inversMatriksKunci(addrMatriks first, int modulus)
+{
+    int hasilMod, temp, det, hasil, bil;
+    addrMatriks invMatriks = insertKunciMatriks(searchMatriks(first, 1, 1)->info, searchMatriks(first, 1, 2)->info, searchMatriks(first, 2, 1)->info, searchMatriks(first, 2, 2)->info);
+
+    det = (searchMatriks(invMatriks,1,1)->info * searchMatriks(invMatriks,2,2)->info) - (searchMatriks(invMatriks,1,2)->info * searchMatriks(invMatriks,2,1)->info); // * cari determinan
+
+    bil = 1;
+    while (hasil != 1) // * cari 1/det mod jumlah karakter(94)
+    {
+        bil++;
+        hasil = (det * bil) % modulus;
+    }
+
+    hasilMod = bil; // * hasilMod dimasukan nilai dari bil
+
+    // * swap a dan d
+    temp = searchMatriks(invMatriks, 1, 1)->info;
+    searchMatriks(invMatriks, 1, 1)->info = searchMatriks(invMatriks, 2, 2)->info;
+    searchMatriks(invMatriks, 2, 2)->info = temp;
+
+    searchMatriks(invMatriks,1,2)->info = searchMatriks(invMatriks,1,2)->info * -1; // * mengubah b menjadi -b
+    searchMatriks(invMatriks,2,1)->info = searchMatriks(invMatriks,2,1)->info * -1; // * mengubah c menjadi -c
+
+    for (int i = 1; i <= 2; i++) // * matriks kunci dikalikan  dengan hasil Mod
+    {
+        for (int j = 1; j <= 2; j++)
+        {
+            if (searchMatriks(invMatriks,i,j)->info >= 0) // * cek apakah positif
+            {
+                searchMatriks(invMatriks,i,j)->info = (searchMatriks(invMatriks,i,j)->info * hasilMod) % modulus;
+            }
+            else
+            {
+                searchMatriks(invMatriks,i,j)->info = (((searchMatriks(invMatriks,i,j)->info * hasilMod) % modulus) + modulus) % modulus;
+            }
+        }
+    }
+
+    return invMatriks;
 }

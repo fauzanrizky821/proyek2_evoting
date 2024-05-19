@@ -181,3 +181,70 @@ void menu_login_pengelola()
     
 }
 
+// Fungsi untuk menghapus semua matriks dari linked list dan membebaskan memori
+void deleteMatriks(Node*& head, Node*& akhir) 
+{
+    if (head == nullptr) 
+    {
+        return;
+    }
+    Node* current = head;
+    Node* nextNode;
+
+    // Iterasi melalui setiap node di linked list
+    while (current != nullptr) 
+    {
+        nextNode = current->next;
+        // Hapus data matriks dari setiap node
+        for (int i = 0; i < current->matrix.rows; ++i) 
+        {
+            delete[] current->matrix.data[i];
+        }
+        delete[] current->matrix.data;
+        // Hapus node saat ini
+        delete current;
+        current = nextNode;
+    }
+    // Set head dan akhir linked list ke nullptr karena linked list sekarang kosong
+    head = nullptr;
+    akhir = nullptr;
+}
+
+// Fungsi untuk mencari elemen matriks berdasarkan baris dan kolom
+addrMatriks searchMatriks(addrMatriks first, int row, int col)
+{
+    addrMatriks point = first;
+    for (int i = 1; i < row; i++)
+    {
+        point = point->bottom;
+    }
+
+    for (int i = 1; i < col; i++)
+    {
+        point = point->right;
+    }
+    return point;
+}
+
+bool hapusMatriks(addrMatriks &awal)
+{
+    addrMatriks tempRow, tempCol;
+
+    if (awal == NULL)
+    {
+        return false;
+    }
+    
+    while (awal != NULL)
+    {
+        tempRow = awal;
+        while (tempRow != NULL)
+        {
+            tempCol = tempRow;
+            tempRow = tempRow->bottom;
+            delete tempCol;
+        }
+        awal = awal->right;
+    }
+    return true;
+}

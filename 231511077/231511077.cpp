@@ -1,203 +1,344 @@
 #include "231511077.h"
 
-void menuVisiMisi(Pengguna pengguna) {
-    int menu;
-
-    cout << "==================== "<< "Selamat datang " << pengguna.nama <<" ====================\n" << endl;
-    cout << "Menu Melihat Visi dan Misi Calon" << endl;
-    cout << "\n1. Lihat Visi dan Misi Calon ke-1" << endl;
-    cout << "2. Lihat Visi dan Misi Calon ke-2" << endl;
-    cout << "3. Lihat Visi dan Misi Calon ke-3" << endl;
-    cout << "4. Kembali ke tampilan utama." << endl;
-    cout << "Pilihan: ";
-    cin >> menu;
-
-    switch (menu) {
-        case 1:
-            VisiMisi(menu);
-            system("cls");
-            menuVisiMisi(pengguna);
-        break;
-        case 2:
-            VisiMisi(menu);
-            system("cls");
-            menuVisiMisi(pengguna);
-        break;
-        case 3:
-            VisiMisi(menu);
-            system("cls");
-            menuVisiMisi(pengguna);
-        break;
-        case 4:
-            system("cls");
-            menuUtama(pengguna);
-        break;
-        default:
-            system("cls");
-            cout << "=========================================================" << endl;
-            cout << "|   Tolong pilih opsi sesuai dengan yang ditampilkan!   |" << endl;
-            cout << "=========================================================" << endl << endl;
-            menuVisiMisi(pengguna);
-    }
-}
-
-void VisiMisi(int calon) {
-    system("cls");
-    if (calon == 1) {
-        cout << "==================================================================================================================" << endl;
-        cout << "|                          CALON PASANGAN HAFIZ MUHAMMAD AL IKHSAN & ELSA MONIKA SINAGA                          |" << endl;
-        cout << "------------------------------------------------------------------------------------------------------------------" << endl;
-        cout << "|                                              VISI DAN MISI                                                     |" << endl;
-        cout << "==================================================================================================================" << endl;
-        cout << "|                                                                                                                |" << endl;
-        cout << "| Visi:             Membangun kampus yang berdaya saing tinggi, berbudaya, serta mendorong                       |" << endl;
-        cout << "|                   keterlibatan aktif mahasiswa dalam pembangunan kampus yang berkelanjutan.                    |" << endl;
-        cout << "|                                                                                                                |" << endl;
-        cout << "| Misi:             1. Menjalin komunikasi dan kerjasama dari dalam lingkungan internal dan eksternal Kampus.    |" << endl;
-        cout << "|                   2. Menyelenggarakan program kerja yang solutif bagi mahasiswa.                               |" << endl;
-        cout << "|                   3. Program makan siang gratis.                                                               |" << endl;
-        cout << "==================================================================================================================" << endl;
-        cout << "|                                        Tekan enter untuk kembali..                                             |" << endl;
-        cout << "==================================================================================================================" << endl;
-    } else if (calon == 2) {
-        cout << "===============================================================================================================" << endl;
-        cout << "|                        CALON PASANGAN FAUZAN RIZKY RAMADHAN & AULIA PUTRI RAHMADHANI                        |" << endl;
-        cout << "---------------------------------------------------------------------------------------------------------------" << endl;
-        cout << "|                                             VISI DAN MISI                                                   |" << endl;
-        cout << "===============================================================================================================" << endl;
-        cout << "|                                                                                                             |" << endl;
-        cout << "| Visi:            BEM Cerah (Cerdas,Religius, Aktif dan Harmonis)                                            |" << endl;
-        cout << "|                                                                                                             |" << endl;
-        cout << "| Misi:            1. Terlaksananya pelatihan pelatihan yang meningkatkan kualitas Sumber Daya Mahasiswa.     |" << endl;
-        cout << "|                  2. Membangun hubungan yang kuat dengan masyarakat.                                         |" << endl;
-        cout << "|                  3. Program berbagi donat gratis untuk seluruh mahasiswa.                                   |" << endl;
-        cout << "===============================================================================================================" << endl;
-        cout << "|                                       Tekan enter untuk kembali..                                           |" << endl;
-        cout << "===============================================================================================================" << endl;
-    } else if (calon == 3) {
-        cout << "=================================================================================" << endl;
-        cout << "|             CALON PASANGAN ABYAN DZAKY PRATAMA & HAIKAL HARIYANTO             |" << endl;
-        cout << "---------------------------------------------------------------------------------" << endl;
-        cout << "|                               VISI DAN MISI                                   |" << endl;
-        cout << "=================================================================================" << endl;
-        cout << "|                                                                               |" << endl;
-        cout << "| Visi:            BEM POLBAN sebagai wadah meningkatkan produktifitas dan      |" << endl;
-        cout << "|                  kreatifitas mahasiswa yang optimal dalam cakupan Internal    |" << endl;
-        cout << "|                  dan eksternal kampus                                         |" << endl;
-        cout << "|                                                                               |" << endl;
-        cout << "| Misi:            1. Meningkatnya produktifitas dan kreatifitas mahasiswa.     |" << endl;
-        cout << "|                  2. Terwujudnya BEM yang Harmonis dan aspiratif.              |" << endl;
-        cout << "=================================================================================" << endl;
-        cout << "|                         Tekan enter untuk kembali..                           |" << endl;
-        cout << "=================================================================================" << endl;
-    }
-    cin.ignore();
-    cin.get();
-}
-
-string enkripsi(string plaintext) 
+void insertTabel(addrTable &head, char info)
 {
-    char karakter[] = {
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '<', '>', '.', ',', ';',
-    '"', '\'', '\\', '/', '?', ':', '~', '|', ' '
-    };
+    addrTable newNode, temp;
+    newNode = (addrTable)malloc(sizeof(table));
+    if (newNode == NULL)
+    {
+        cout << "Memory Penuh\n";
+        return;
+    }
+    newNode->info = info;
+    newNode->next = NULL;
+    if (head == NULL)
+    {
+        head = newNode;
+    }
+    else
+    {
+        temp = head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+}
 
-    int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
-    int modulus = sizeof(karakter);
+bool deleteTabel(addrTable &head)
+{
+    if (head == NULL)
+    {
+        return false;
+    }
+    
+    addrTable temp = NULL;
+    while (head != NULL)
+    {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+    return true;
+}
+
+void tampilkanMatriks(addrMatriks awal)
+{
+    addrMatriks row, col;
+    row = awal;
+    while (row != NULL)
+    {
+        col = row;
+        while (col != NULL)
+        {
+            cout << col->info << " ";
+            col = col->right;
+        }
+        cout << endl;
+        row = row->bottom;
+    }
+}
+
+int konversiKeAngka(addrTable karakterList, char plaintext)
+{
+    addrTable current = karakterList;
+    int bil = 0;
+    while (current != NULL)
+    {
+        if (current->info == plaintext)
+        {
+            break;
+        }
+        current = current->next;
+        bil++;
+    }
+    return bil;
+}
+
+char konversiKeKarakter(addrTable karakterList, int hasil)
+{
+    addrTable current = karakterList;
+    char charX;
+    for (int j = 0; j < hasil; ++j)
+    {
+        current = current->next;
+    }
+    charX = current->info;
+    return charX;
+}
+
+string enkripsi(string plaintext)
+{
+    addrTable karakterList = NULL;
+    string filename = "../data/tabel-konversi.txt";
+    ifstream file(filename);
+
+    if (!file.is_open())
+    {
+        cout << "Error membuka file" << endl;
+        return "";
+    }
+
+    char c;
+    while (file.get(c))
+    {
+        if (c != '`')
+        {
+            insertTabel(karakterList, c);
+        }
+    }
+    file.close();
+
+    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
+    addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
+
+    addrTable current = karakterList;
+    int modulus = 0;
+    while (current != NULL)
+    {
+        current = current->next;
+        modulus++;
+    }
 
     string ciphertext = "";
+
+    bool ganjil = false;
+    if (plaintext.size() % 2 == 1)
+    {
+        plaintext = plaintext + ' ';
+        ganjil = true;
+    }
 
     if (plaintext.size() % 2 == 1)
     {
         plaintext = plaintext + ' ';
     }
 
-    for (int i = 0; i < plaintext.size(); i = i + 2) 
+    for (int i = 0; i < plaintext.size(); i = i + 2)
     {
-        int x = 0, y = 0;
-        for (int j = 0; j < modulus; ++j) 
-        {
-            if (karakter[j] == plaintext[i]) 
-            {
-                x = j;
-                break;
-            }
-        }
-        for (int j = 0; j < modulus; ++j) 
-        {
-            if (karakter[j] == plaintext[i + 1]) 
-            {
-                y = j;
-                break;
-            }
-        }
+        char x = plaintext[i];
+        char y = plaintext[i + 1];
 
-        int encX = (kunciMatriks[0][0] * x + kunciMatriks[0][1] * y) % modulus;
-        int encY = (kunciMatriks[1][0] * x + kunciMatriks[1][1] * y) % modulus;
+        current = karakterList;
+        int indexX = konversiKeAngka(karakterList, x);
+        int indexY = konversiKeAngka(karakterList, y);
 
-        ciphertext = ciphertext + karakter[encX];
-        ciphertext = ciphertext + karakter[encY];
+        int encX = (searchMatriks(matriksKunci, 1, 1)->info * indexX + searchMatriks(matriksKunci, 1, 2)->info * indexY) %modulus;
+        int encY = (searchMatriks(matriksKunci, 2, 1)->info * indexX + searchMatriks(matriksKunci, 2, 2)->info * indexY) %modulus;
+
+        char encryptedX = konversiKeKarakter(karakterList, encX);
+        char encryptedY = konversiKeKarakter(karakterList, encY);
+
+        ciphertext += encryptedX;
+        ciphertext += encryptedY;
     }
+
+    if (ganjil)
+    {
+        ciphertext = ciphertext + '1';
+    }
+
+    bool hapus = deleteTabel(karakterList);
 
     return ciphertext;
 }
 
-string dekripsi(string ciphertext) 
+string dekripsi(string ciphertext)
 {
-    char karakter[] = {
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '<', '>', '.', ',', ';',
-    '"', '\'', '\\', '/', '?', ':', '~', '|', ' '
-    };
+    addrTable karakterList = NULL;
+    string filename = "../data/tabel-konversi.txt";
+    ifstream file(filename);
 
-    int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
-    int modulus = sizeof(karakter);
+    if (!file.is_open())
+    {
+        cout << "Error membuka file" << endl;
+        return "";
+    }
+
+    char c;
+    while (file.get(c))
+    {
+        if (c != '`')
+        {
+            insertTabel(karakterList, c);
+        }
+    }
+    file.close();
+
+    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
+    addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
+
+    addrTable current = karakterList;
+    int modulus = 0;
+    while (current != NULL)
+    {
+        current = current->next;
+        modulus++;
+    }
+
+    addrMatriks invMatriks = inversMatriksKunci(matriksKunci, modulus);
 
     string plaintext = "";
 
-    inversMatriks(kunciMatriks, modulus);
-
-    for (int i = 0; i < ciphertext.size(); i = i + 2) 
+    bool ganjil = false;
+    if (ciphertext.size() % 2 == 1 && ciphertext.back() == '1')
     {
-        int x = 0, y = 0;
-        for (int j = 0; j < modulus; ++j) 
-        {
-            if (karakter[j] == ciphertext[i]) 
-            {
-                x = j;
-                break;
-            }
-
-        }
-        for (int j = 0; j < modulus; ++j) 
-        {
-            if (karakter[j] == ciphertext[i + 1]) 
-            {
-                y = j;
-                break;
-            }
-        }
-
-        int encX = (kunciMatriks[0][0] * x + kunciMatriks[0][1] * y) % modulus;
-        int encY = (kunciMatriks[1][0] * x + kunciMatriks[1][1] * y) % modulus;
-
-        plaintext = plaintext + karakter[encX];
-        plaintext = plaintext + karakter[encY];
+        ciphertext.pop_back();
+        ganjil = true;
     }
 
-    if(plaintext.size() % 2 == 0 && plaintext.back() == ' ')
+    for (int i = 0; i < ciphertext.size(); i = i + 2)
     {
-        return plaintext;
+        char x = ciphertext[i];
+        char y = ciphertext[i + 1];
+
+        current = karakterList;
+        int indexX = konversiKeAngka(karakterList, x);
+        int indexY = konversiKeAngka(karakterList, y);
+
+        int decX = (searchMatriks(invMatriks, 1, 1)->info * indexX + searchMatriks(invMatriks, 1, 2)->info * indexY) % modulus;
+        int decY = (searchMatriks(invMatriks, 2, 1)->info * indexX + searchMatriks(invMatriks, 2, 2)->info * indexY) % modulus;
+
+        char decryptedX = konversiKeKarakter(karakterList, decX);
+        char decryptedY = konversiKeKarakter(karakterList, decY);
+
+        plaintext = plaintext + decryptedX;
+        plaintext = plaintext + decryptedY;
     }
-    else if (plaintext.size() % 2 == 1 && plaintext.back() == ' ')
+
+    if (ganjil && plaintext.back() == ' ')
     {
         plaintext.pop_back();
     }
 
+    bool hapus = deleteTabel(karakterList);
+    
     return plaintext;
 }
+
+
+
+// string enkripsi(string plaintext)
+// {
+//     char karakter[] = {
+//         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+//         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+//         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+//         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '<', '>', '.', ',', ';',
+//         '"', '\'', '\\', '/', '?', ':', '~', '|', ' '};
+
+//     int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
+//     int modulus = sizeof(karakter);
+
+//     string ciphertext = "";
+
+//     if (plaintext.size() % 2 == 1)
+//     {
+//         plaintext = plaintext + ' ';
+//     }
+
+//     for (int i = 0; i < plaintext.size(); i = i + 2)
+//     {
+//         int x = 0, y = 0;
+//         for (int j = 0; j < modulus; ++j)
+//         {
+//             if (karakter[j] == plaintext[i])
+//             {
+//                 x = j;
+//                 break;
+//             }
+//         }
+//         for (int j = 0; j < modulus; ++j)
+//         {
+//             if (karakter[j] == plaintext[i + 1])
+//             {
+//                 y = j;
+//                 break;
+//             }
+//         }
+
+//         int encX = (kunciMatriks[0][0] * x + kunciMatriks[0][1] * y) % modulus;
+//         int encY = (kunciMatriks[1][0] * x + kunciMatriks[1][1] * y) % modulus;
+
+//         ciphertext = ciphertext + karakter[encX];
+//         ciphertext = ciphertext + karakter[encY];
+//     }
+
+//     return ciphertext;
+// }
+
+// string dekripsi(string ciphertext)
+// {
+//     char karakter[] = {
+//         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+//         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+//         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+//         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '<', '>', '.', ',', ';',
+//         '"', '\'', '\\', '/', '?', ':', '~', '|', ' '};
+
+//     int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
+//     int modulus = sizeof(karakter);
+
+//     string plaintext = "";
+
+//     inversMatriks(kunciMatriks, modulus);
+
+//     for (int i = 0; i < ciphertext.size(); i = i + 2)
+//     {
+//         int x = 0, y = 0;
+//         for (int j = 0; j < modulus; ++j)
+//         {
+//             if (karakter[j] == ciphertext[i])
+//             {
+//                 x = j;
+//                 break;
+//             }
+//         }
+//         for (int j = 0; j < modulus; ++j)
+//         {
+//             if (karakter[j] == ciphertext[i + 1])
+//             {
+//                 y = j;
+//                 break;
+//             }
+//         }
+
+//         int encX = (kunciMatriks[0][0] * x + kunciMatriks[0][1] * y) % modulus;
+//         int encY = (kunciMatriks[1][0] * x + kunciMatriks[1][1] * y) % modulus;
+
+//         plaintext = plaintext + karakter[encX];
+//         plaintext = plaintext + karakter[encY];
+//     }
+
+//     if (plaintext.size() % 2 == 0 && plaintext.back() == ' ')
+//     {
+//         return plaintext;
+//     }
+//     else if (plaintext.size() % 2 == 1 && plaintext.back() == ' ')
+//     {
+//         plaintext.pop_back();
+//     }
+
+//     return plaintext;
+// }

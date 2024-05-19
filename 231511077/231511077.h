@@ -1,19 +1,29 @@
 #ifndef ENKRIPSI_H
 #define ENKRIPSI_H
 
-using namespace std;
-
-#include "../pengguna.h"
-#include "../231511076/231511076.h"
 #include <iostream>
 #include <string>
 
-void menuVisiMisi(Pengguna pengguna);
+#include "../pengguna.h"
+#include "../linkedlist.h"
+#include "../231511065/231511065.h"
+#include "../231511074/231511074.h"
+#include "../231511076/231511076.h"
 
-void VisiMisi(int calon);
+using namespace std;
 
 string enkripsi(string plaintext);
 
-string dekripsi(string plaintext);
+string dekripsi(string ciphertext);
+
+void insertTabel(addrTable &head, char info);
+
+bool deleteTabel(addrTable &head);
+
+void tampilkanMatriks(addrMatriks awal);
+
+int konversiKeAngka(addrTable karakterList, char plaintext);
+
+char konversiKeKarakter(addrTable karakterList, int hasil);
 
 #endif
