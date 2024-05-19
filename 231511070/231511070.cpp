@@ -17,13 +17,13 @@ void update_status(const string &nim) {
     string line;
     while (getline(infile, line)) {
         Pengguna pengguna;
-        istringstream iss(dekripsi(line));
-        getline(iss, pengguna.nim, ',');
-        getline(iss, pengguna.password, ',');
-        getline(iss, pengguna.nama, ',');
-        getline(iss, pengguna.jurusan, ',');
-        getline(iss, pengguna.prodi, ',');
-        getline(iss, pengguna.status, ',');
+        //istringstream iss(dekripsi(line));
+        // getline(iss, pengguna.nim, ',');
+        // getline(iss, pengguna.password, ',');
+        // getline(iss, pengguna.nama, ',');
+        // getline(iss, pengguna.jurusan, ',');
+        // getline(iss, pengguna.prodi, ',');
+        // getline(iss, pengguna.status, ',');
 
         if (pengguna.nim == nim) {
             pengguna.status = "1";
@@ -39,7 +39,7 @@ void update_status(const string &nim) {
         Pengguna pengguna = *it;
         string dataPengguna;
         dataPengguna = pengguna.nim + ',' + pengguna.password + ',' + pengguna.nama + ',' + pengguna.jurusan + ',' + pengguna.prodi + ',' + pengguna.status + ",";
-        outfile << enkripsi(dataPengguna) << endl;
+        // outfile << enkripsi(dataPengguna) << endl;
     }
     outfile.close();
 

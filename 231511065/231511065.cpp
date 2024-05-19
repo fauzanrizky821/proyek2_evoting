@@ -134,16 +134,17 @@ void deleteList(Pengelola* head) {
 
 
 
-void menu_login_pengelola() 
+void menu_login_pengelola(addrMatriks invMatriks, addrTable karakterList, int modulus) 
 {
     Pengelola* head = nullptr;
 
     ifstream readFile("data/data-pengelola.txt");
     if (readFile.is_open()) 
     {
-        string line;
-        while (getline(readFile, line)) 
+        string data;
+        while (getline(readFile, data)) 
         {
+            string line = dekripsi(data, invMatriks, karakterList, modulus);
             istringstream iss(line);
             string id, nama, password;
             getline(iss, id, ',');

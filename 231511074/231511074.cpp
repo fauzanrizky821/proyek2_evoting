@@ -36,7 +36,7 @@ string melihatHasilVoting() {
     return hasilVoting;
 }
 
-void lihatDataPemilih() {
+void lihatDataPemilih(addrMatriks invMatriks, addrTable karakterList, int modulus) {
     ifstream filePemilih("data/data-pengguna.txt");
 
     if (!filePemilih.is_open()){
@@ -51,7 +51,7 @@ void lihatDataPemilih() {
         Voter voter;
 
         string decryptedLine = line;
-        decryptedLine = dekripsi(decryptedLine);
+        decryptedLine = dekripsi(decryptedLine, invMatriks, karakterList, modulus);
         istringstream decryptedStream(decryptedLine);
 
         if (getline(decryptedStream, voter.nim, ',')&&
@@ -137,9 +137,8 @@ void menu_pengelola(Pengelola* head, const string& id, const string& nama){
                 cin.ignore();
                 cin.get();
                 system("cls");
-                menu_login_pengelola();
                 break;
-            default:
+                default:
                 cout << "Pilihan tidak valid. Silakan coba lagi.\n";
         }
 
