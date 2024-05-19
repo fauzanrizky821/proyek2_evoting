@@ -70,6 +70,7 @@ void lihatDataPemilih() {
             }else{
                 cerr << "gagal membaca data" << endl;
             }
+
     }
     filePemilih.close();
 }
@@ -81,9 +82,9 @@ void menu_pengelola(Pengelola* head, const string& id, const string& nama){
         // Tampilkan menu
         cout << "\nMenu Pengelola:\n";
         cout << "+----+---------------------+\n";
-        cout << "| 1  | input matriks  |\n";
+        cout << "| 1  | Lihat hasil voting  |\n";
         cout << "| 2  | Lihat Data Pemilih  |\n";
-        cout << "| 3  | Logout               |\n";
+        cout << "| 3  | Logout              |\n";
         cout << "+----+---------------------+\n";
         cout << "Pilih: ";
         cin >> choice;
@@ -91,36 +92,16 @@ void menu_pengelola(Pengelola* head, const string& id, const string& nama){
         
         string hasilVoting;
         switch (choice) {
-            // case 1:
-            //     system("cls");
-            //     hasilVoting = melihatHasilVoting();
-            //     cout << hasilVoting;
-            //     cout << "Klik enter untuk kembali";
-            //     cin.ignore();
-            //     cin.get();
-            //     system("cls");
-            //     break;
-            case 1: {
-                // Panggil fungsi untuk input matriks disini
-                int Key1, Key2, Key3, Key4;
-                cout << "Masukkan kunci 1: ";
-                cin >> Key1;
-                cout << "Masukkan kunci 2: ";
-                cin >> Key2;
-                cout << "Masukkan kunci 3: ";
-                cin >> Key3;
-                cout << "Masukkan kunci 4: ";
-                cin >> Key4;
-
-                addrMatriks matrixHead = insertKunciMatriks(Key1, Key2, Key3, Key4);
-
-                cout << "\n2x2 Matrix in the linked list:\n";
-                printMatrix(matrixHead);
-
-                // Free the matrix after printing
-                freeMatrix(matrixHead);
+            case 1:
+                system("cls");
+                hasilVoting = melihatHasilVoting();
+                cout << hasilVoting;
+                cout << "Klik enter untuk kembali";
+                cin.ignore();
+                cin.get();
+                system("cls");
                 break;
-            }
+
 
             case 2:
                 system("cls");
