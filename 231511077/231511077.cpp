@@ -164,6 +164,22 @@ void tampilkanMatriks(addrMatriks awal)
     }
 }
 
+int KonversiKeAngka(addrTable karakterList, char plaintext)
+{
+    addrTable current = karakterList;
+    int bil = 0;
+    while (current != NULL)
+    {
+        if (current->info == plaintext)
+        {
+            break;
+        }
+        current = current->next;
+        bil++;
+    }
+    return bil;
+}
+
 string enkripsi(string plaintext)
 {
     addrTable karakterList = NULL;
@@ -185,7 +201,7 @@ string enkripsi(string plaintext)
         }
     }
     file.close();
-    
+
     addrTable current = karakterList;
     int modulus = 0;
     while (current != NULL)
@@ -207,27 +223,8 @@ string enkripsi(string plaintext)
         char y = plaintext[i + 1];
 
         current = karakterList;
-        int indexX = 0;
-        while (current != NULL)
-        {
-            if (current->info == x)
-            {
-                break;
-            }
-            current = current->next;
-            indexX++;
-        }
-        current = karakterList;
-        int indexY = 0;
-        while (current != NULL)
-        {
-            if (current->info == y)
-            {
-                break;
-            }
-            current = current->next;
-            indexY++;
-        }
+        int indexX = KonversiKeAngka(karakterList, x);
+        int indexY = KonversiKeAngka(karakterList, y);
 
         int encX = (2 * indexX + 1 * indexY) % modulus;
         int encY = (3 * indexX + 4 * indexY) % modulus;
@@ -290,27 +287,8 @@ string dekripsi(string ciphertext)
         char y = ciphertext[i + 1];
 
         current = karakterList;
-        int indexX = 0;
-        while (current != NULL)
-        {
-            if (current->info == x)
-            {
-                break;
-            }
-            current = current->next;
-            indexX++;
-        }
-        current = karakterList;
-        int indexY = 0;
-        while (current != NULL)
-        {
-            if (current->info == y)
-            {
-                break;
-            }
-            current = current->next;
-            indexY++;
-        }
+        int indexX = KonversiKeAngka(karakterList, x);
+        int indexY = KonversiKeAngka(karakterList, y);
 
         int encX = (2 * indexX + 1 * indexY) % modulus;
         int encY = (3 * indexX + 4 * indexY) % modulus;

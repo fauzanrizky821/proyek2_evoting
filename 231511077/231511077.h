@@ -22,4 +22,6 @@ bool deleteTabel(addrTable &head);
 
 void tampilkanMatriks(addrMatriks awal);
 
+int KonversiKeAngka(addrTable karakterList, char plaintext);
+
 #endif
