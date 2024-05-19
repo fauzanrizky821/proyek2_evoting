@@ -1,72 +1,49 @@
 #include "231511077.h"
 
-void insertTabel(addrTable &head, char info)
+int mod(addrTable karakterList)
 {
-    addrTable newNode, temp;
-    newNode = (addrTable)malloc(sizeof(table));
-    if (newNode == NULL)
+    addrTable current = karakterList;
+    int mod = 0;
+    while (current != NULL)
     {
-        cout << "Memory Penuh\n";
-        return;
+        current = current->next;
+        mod++;
     }
-    newNode->info = info;
-    newNode->next = NULL;
-    if (head == NULL)
+    return mod;
+}
+
+addrTable bacaFile(string alamat)
+{
+    addrTable karakterList = NULL;
+    string filename = alamat;
+    ifstream file(filename);
+
+    if (!file.is_open())
     {
-        head = newNode;
+        cout << "Error membuka file" << endl;
+        return NULL;
     }
-    else
+
+    char c;
+    while (file.get(c))
     {
-        temp = head;
-        while (temp->next != NULL)
+        if (c != '`')
         {
-            temp = temp->next;
+            insertTabel(karakterList, c);
         }
-        temp->next = newNode;
     }
+    file.close();
+
+    return karakterList;
 }
 
-bool deleteTabel(addrTable &head)
-{
-    if (head == NULL)
-    {
-        return false;
-    }
-    
-    addrTable temp = NULL;
-    while (head != NULL)
-    {
-        temp = head;
-        head = head->next;
-        free(temp);
-    }
-    return true;
-}
-
-void tampilkanMatriks(addrMatriks awal)
-{
-    addrMatriks row, col;
-    row = awal;
-    while (row != NULL)
-    {
-        col = row;
-        while (col != NULL)
-        {
-            cout << col->info << " ";
-            col = col->right;
-        }
-        cout << endl;
-        row = row->bottom;
-    }
-}
-
-int konversiKeAngka(addrTable karakterList, char plaintext)
+int konversiKeAngka(addrTable karakterList, char text)
 {
     addrTable current = karakterList;
     int bil = 0;
     while (current != NULL)
-    {
-        if (current->info == plaintext)
+    {   
+        if (current->info == text)
         {
             break;
         }
@@ -88,39 +65,10 @@ char konversiKeKarakter(addrTable karakterList, int hasil)
     return charX;
 }
 
-string enkripsi(string plaintext)
+string enkripsi(string plaintext, addrMatriks awal, addrTable karakterList, int modulus)
 {
-    addrTable karakterList = NULL;
-    string filename = "../data/tabel-konversi.txt";
-    ifstream file(filename);
-
-    if (!file.is_open())
-    {
-        cout << "Error membuka file" << endl;
-        return "";
-    }
-
-    char c;
-    while (file.get(c))
-    {
-        if (c != '`')
-        {
-            insertTabel(karakterList, c);
-        }
-    }
-    file.close();
-
-    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
-    addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
-
+    addrMatriks matriksKunci = awal;
     addrTable current = karakterList;
-    int modulus = 0;
-    while (current != NULL)
-    {
-        current = current->next;
-        modulus++;
-    }
-
     string ciphertext = "";
 
     bool ganjil = false;
@@ -140,18 +88,17 @@ string enkripsi(string plaintext)
         char x = plaintext[i];
         char y = plaintext[i + 1];
 
-        current = karakterList;
-        int indexX = konversiKeAngka(karakterList, x);
-        int indexY = konversiKeAngka(karakterList, y);
+        int indexX = konversiKeAngka(current, x);
+        int indexY = konversiKeAngka(current, y);
 
-        int encX = (searchMatriks(matriksKunci, 1, 1)->info * indexX + searchMatriks(matriksKunci, 1, 2)->info * indexY) %modulus;
-        int encY = (searchMatriks(matriksKunci, 2, 1)->info * indexX + searchMatriks(matriksKunci, 2, 2)->info * indexY) %modulus;
+        int encX = (searchMatriks(matriksKunci, 1, 1)->info * indexX + searchMatriks(matriksKunci, 1, 2)->info * indexY) % modulus;
+        int encY = (searchMatriks(matriksKunci, 2, 1)->info * indexX + searchMatriks(matriksKunci, 2, 2)->info * indexY) % modulus;
 
-        char encryptedX = konversiKeKarakter(karakterList, encX);
-        char encryptedY = konversiKeKarakter(karakterList, encY);
+        char encryptedX = konversiKeKarakter(current, encX);
+        char encryptedY = konversiKeKarakter(current, encY);
 
-        ciphertext += encryptedX;
-        ciphertext += encryptedY;
+        ciphertext = ciphertext + encryptedX;
+        ciphertext = ciphertext + encryptedY;
     }
 
     if (ganjil)
@@ -159,46 +106,13 @@ string enkripsi(string plaintext)
         ciphertext = ciphertext + '1';
     }
 
-    bool hapus = deleteTabel(karakterList);
-
     return ciphertext;
 }
 
-string dekripsi(string ciphertext)
+string dekripsi(string ciphertext, addrMatriks awal, addrTable karakterList, int modulus)
 {
-    addrTable karakterList = NULL;
-    string filename = "../data/tabel-konversi.txt";
-    ifstream file(filename);
-
-    if (!file.is_open())
-    {
-        cout << "Error membuka file" << endl;
-        return "";
-    }
-
-    char c;
-    while (file.get(c))
-    {
-        if (c != '`')
-        {
-            insertTabel(karakterList, c);
-        }
-    }
-    file.close();
-
-    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
-    addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
-
+    addrMatriks invMatriks = awal;
     addrTable current = karakterList;
-    int modulus = 0;
-    while (current != NULL)
-    {
-        current = current->next;
-        modulus++;
-    }
-
-    addrMatriks invMatriks = inversMatriksKunci(matriksKunci, modulus);
-
     string plaintext = "";
 
     bool ganjil = false;
@@ -213,15 +127,14 @@ string dekripsi(string ciphertext)
         char x = ciphertext[i];
         char y = ciphertext[i + 1];
 
-        current = karakterList;
-        int indexX = konversiKeAngka(karakterList, x);
-        int indexY = konversiKeAngka(karakterList, y);
+        int indexX = konversiKeAngka(current, x);
+        int indexY = konversiKeAngka(current, y);
 
         int decX = (searchMatriks(invMatriks, 1, 1)->info * indexX + searchMatriks(invMatriks, 1, 2)->info * indexY) % modulus;
         int decY = (searchMatriks(invMatriks, 2, 1)->info * indexX + searchMatriks(invMatriks, 2, 2)->info * indexY) % modulus;
 
-        char decryptedX = konversiKeKarakter(karakterList, decX);
-        char decryptedY = konversiKeKarakter(karakterList, decY);
+        char decryptedX = konversiKeKarakter(current, decX);
+        char decryptedY = konversiKeKarakter(current, decY);
 
         plaintext = plaintext + decryptedX;
         plaintext = plaintext + decryptedY;
@@ -231,11 +144,10 @@ string dekripsi(string ciphertext)
     {
         plaintext.pop_back();
     }
-
-    bool hapus = deleteTabel(karakterList);
     
     return plaintext;
 }
+
 
 
 

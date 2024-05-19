@@ -7,23 +7,22 @@
 #include "../pengguna.h"
 #include "../linkedlist.h"
 #include "../231511065/231511065.h"
+#include "../231511070/231511070.h"
 #include "../231511074/231511074.h"
 #include "../231511076/231511076.h"
 
 using namespace std;
 
-string enkripsi(string plaintext);
+int mod(addrTable karakterList);
 
-string dekripsi(string ciphertext);
-
-void insertTabel(addrTable &head, char info);
-
-bool deleteTabel(addrTable &head);
-
-void tampilkanMatriks(addrMatriks awal);
+addrTable bacaFile(string alamat);
 
 int konversiKeAngka(addrTable karakterList, char plaintext);
 
 char konversiKeKarakter(addrTable karakterList, int hasil);
+
+string enkripsi(string plaintext, addrMatriks awal, addrTable karakterList, int modulus);
+
+string dekripsi(string ciphertext, addrMatriks invMatriks, addrTable karakterList, int modulus);
 
 #endif

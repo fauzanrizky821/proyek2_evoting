@@ -48,4 +48,7 @@ void deleteMatriks(Node*& head, Node*& akhir);
 
 // Fungsi untuk mencari elemen matriks berdasarkan baris dan kolom
 addrMatriks searchMatriks(addrMatriks first, int row, int col);
+
+bool hapusMatriks(addrMatriks &awal);
+
 #endif // ELECTION_COUNT_H
