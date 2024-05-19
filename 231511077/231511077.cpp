@@ -231,3 +231,71 @@ string enkripsi(string plaintext, addrTable karakterList)
     }
     return ciphertext;
 }
+
+string dekripsi(string ciphertext, addrTable karakterList)
+{
+    addrTable current = karakterList;
+    int modulus = 0;
+    while (current != NULL)
+    {
+        current = current->next;
+        modulus++;
+    }
+
+    string plaintext = "";
+
+    for (int i = 0; i < ciphertext.size(); i = i + 2)
+    {
+        char x = ciphertext[i];
+        char y = ciphertext[i + 1];
+
+        current = karakterList;
+        int indexX = 0;
+        while (current != NULL)
+        {
+            if (current->info == x)
+            {
+                break;
+            }
+            current = current->next;
+            indexX++;
+        }
+        current = karakterList;
+        int indexY = 0;
+        while (current != NULL)
+        {
+            if (current->info == y)
+            {
+                break;
+            }
+            current = current->next;
+            indexY++;
+        }
+
+        int encX = (2 * indexX + 1 * indexY) % modulus;
+        int encY = (3 * indexX + 4 * indexY) % modulus;
+
+        current = karakterList;
+        for (int j = 0; j < encX; ++j)
+        {
+            current = current->next;
+        }
+        char decryptedX = current->info;
+
+        current = karakterList;
+        for (int j = 0; j < encY; ++j)
+        {
+            current = current->next;
+        }
+        char decryptedY = current->info;
+
+        plaintext += decryptedX;
+        plaintext += decryptedY;
+    }
+
+    if (plaintext.back() == ' ')
+    {
+        return plaintext;
+    }
+    return plaintext;
+}
