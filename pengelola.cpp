@@ -8,6 +8,21 @@ using namespace std;
 
 int main ()
 {
+    addrTable baca = bacaFile("data/tabel-konversi.txt");
+    if (baca == NULL)
+    {
+        cout << "Gagal membaca file tabel konversi!\n Klik enter untuk melanjutkan!";
+        getchar();
+        getchar();
+        return 0;
+    }
+
+    int modulus = mod(baca);
+    
+    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
+    addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
+    addrMatriks invMatriks = inversMatriksKunci(matriksKunci, modulus);
+    
     int pilihan;
     do{
     system("cls");
@@ -38,6 +53,9 @@ int main ()
     }
 
     }while (pilihan!=2);
+
+    bool hapusTabel = deleteTabel(baca);
+    bool hapusMat = hapusMatriks(matriksKunci);
 
     return 0;
 }

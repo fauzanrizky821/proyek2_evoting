@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
+#include "../linkedlist.h"
 using namespace std;
 
 struct PasanganCalon {
@@ -28,5 +28,27 @@ void hitungJumlahVote(const string& nama_file);
 void menu_login_pengelola();
 bool login(Pengelola* head, string& id, string& nama);
 void deleteList(Pengelola* head);
+
+
+struct Matrix {
+    int rows;
+    int cols;
+    int** data;
+};
+
+struct Node {
+    Matrix matrix;
+    Node* next;
+    Node* bottom;
+};
+
+// Fungsi untuk menghapus semua matriks dari linked list dan membebaskan memori
+void deleteMatriks(Node*& head, Node*& akhir);
+
+
+// Fungsi untuk mencari elemen matriks berdasarkan baris dan kolom
+addrMatriks searchMatriks(addrMatriks first, int row, int col);
+
+bool hapusMatriks(addrMatriks &awal);
 
 #endif // ELECTION_COUNT_H
