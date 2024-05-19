@@ -1,16 +1,118 @@
 #include "231511077.h"
 
-string enkripsi(string plaintext)
-{
-    char karakter[] = {
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-        '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '<', '>', '.', ',', ';',
-        '"', '\'', '\\', '/', '?', ':', '~', '|', ' '};
+// string enkripsi(string plaintext)
+// {
+//     char karakter[] = {
+//         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+//         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+//         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+//         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '<', '>', '.', ',', ';',
+//         '"', '\'', '\\', '/', '?', ':', '~', '|', ' '};
 
-    int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
-    int modulus = sizeof(karakter);
+//     int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
+//     int modulus = sizeof(karakter);
+
+//     string ciphertext = "";
+
+//     if (plaintext.size() % 2 == 1)
+//     {
+//         plaintext = plaintext + ' ';
+//     }
+
+//     for (int i = 0; i < plaintext.size(); i = i + 2)
+//     {
+//         int x = 0, y = 0;
+//         for (int j = 0; j < modulus; ++j)
+//         {
+//             if (karakter[j] == plaintext[i])
+//             {
+//                 x = j;
+//                 break;
+//             }
+//         }
+//         for (int j = 0; j < modulus; ++j)
+//         {
+//             if (karakter[j] == plaintext[i + 1])
+//             {
+//                 y = j;
+//                 break;
+//             }
+//         }
+
+//         int encX = (kunciMatriks[0][0] * x + kunciMatriks[0][1] * y) % modulus;
+//         int encY = (kunciMatriks[1][0] * x + kunciMatriks[1][1] * y) % modulus;
+
+//         ciphertext = ciphertext + karakter[encX];
+//         ciphertext = ciphertext + karakter[encY];
+//     }
+
+//     return ciphertext;
+// }
+
+// string dekripsi(string ciphertext)
+// {
+//     char karakter[] = {
+//         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+//         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+//         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+//         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '<', '>', '.', ',', ';',
+//         '"', '\'', '\\', '/', '?', ':', '~', '|', ' '};
+
+//     int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
+//     int modulus = sizeof(karakter);
+
+//     string plaintext = "";
+
+//     inversMatriks(kunciMatriks, modulus);
+
+//     for (int i = 0; i < ciphertext.size(); i = i + 2)
+//     {
+//         int x = 0, y = 0;
+//         for (int j = 0; j < modulus; ++j)
+//         {
+//             if (karakter[j] == ciphertext[i])
+//             {
+//                 x = j;
+//                 break;
+//             }
+//         }
+//         for (int j = 0; j < modulus; ++j)
+//         {
+//             if (karakter[j] == ciphertext[i + 1])
+//             {
+//                 y = j;
+//                 break;
+//             }
+//         }
+
+//         int encX = (kunciMatriks[0][0] * x + kunciMatriks[0][1] * y) % modulus;
+//         int encY = (kunciMatriks[1][0] * x + kunciMatriks[1][1] * y) % modulus;
+
+//         plaintext = plaintext + karakter[encX];
+//         plaintext = plaintext + karakter[encY];
+//     }
+
+//     if (plaintext.size() % 2 == 0 && plaintext.back() == ' ')
+//     {
+//         return plaintext;
+//     }
+//     else if (plaintext.size() % 2 == 1 && plaintext.back() == ' ')
+//     {
+//         plaintext.pop_back();
+//     }
+
+//     return plaintext;
+// }
+
+string enkripsi(string plaintext, addrTable karakterList)
+{
+    addrTable current = karakterList;
+    int modulus = 0;
+    while (current != NULL)
+    {
+        current = current->next;
+        modulus++;
+    }
 
     string ciphertext = "";
 
@@ -21,85 +123,51 @@ string enkripsi(string plaintext)
 
     for (int i = 0; i < plaintext.size(); i = i + 2)
     {
-        int x = 0, y = 0;
-        for (int j = 0; j < modulus; ++j)
+        char x = plaintext[i];
+        char y = plaintext[i + 1];
+
+        current = karakterList;
+        int indexX = 0;
+        while (current != NULL)
         {
-            if (karakter[j] == plaintext[i])
+            if (current->info == x)
             {
-                x = j;
                 break;
             }
+            current = current->next;
+            indexX++;
         }
-        for (int j = 0; j < modulus; ++j)
+        current = karakterList;
+        int indexY = 0;
+        while (current != NULL)
         {
-            if (karakter[j] == plaintext[i + 1])
+            if (current->info == y)
             {
-                y = j;
                 break;
             }
+            current = current->next;
+            indexY++;
         }
 
-        int encX = (kunciMatriks[0][0] * x + kunciMatriks[0][1] * y) % modulus;
-        int encY = (kunciMatriks[1][0] * x + kunciMatriks[1][1] * y) % modulus;
+        int encX = (2 * indexX + 1 * indexY) % modulus;
+        int encY = (3 * indexX + 4 * indexY) % modulus;
 
-        ciphertext = ciphertext + karakter[encX];
-        ciphertext = ciphertext + karakter[encY];
+        current = karakterList;
+        for (int j = 0; j < encX; ++j)
+        {
+            current = current->next;
+        }
+        char encryptedX = current->info;
+
+        current = karakterList;
+        for (int j = 0; j < encY; ++j)
+        {
+            current = current->next;
+        }
+        char encryptedY = current->info;
+
+        ciphertext += encryptedX;
+        ciphertext += encryptedY;
     }
-
     return ciphertext;
-}
-
-string dekripsi(string ciphertext)
-{
-    char karakter[] = {
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-        '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '<', '>', '.', ',', ';',
-        '"', '\'', '\\', '/', '?', ':', '~', '|', ' '};
-
-    int kunciMatriks[2][2] = {{2, 1}, {3, 4}};
-    int modulus = sizeof(karakter);
-
-    string plaintext = "";
-
-    inversMatriks(kunciMatriks, modulus);
-
-    for (int i = 0; i < ciphertext.size(); i = i + 2)
-    {
-        int x = 0, y = 0;
-        for (int j = 0; j < modulus; ++j)
-        {
-            if (karakter[j] == ciphertext[i])
-            {
-                x = j;
-                break;
-            }
-        }
-        for (int j = 0; j < modulus; ++j)
-        {
-            if (karakter[j] == ciphertext[i + 1])
-            {
-                y = j;
-                break;
-            }
-        }
-
-        int encX = (kunciMatriks[0][0] * x + kunciMatriks[0][1] * y) % modulus;
-        int encY = (kunciMatriks[1][0] * x + kunciMatriks[1][1] * y) % modulus;
-
-        plaintext = plaintext + karakter[encX];
-        plaintext = plaintext + karakter[encY];
-    }
-
-    if (plaintext.size() % 2 == 0 && plaintext.back() == ' ')
-    {
-        return plaintext;
-    }
-    else if (plaintext.size() % 2 == 1 && plaintext.back() == ' ')
-    {
-        plaintext.pop_back();
-    }
-
-    return plaintext;
 }

@@ -1,12 +1,16 @@
 #ifndef ENKRIPSI_H
 #define ENKRIPSI_H
 
-using namespace std;
-
-#include "../pengguna.h"
-#include "../231511076/231511076.h"
 #include <iostream>
 #include <string>
+
+#include "../pengguna.h"
+#include "../linkedlist.h"
+#include "../231511065/231511065.h"
+#include "../231511074/231511074.h"
+#include "../231511076/231511076.h"
+
+using namespace std;
 
 string enkripsi(string plaintext);
 
