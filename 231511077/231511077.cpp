@@ -104,6 +104,32 @@
 //     return plaintext;
 // }
 
+void insertTabel(addrTable &head, char info)
+{
+    addrTable newNode, temp;
+    newNode = (addrTable)malloc(sizeof(table));
+    if (newNode == NULL)
+    {
+        cout << "Memory Penuh\n";
+        return;
+    }
+    newNode->info = info;
+    newNode->next = NULL;
+    if (head == NULL)
+    {
+        head = newNode;
+    }
+    else
+    {
+        temp = head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+}
+
 string enkripsi(string plaintext, addrTable karakterList)
 {
     addrTable current = karakterList;
