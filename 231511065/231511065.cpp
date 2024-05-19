@@ -85,15 +85,17 @@ bool login(Pengelola* head, string& id, string& nama) {
             if (current->password == password) {
                 id = inputID;
                 nama = current->nama;
-
+                system("cls");
                 cout << "=============================================================" << endl;
                 cout << "|                      LOGIN BERHASIL!                      |" << endl;
                 cout << "-------------------------------------------------------------" << endl;
                 cout << "|              Tekan enter untuk melanjutkan..              |" << endl;
                 cout << "=============================================================" << endl;
-
+                cin.ignore(); // Bersihkan buffer input
+                cin.get();    // Tunggu pengguna menekan Enter
                 return true;
             } else {
+                system("cls");
                 cout << "============================================================" << endl;
                 cout << "|                      PASSWORD SALAH!                     |" << endl;
                 cout << "------------------------------------------------------------" << endl;
@@ -109,6 +111,7 @@ bool login(Pengelola* head, string& id, string& nama) {
     }
 
     if (!cariID) {
+        system("cls");
         cout << "============================================================" << endl;
         cout << "|              ID PENGGUNA TIDAK DITEMUKAN!                |" << endl;
         cout << "------------------------------------------------------------" << endl;
@@ -134,7 +137,7 @@ void deleteList(Pengelola* head) {
 
 
 
-void menu_login_pengelola(addrMatriks invMatriks, addrTable karakterList, int modulus) 
+bool menu_login_pengelola(addrMatriks invMatriks, addrTable karakterList, int modulus) 
 {
     Pengelola* head = nullptr;
 
@@ -164,17 +167,18 @@ void menu_login_pengelola(addrMatriks invMatriks, addrTable karakterList, int mo
     }
 
     string id, nama;
-    if (login(head, id, nama)) // Periksa hasil login sebelum memanggil menu
-    {
-        cin.ignore();
-        cin.get();
-        system("cls");
-        menu_pengelola(head, id, nama); // Panggil menu_pengelola jika login berhasil
-    }
-    else
-    {
-        cerr << "Login gagal. Tidak dapat memanggil menu pengelola." << endl;
-    }
+    return login(head, id, nama); // Periksa hasil login sebelum memanggil menu
+    // {
+    //     cin.ignore();
+    //     cin.get();
+    //     system("cls");
+    //     menu_pengelola(head, id, nama); // Panggil menu_pengelola jika login berhasil
+    // }
+    // else
+    // {
+    //     return false;
+    //     cerr << "Login gagal. Tidak dapat memanggil menu pengelola." << endl;
+    // }
 
     // Membersihkan memori
     deleteList(head);

@@ -44,7 +44,7 @@ int main()
         {
         case 1:
             system("cls");
-            cekLogin = login(pengguna);
+            cekLogin = loginPengguna(pengguna, invMatriks, baca, modulus);
             getchar();
             getchar();
             system("cls");
@@ -78,7 +78,7 @@ int main()
                         else
                         {
                             system("cls");
-                            menuVote(pengguna);
+                            // ! menuVote(pengguna);
                             system("cls");
                         }
                         break;
@@ -185,7 +185,7 @@ int main()
             }
             break;
         case 2:
-            registrasi();
+            registrasi(matriksKunci, invMatriks, baca, modulus);
             getchar();
             system("cls");
             break;

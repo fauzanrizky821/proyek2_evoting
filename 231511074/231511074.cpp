@@ -75,58 +75,6 @@ void lihatDataPemilih(addrMatriks invMatriks, addrTable karakterList, int modulu
     filePemilih.close();
 }
 
-void menu_pengelola(Pengelola* head, const string& id, const string& nama){
-
-    int choice;
-    do {
-        // Tampilkan menu
-        cout << "\nMenu Pengelola:\n";
-        cout << "+----+---------------------+\n";
-        cout << "| 1  | Lihat hasil voting  |\n";
-        cout << "| 2  | Lihat Data Pemilih  |\n";
-        cout << "| 3  | Logout              |\n";
-        cout << "+----+---------------------+\n";
-        cout << "Pilih: ";
-        cin >> choice;
-
-        
-        string hasilVoting;
-        switch (choice) {
-            case 1:
-                system("cls");
-                hasilVoting = melihatHasilVoting();
-                cout << hasilVoting;
-                cout << "Klik enter untuk kembali";
-                cin.ignore();
-                cin.get();
-                system("cls");
-                break;
-
-
-            case 2:
-                system("cls");
-                lihatDataPemilih();
-                cout << "Klik enter untuk kembali";
-                cin.ignore();
-                cin.get();
-                system("cls");
-                break;
-
-            case 3:
-                cout << "Logout berhasil.\n\n";
-                cout << "Klik enter untuk kembali";
-                cin.ignore();
-                cin.get();
-                system("cls");
-                break;
-                default:
-                cout << "Pilihan tidak valid. Silakan coba lagi.\n";
-        }
-
-    } while (choice != 3);
-
-}
-
 addrMatriks insertMatriks(int nilai)
 {
     addrMatriks newNode; 

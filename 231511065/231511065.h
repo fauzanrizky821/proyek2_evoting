@@ -25,7 +25,7 @@ struct Pengelola {
 };
 
 void hitungJumlahVote(const string& nama_file);
-void menu_login_pengelola(addrMatriks invMatriks, addrTable karakterList, int modulus);
+bool menu_login_pengelola(addrMatriks invMatriks, addrTable karakterList, int modulus);
 bool login(Pengelola* head, string& id, string& nama);
 void deleteList(Pengelola* head);
 

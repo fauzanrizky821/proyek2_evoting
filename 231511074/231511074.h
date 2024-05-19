@@ -25,7 +25,6 @@ struct Voter {
 void dataPemilih(const Voter& voter);
 string melihatHasilVoting();
 void lihatDataPemilih(addrMatriks invMatriks, addrTable karakterList, int modulus);
-void menu_pengelola(Pengelola* head, const string& id, const string& nama);
 addrMatriks insertMatriks(int nilai);
 addrMatriks insertKunciMatriks(int Key1, int Key2, int Key3, int Key4);
 void freeMatrix(addrMatriks head);
