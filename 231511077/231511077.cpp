@@ -78,10 +78,6 @@ string enkripsi(string plaintext, addrMatriks awal, addrTable karakterList, int 
         ganjil = true;
     }
 
-    if (plaintext.size() % 2 == 1)
-    {
-        plaintext = plaintext + ' ';
-    }
 
     for (int i = 0; i < plaintext.size(); i = i + 2)
     {
@@ -101,7 +97,7 @@ string enkripsi(string plaintext, addrMatriks awal, addrTable karakterList, int 
         ciphertext = ciphertext + encryptedY;
     }
 
-    if (ganjil)
+    if (ganjil == true)
     {
         ciphertext = ciphertext + '1';
     }
@@ -140,7 +136,7 @@ string dekripsi(string ciphertext, addrMatriks awal, addrTable karakterList, int
         plaintext = plaintext + decryptedY;
     }
 
-    if (ganjil && plaintext.back() == ' ')
+    if (ganjil == true && plaintext.back() == ' ')
     {
         plaintext.pop_back();
     }
