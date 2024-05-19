@@ -13,9 +13,9 @@
 
 using namespace std;
 
-void total_vote(const int hasil_vote[]);
-void update_status(const std::string& nim);
-void  menuVote(Pengguna &pengguna);
+void total_vote(const int hasil_vote[], addrMatriks awal, addrTable karaterList, int modulus);
+void update_status(const string &nim, addrMatriks awal, addrMatriks invMatriks, addrTable karaterList, int modulus);
+void menuVote(Pengguna &pengguna, addrMatriks awal, addrMatriks invMatriks, addrTable karaterList, int modulus);
 void insertTabel(addrTable &head, char info);
 bool deleteTabel(addrTable &head);
 void tampilkanList(addrTable awal);

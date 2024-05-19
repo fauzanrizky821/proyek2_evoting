@@ -78,7 +78,7 @@ int main()
                         else
                         {
                             system("cls");
-                            // ! menuVote(pengguna);
+                            menuVote(pengguna, matriksKunci, invMatriks, baca, modulus);
                             system("cls");
                         }
                         break;
