@@ -16,4 +16,8 @@ string enkripsi(string plaintext);
 
 string dekripsi(string plaintext);
 
+void insertTabel(addrTable &head, char info);
+
+bool deleteTabel(addrTable &head);
+
 #endif

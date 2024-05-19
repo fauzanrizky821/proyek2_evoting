@@ -130,6 +130,23 @@ void insertTabel(addrTable &head, char info)
     }
 }
 
+bool deleteTabel(addrTable &head)
+{
+    if (head == NULL)
+    {
+        return false;
+    }
+    
+    addrTable temp = NULL;
+    while (head != NULL)
+    {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+    return true;
+}
+
 string enkripsi(string plaintext, addrTable karakterList)
 {
     addrTable current = karakterList;
