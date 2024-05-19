@@ -123,6 +123,13 @@ string enkripsi(string plaintext)
 
     string ciphertext = "";
 
+    bool ganjil = false;
+    if (plaintext.size() % 2 == 1)
+    {
+        plaintext = plaintext + ' ';
+        ganjil = true;
+    }
+
     if (plaintext.size() % 2 == 1)
     {
         plaintext = plaintext + ' ';
@@ -146,6 +153,14 @@ string enkripsi(string plaintext)
         ciphertext += encryptedX;
         ciphertext += encryptedY;
     }
+
+    if (ganjil)
+    {
+        ciphertext = ciphertext + '1';
+    }
+
+    bool hapus = deleteTabel(karakterList);
+
     return ciphertext;
 }
 
@@ -186,6 +201,13 @@ string dekripsi(string ciphertext)
 
     string plaintext = "";
 
+    bool ganjil = false;
+    if (ciphertext.size() % 2 == 1 && ciphertext.back() == '1')
+    {
+        ciphertext.pop_back();
+        ganjil = true;
+    }
+
     for (int i = 0; i < ciphertext.size(); i = i + 2)
     {
         char x = ciphertext[i];
@@ -205,10 +227,13 @@ string dekripsi(string ciphertext)
         plaintext = plaintext + decryptedY;
     }
 
-    if (plaintext.back() == ' ')
+    if (ganjil && plaintext.back() == ' ')
     {
-        return plaintext;
+        plaintext.pop_back();
     }
+
+    bool hapus = deleteTabel(karakterList);
+    
     return plaintext;
 }
 
