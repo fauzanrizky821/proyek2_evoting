@@ -164,8 +164,28 @@ void tampilkanMatriks(addrMatriks awal)
     }
 }
 
-string enkripsi(string plaintext, addrTable karakterList)
+string enkripsi(string plaintext)
 {
+    addrTable karakterList = NULL;
+    string filename = "../data/tabel-konversi.txt";
+    ifstream file(filename);
+
+    if (!file.is_open())
+    {
+        cout << "Error membuka file" << endl;
+        return "";
+    }
+
+    char c;
+    while (file.get(c))
+    {
+        if (c != '`')
+        {
+            insertTabel(karakterList, c);
+        }
+    }
+    file.close();
+    
     addrTable current = karakterList;
     int modulus = 0;
     while (current != NULL)
@@ -232,8 +252,28 @@ string enkripsi(string plaintext, addrTable karakterList)
     return ciphertext;
 }
 
-string dekripsi(string ciphertext, addrTable karakterList)
+string dekripsi(string ciphertext)
 {
+    addrTable karakterList = NULL;
+    string filename = "../data/tabel-konversi.txt";
+    ifstream file(filename);
+
+    if (!file.is_open())
+    {
+        cout << "Error membuka file" << endl;
+        return "";
+    }
+
+    char c;
+    while (file.get(c))
+    {
+        if (c != '`')
+        {
+            insertTabel(karakterList, c);
+        }
+    }
+    file.close();
+
     addrTable current = karakterList;
     int modulus = 0;
     while (current != NULL)

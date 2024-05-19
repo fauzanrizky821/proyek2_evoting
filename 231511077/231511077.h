@@ -14,7 +14,7 @@ using namespace std;
 
 string enkripsi(string plaintext);
 
-string dekripsi(string plaintext);
+string dekripsi(string ciphertext);
 
 void insertTabel(addrTable &head, char info);
 
