@@ -19,9 +19,9 @@ using namespace std;
 
 void clearScreen();
 
-bool registrasi();
+bool registrasi(addrMatriks matriks, addrMatriks invMatriks,addrTable karakterList, int modulus);
 
-bool login(Pengguna &pengguna);
+bool loginPengguna(Pengguna &pengguna, addrMatriks invMatriks, addrTable karakterList, int modulus);
 
 void swap(int &a, int &b);
 

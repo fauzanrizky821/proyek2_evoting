@@ -12,7 +12,7 @@ void clearScreen()
     cout << "============================================================" << endl;
 }
 
-bool registrasi()
+bool registrasi(addrMatriks matriks, addrMatriks invMatriks,addrTable karakterList, int modulus)
 {
     Pengguna pengguna;
     istringstream iss;
@@ -43,7 +43,7 @@ bool registrasi()
         while (getline(readFile, data) && !cariNim)
         {
             iss.clear();
-            data = dekripsi(data); // * dekripsi data pengguna
+            data = dekripsi(data, invMatriks, karakterList, modulus); // * dekripsi data pengguna
             iss.str(data);
             getline(iss, cekNim, ',');
 
@@ -90,7 +90,7 @@ bool registrasi()
             { // * Cek apakah file terbuka atau tidak
                 // * Menyimpan file
                 dataPengguna = pengguna.nim + "," + pengguna.password + "," + pengguna.nama + "," + pengguna.jurusan + "," + pengguna.prodi + "," + pengguna.status + ",";
-                inputFile << enkripsi(dataPengguna) << endl; // * Mengenkripsi data pengguna lalu menyimpannya ke data-pengguna.txt
+                inputFile << enkripsi(dataPengguna, matriks, karakterList, modulus) << endl; // * Mengenkripsi data pengguna lalu menyimpannya ke data-pengguna.txt
                 inputFile.close();
 
                 system("cls");
@@ -120,7 +120,7 @@ bool registrasi()
     return cekRegis;
 }
 
-bool login(Pengguna &pengguna)
+bool loginPengguna(Pengguna &pengguna, addrMatriks invMatriks, addrTable karakterList, int modulus)
 {
     istringstream iss;
     string data, inputNim, cekNim, password, cekPassword;
@@ -147,7 +147,7 @@ bool login(Pengguna &pengguna)
         while (getline(readFile, data) && !cariNim) // * (istream, string, delimination/pembatasan)
         {
             iss.clear();
-            data = dekripsi(data); // * dekripsi data pengguna
+            data = dekripsi(data, invMatriks, karakterList, modulus); // * dekripsi data pengguna
             iss.str(data);         // * mendapatkan atau menyetel konten objek perangkat string yang mendasarinya
             getline(iss, cekNim, ',');
 
