@@ -1,4 +1,6 @@
+#include "231511065/231511065.h"
 #include "231511070/231511070.h"
+#include "231511074/231511074.h"
 #include "231511076/231511076.h"
 #include "231511077/231511077.h"
 
@@ -7,6 +9,21 @@ int main()
     int opsi, menu;
     Pengguna pengguna;
     bool cekLogin;
+
+    addrTable baca = bacaFile("data/tabel-konversi.txt");
+    if (baca == NULL)
+    {
+        cout << "Gagal membaca file tabel konversi!\n Klik enter untuk melanjutkan!";
+        getchar();
+        getchar();
+        return 0;
+    }
+
+    int modulus = mod(baca);
+    
+    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
+    addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
+    addrMatriks invMatriks = inversMatriksKunci(matriksKunci, modulus);
 
     do
     {
@@ -184,5 +201,9 @@ int main()
             break;
         }
     } while (opsi != 0);
+
+    bool hapusTabel = deleteTabel(baca);
+    bool hapusMat = hapusMatriks(matriksKunci);
+    
     return 0;
 }
