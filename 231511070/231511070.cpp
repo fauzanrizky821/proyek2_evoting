@@ -94,56 +94,41 @@ void menuVote(Pengguna &pengguna) {
     }
 }
 
-void insertChar(char nilai, addrTable &awal, addrTable &akhir) {
-    addrTable p;
-
-    p = (addrTable)malloc(sizeof(table));
-    if (p == NULL) {
-        printf("Memori penuh\n");
-    } else {
-        p->info = nilai;
-        p->next = NULL;
+void insertTabel(addrTable &head, char info) {
+    addrTable newNode, temp;
+    newNode = (addrTable)malloc(sizeof(table));
+    if (newNode == NULL) {
+        cout << "Memory Penuh\n";
+        return;
     }
-
-    if (awal == NULL && akhir == NULL) {
-        awal = p;
+    newNode->info = info;
+    newNode->next = NULL;
+    if (head == NULL) {
+        head = newNode;
     } else {
-        akhir->next = p;
-    }
-
-    akhir = p;
-}
-
-char deleteChar(addrTable &awal, addrTable &akhir) {
-    addrTable p, q;
-    int nilai;
-    p = akhir;
-    q = awal;
-
-    if (awal == NULL && akhir == NULL) {
-        printf("Linked list kosong\n");
-
-        return 0;
-    } else if (awal == akhir) {
-        awal = NULL;
-        akhir = NULL;
-    } else {
-        while (next(q) != akhir) {
-            q = next(q);
+        temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
         }
-        akhir = q;
-        q->next = NULL;
+        temp->next = newNode;
     }
-
-    nilai = p->info;
-    p->next = NULL;
-    free(p);
-
-    return nilai;
 }
 
-void tampilkanList(addrTable awal, addrTable akhir)
-{
+bool deleteTabel(addrTable &head) {
+    if (head == NULL) {
+        return false;
+    }
+
+    addrTable temp = NULL;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+    return true;
+}
+
+void tampilkanList(addrTable awal, addrTable akhir) {
     addrTable p;
     p = awal;
     int i;
@@ -151,9 +136,8 @@ void tampilkanList(addrTable awal, addrTable akhir)
     printf("\nLinked List: \n");
 
     i = 1;
-    while (p != NULL)
-    {
-        printf("(%d) %d \n",i ,p->info);
+    while (p != NULL) {
+        printf("(%d) %d \n", i, p->info);
         p = next(p);
         i++;
     }
