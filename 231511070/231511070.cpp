@@ -128,17 +128,10 @@ bool deleteTabel(addrTable &head) {
     return true;
 }
 
-void tampilkanList(addrTable awal, addrTable akhir) {
-    addrTable p;
-    p = awal;
-    int i;
-
-    printf("\nLinked List: \n");
-
-    i = 1;
-    while (p != NULL) {
-        printf("(%d) %d \n", i, p->info);
-        p = next(p);
-        i++;
+void tampilkanList(addrTable awal) {
+    addrTable current = awal;
+    while (current != NULL) {
+        cout << current->info << "`";
+        current = current->next;
     }
 }
