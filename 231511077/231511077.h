@@ -20,4 +20,6 @@ void insertTabel(addrTable &head, char info);
 
 bool deleteTabel(addrTable &head);
 
+void tampilkanMatriks(addrMatriks awal);
+
 #endif

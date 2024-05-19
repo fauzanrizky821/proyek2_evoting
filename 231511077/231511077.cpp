@@ -147,6 +147,23 @@ bool deleteTabel(addrTable &head)
     return true;
 }
 
+void tampilkanMatriks(addrMatriks awal)
+{
+    addrMatriks row, col;
+    row = awal;
+    while (row != NULL)
+    {
+        col = row;
+        while (col != NULL)
+        {
+            cout << col->info << " ";
+            col = col->right;
+        }
+        cout << endl;
+        row = row->bottom;
+    }
+}
+
 string enkripsi(string plaintext, addrTable karakterList)
 {
     addrTable current = karakterList;
