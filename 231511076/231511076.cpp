@@ -215,59 +215,6 @@ bool loginPengguna(Pengguna &pengguna, addrMatriks invMatriks, addrTable karakte
     return false;
 }
 
-// void menuUtama(Pengguna pengguna)
-// {
-//     int opsi;
-
-//     cout << "==================== " << "Selamat datang " << pengguna.nama << " ====================\n" << endl;
-//     cout << "(1) Melakukan voting\n";
-//     cout << "(2) Lihat Visi & Misi\n";
-//     cout << "(3) Logout\n";
-//     cout << "inputkan pilihan anda: ";
-//     cin >> opsi;
-
-//     switch (opsi)
-//     {
-//     case 1:
-//         if (pengguna.status == "1")
-//         {
-//             system("cls");
-//             cout << "============================================================" << endl;
-//             cout << "|                Anda sudah melakukan vote!                |" << endl;
-//             cout << "------------------------------------------------------------" << endl;
-//             cout << "|             Tekan enter untuk melanjutkan..              |" << endl;
-//             cout << "============================================================" << endl;
-//             getchar();
-//             getchar();
-//             system("cls");
-//             menuUtama(pengguna);
-//         }
-//         else
-//         {
-//             system("cls");
-//             menuVote(pengguna);
-//             system("cls");
-//             menuUtama(pengguna);
-//         }
-//         break;
-//     case 2:
-//         system("cls");
-//         menuVisiMisi(pengguna);
-//         break;
-//     case 3:
-//         system("cls");
-//         break;
-
-//     default:
-//         cout << "Ketikkan salah satu pilihan diatas! \n";
-//         getchar();
-//         getchar();
-//         system("cls");
-//         menuUtama(pengguna);
-//         break;
-//     }
-// }
-
 void swap(int &a, int &b)
 {
     int temp;
@@ -326,7 +273,7 @@ addrMatriks inversMatriksKunci(addrMatriks first, int modulus)
         hasil = (det * bil) % modulus;
     }
 
-    hasilMod = bil; // * hasilMod dimasukan nilai dari bil
+    hasilMod = bil; // * hasilMod di-assign nilai dari bil
 
     // * swap a dan d
     temp = searchMatriks(invMatriks, 1, 1)->info;
