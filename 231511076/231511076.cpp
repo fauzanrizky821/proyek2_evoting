@@ -293,7 +293,7 @@ addrMatriks inversMatriksKunci(addrMatriks first, int modulus)
             }
             else
             {
-                searchMatriks(invMatriks,i,j)->info = (((searchMatriks(invMatriks,i,j)->info * hasilMod) % modulus) + modulus) % modulus;
+                searchMatriks(invMatriks,i,j)->info = (((searchMatriks(invMatriks,i,j)->info * hasilMod) % modulus) + modulus);
             }
         }
     }
