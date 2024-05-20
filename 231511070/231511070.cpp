@@ -2,31 +2,27 @@
 
 #include "231511070.h"
 
-void total_vote(const int hasil_vote[], addrMatriks awal, addrTable karaterList, int modulus)
-{
+void total_vote(const int hasil_vote[], addrMatriks awal, addrTable karaterList, int modulus) {
     ofstream file("data/total-vote.txt");
     stringstream temp;
     string hasilVote;
 
-    for (int i = 0; i < 3; i++)
-    {
+    for (int i = 0; i < 3; i++) {
         temp << hasil_vote[i];
         temp >> hasilVote;
         file << enkripsi(hasilVote, awal, karaterList, modulus) << endl;
-        temp.clear(); 
+        temp.clear();
     }
 
     file.close();
 }
 
-void update_status(const string &nim, addrMatriks awal, addrMatriks invMatriks, addrTable karakterList, int modulus)
-{
+void update_status(const string &nim, addrMatriks awal, addrMatriks invMatriks, addrTable karakterList, int modulus) {
     ifstream infile("data/data-pengguna.txt");
     vector<Pengguna> data_pengguna;
 
     string line;
-    while (getline(infile, line))
-    {
+    while (getline(infile, line)) {
         Pengguna pengguna;
         istringstream iss(dekripsi(line, invMatriks, karakterList, modulus));
         getline(iss, pengguna.nim, ',');
@@ -36,8 +32,7 @@ void update_status(const string &nim, addrMatriks awal, addrMatriks invMatriks, 
         getline(iss, pengguna.prodi, ',');
         getline(iss, pengguna.status, ',');
 
-        if (pengguna.nim == nim)
-        {
+        if (pengguna.nim == nim) {
             pengguna.status = "1";
         }
 
@@ -47,8 +42,7 @@ void update_status(const string &nim, addrMatriks awal, addrMatriks invMatriks, 
     infile.close();
 
     ofstream outfile("data/temp-data-pengguna.txt");
-    for (vector<Pengguna>::iterator it = data_pengguna.begin(); it != data_pengguna.end(); ++it)
-    {
+    for (vector<Pengguna>::iterator it = data_pengguna.begin(); it != data_pengguna.end(); ++it) {
         Pengguna pengguna = *it;
         string dataPengguna;
         dataPengguna = pengguna.nim + ',' + pengguna.password + ',' + pengguna.nama + ',' + pengguna.jurusan + ',' + pengguna.prodi + ',' + pengguna.status + ",";
@@ -60,16 +54,14 @@ void update_status(const string &nim, addrMatriks awal, addrMatriks invMatriks, 
     rename("data/temp-data-pengguna.txt", "data/data-pengguna.txt");
 }
 
-void menuVote(Pengguna &pengguna, addrMatriks awal, addrMatriks invMatriks, addrTable karakterList, int modulus)
-{
+void menuVote(Pengguna &pengguna, addrMatriks awal, addrMatriks invMatriks, addrTable karakterList, int modulus) {
     ifstream file("data/total-vote.txt");
     int hasil_vote[3] = {0};
     stringstream temp;
     string hasilVote;
 
     int i = 0;
-    while (i < 3)
-    {
+    while (i < 3) {
         file >> hasilVote;
         hasilVote = dekripsi(hasilVote, invMatriks, karakterList, modulus);
         temp << hasilVote;
@@ -95,8 +87,7 @@ void menuVote(Pengguna &pengguna, addrMatriks awal, addrMatriks invMatriks, addr
     cout << "Masukkan nomor calon yang ingin Anda pilih (1, 2, atau 3): ";
     cin >> nomor_calon;
 
-    if (nomor_calon >= 1 && nomor_calon <= 3)
-    {
+    if (nomor_calon >= 1 && nomor_calon <= 3) {
         hasil_vote[nomor_calon - 1] += 1;
 
         update_status(pengguna.nim, awal, invMatriks, karakterList, modulus);
@@ -108,9 +99,7 @@ void menuVote(Pengguna &pengguna, addrMatriks awal, addrMatriks invMatriks, addr
         cout << "Vote berhasil ditambahkan." << endl;
         getchar();
         getchar();
-    }
-    else
-    {
+    } else {
         cout << "Nomor calon tidak valid." << endl;
         getchar();
         getchar();
@@ -118,42 +107,33 @@ void menuVote(Pengguna &pengguna, addrMatriks awal, addrMatriks invMatriks, addr
     }
 }
 
-void insertTabel(addrTable &head, char info)
-{
+void insertTabel(addrTable &head, char info) {
     addrTable newNode, temp;
     newNode = (addrTable)malloc(sizeof(table));
-    if (newNode == NULL)
-    {
+    if (newNode == NULL) {
         cout << "Memory Penuh\n";
         return;
     }
     newNode->info = info;
     newNode->next = NULL;
-    if (head == NULL)
-    {
+    if (head == NULL) {
         head = newNode;
-    }
-    else
-    {
+    } else {
         temp = head;
-        while (temp->next != NULL)
-        {
+        while (temp->next != NULL) {
             temp = temp->next;
         }
         temp->next = newNode;
     }
 }
 
-bool deleteTabel(addrTable &head)
-{
-    if (head == NULL)
-    {
+bool deleteTabel(addrTable &head) {
+    if (head == NULL) {
         return false;
     }
 
     addrTable temp = NULL;
-    while (head != NULL)
-    {
+    while (head != NULL) {
         temp = head;
         head = head->next;
         free(temp);
@@ -161,11 +141,9 @@ bool deleteTabel(addrTable &head)
     return true;
 }
 
-void tampilkanList(addrTable awal)
-{
+void tampilkanList(addrTable awal) {
     addrTable current = awal;
-    while (current != NULL)
-    {
+    while (current != NULL) {
         cout << current->info << "`";
         current = current->next;
     }
