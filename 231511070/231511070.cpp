@@ -48,6 +48,7 @@ void update_status(const string &nim, addrMatriks awal, addrMatriks invMatriks, 
         dataPengguna = pengguna.nim + ',' + pengguna.password + ',' + pengguna.nama + ',' + pengguna.jurusan + ',' + pengguna.prodi + ',' + pengguna.status + ",";
         outfile << enkripsi(dataPengguna, awal, karakterList, modulus) << endl;
     }
+
     outfile.close();
 
     remove("data/data-pengguna.txt");
@@ -89,11 +90,8 @@ void menuVote(Pengguna &pengguna, addrMatriks awal, addrMatriks invMatriks, addr
 
     if (nomor_calon >= 1 && nomor_calon <= 3) {
         hasil_vote[nomor_calon - 1] += 1;
-
         update_status(pengguna.nim, awal, invMatriks, karakterList, modulus);
-
         total_vote(hasil_vote, awal, karakterList, modulus);
-
         pengguna.status = "1";
 
         cout << "Vote berhasil ditambahkan." << endl;
@@ -110,10 +108,12 @@ void menuVote(Pengguna &pengguna, addrMatriks awal, addrMatriks invMatriks, addr
 void insertTabel(addrTable &head, char info) {
     addrTable newNode, temp;
     newNode = (addrTable)malloc(sizeof(table));
+
     if (newNode == NULL) {
         cout << "Memory Penuh\n";
         return;
     }
+
     newNode->info = info;
     newNode->next = NULL;
     if (head == NULL) {
@@ -123,6 +123,7 @@ void insertTabel(addrTable &head, char info) {
         while (temp->next != NULL) {
             temp = temp->next;
         }
+
         temp->next = newNode;
     }
 }
@@ -138,6 +139,7 @@ bool deleteTabel(addrTable &head) {
         head = head->next;
         free(temp);
     }
+
     return true;
 }
 
