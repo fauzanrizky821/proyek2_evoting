@@ -27,6 +27,8 @@ void swap(int &a, int &b);
 
 void inversMatriks(int matriks[2][2], int modulus);
 
+int determinan (addrMatriks first);
+
 addrMatriks inversMatriksKunci(addrMatriks first, int modulus);
 
 #endif

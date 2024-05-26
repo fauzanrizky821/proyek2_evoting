@@ -259,6 +259,11 @@ void inversMatriks(int matriks[2][2], int modulus)
     }
 }
 
+int determinan (addrMatriks first)
+{
+   return (searchMatriks(first,1,1)->info * searchMatriks(first,2,2)->info) - (searchMatriks(first,1,2)->info * searchMatriks(first,2,1)->info);
+}
+
 addrMatriks inversMatriksKunci(addrMatriks first, int modulus)
 {
     int hasilMod, temp, det, hasil, bil;
