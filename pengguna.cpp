@@ -20,9 +20,15 @@ int main()
     }
 
     int modulus = mod(baca);
-    
-    int Key1 = 2, Key2 = 1, Key3 = 3, Key4 = 4;
+    int Key1 = 2, Key2 = 1, Key3 = 8, Key4 = 4;
     addrMatriks matriksKunci = insertKunciMatriks(Key1, Key2, Key3, Key4);
+
+    int det = determinan(matriksKunci);
+    if (det == 0)
+    {
+        cout << "Determinan tidak boleh nol!\n";
+        return 0;
+    }
     addrMatriks invMatriks = inversMatriksKunci(matriksKunci, modulus);
 
     do
