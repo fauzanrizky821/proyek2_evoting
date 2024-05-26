@@ -25,8 +25,6 @@ bool loginPengguna(Pengguna &pengguna, addrMatriks invMatriks, addrTable karakte
 
 void swap(int &a, int &b);
 
-void inversMatriks(int matriks[2][2], int modulus);
-
 int determinan (addrMatriks first);
 
 addrMatriks inversMatriksKunci(addrMatriks first, int modulus);
