@@ -2,6 +2,7 @@
 #define ENKRIPSI_H
 
 #include <iostream>
+#include <fstream>
 #include <string>
 
 #include "../pengguna.h"
